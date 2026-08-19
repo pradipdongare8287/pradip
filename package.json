@@ -7,7 +7,8 @@
   "type": "commonjs",
   "main": "db.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node Main_server.js"
   },
   "dependencies": {
     "ejs": "^6.0.1",
