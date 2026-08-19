@@ -1,0 +1,152 @@
+<%- include('header.ejs'); %>
+
+      <div class="dashboard-content">
+
+        <div class="profile-layout">
+          <!-- Sidebar card -->
+          <div class="profile-sidebar-card">
+            <div class="profile-avatar-wrap">
+              <img src="/images/<%=doctor.doctor_image%>" alt="<%= doctor.doc_name %>" />
+              <span class="avatar-edit" title="Change photo"><i class="fa-solid fa-camera"></i></span>
+            </div>
+            <h3><%= doctor.doc_name %></h3>
+            <span class="role-tag"><%= doctor.doc_departmentId %></span>
+            <div class="profile-stats-mini">
+              <div>
+                <strong><%= doctor.doc_experience %></strong>
+                <span>Years Experience</span>
+              </div>
+              <div>
+                <strong><%= doctor.petient_treat %></strong>
+                <span>Patients Treated</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form card -->
+          <div class="profile-form-card">
+            <div class="profile-form-tabs" data-tabs>
+              <button type="button" class="active" data-tab="personal">Personal Info</button>
+              <button type="button" data-tab="security">Change Password</button>
+            </div>
+
+            <div class="profile-form-body">
+              <!-- Personal info -->
+              <div class="tab-panel active" data-tab-panel="personal">
+                <h4 class="form-section-title">Personal &amp; Professional Details</h4>
+                <form action="/doctor/update_doctor/<%=doctor.doctor_image%>/<%=doctor.doc_id%>" method="post" enctype="multipart/form-data">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label">Full Name <span class="required"></span></label>
+                      <input type="text" name="d_name" class="form-control" value="<%= doctor.doc_name %>"  required />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Email Address</label>
+                      <input type="email" name="d_email" class="form-control" value="<%= doctor.doc_email %>" />
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label">Phone Number</label>
+                      <input type="tel" name="d_phone" class="form-control" value="<%= doctor.doc_phone %>" placeholder="+1 555-0000" />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Specialty</label>
+                      <input type="text" name="d_specialty" class="form-control" value="<%= doctor.doc_specialty %>" />
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label">Department</label>
+                      <select name="d_department" class="form-control">
+                        <option>Choose</option>
+                        <% for(var i=0;i<dname.length;i++){ %>
+                        <option <%= doctor.doc_departmentId== dname[i].dname ? 'selected' : '' %>><%=dname[i].dname%></option>
+                        <% } %>
+                      </select>
+                      
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Gender</label>
+                      <select name="d_gender" class="form-control">
+                        <option value="select" <%= doctor.doc_gender=== 'select' ? 'selected' : 'null' %>>Select</option>
+                        <option value="male" <%= doctor.doc_gender=== 'male' ? 'selected' : 'null' %>>Male</option>
+                        <option value="female" <%= doctor.doc_gender=== 'female' ? 'selected' : 'null' %>>Female</option>
+                        <option value="other" <%= doctor.doc_gender=== 'other' ? 'selected' : 'null' %>>Other</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Doctor Address</label>
+                    <input type="text" name="d_address" class="form-control" value="<%=doctor.doc_address%>" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Doctor Discription</label>
+                    <textarea type="text" name="d_discription" class="form-control"  style="row-gap:5; resize:none;" ><%=doctor.doc_discription%>
+
+                       </textarea>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Doctor Photo</label>
+                    <input type="file" name="d_photo" class="form-control" />
+                    <label class="form-label">Old Photo</label>
+                    <img src="/images/<%=doctor.doctor_image%>" height="110px" width="100px"/>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Doctor Language</label>
+                    <input type="text" name="d_language" class="form-control" value="<%=doctor.doc_language%>"  />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Petient treated</label>
+                    <input type="text" name="Petient_treated" class="form-control" value="<%=doctor.petient_treat%>"  />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Doctor Workingday</label>
+                    <input type="text" name="d_workingday" class="form-control" value="<%=doctor.doc_workingday%>"  />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Doctor Timetable</label>
+                    <input type="text" name="d_timetable" class="form-control" value="<%=doctor.doc_timetable%>"  />
+                  </div>
+                  <div class="form-actions">
+                    <button type="reset" class="btn btn-outline">Reset</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Save Changes</button>
+                  </div>
+
+                </form>
+              </div>
+
+              <!-- Password -->
+              <div class="tab-panel" data-tab-panel="security" hidden>
+                <h4 class="form-section-title">Change Password</h4>
+                <form action="#" method="post">
+                  <div class="form-group">
+                    <label class="form-label">Current Password <span class="required">*</span></label>
+                    <input type="password" name="currentPassword" class="form-control" required />
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label">New Password <span class="required">*</span></label>
+                      <input type="password" name="newPassword" class="form-control" minlength="6" required />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Confirm New Password <span class="required">*</span></label>
+                      <input type="password" name="confirmPassword" class="form-control" minlength="6" required />
+                    </div>
+                  </div>
+                  <p class="form-hint"><i class="fa-solid fa-circle-info"></i> Password must be at least 6 characters long.</p>
+                  <div class="form-actions">
+                    <button type="reset" class="btn btn-outline">Reset</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-lock"></i> Update Password</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<%- include('footer.ejs'); %>

@@ -1,0 +1,90 @@
+<%-include('header.ejs');%>
+    <section class="page-banner">
+      <div class="container">
+        <h1>Find a Doctor</h1>
+        <div class="breadcrumb">
+          <a href="/">Home</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>Doctors</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <!-- Filters -->
+        <div class="search-filters" data-aos="fade-up">
+          <div class="filters-row">
+            <div class="filter-group">
+              <label for="doctor-search">Search by Name or Specialty</label>
+              <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" id="doctor-search" data-doctor-search placeholder="e.g. Dr. Mitchell, Cardiologist..." />
+              </div>
+            </div>
+            <div class="filter-group">
+              <label for="doctor-dept-filter">Department</label>
+              <select id="doctor-dept-filter" class="form-control" data-doctor-dept-filter>
+                <option value="">All Departments</option>
+                <% for(var i=0;i<department.length;i++){ %>
+              <option value="<%=department[i].did%>"><%=department[i].dname%></option>
+              <% } %>
+              </select>
+            </div>
+            <div class="filter-actions">
+              <button type="button" class="btn btn-outline" data-filter-reset><i class="fa-solid fa-rotate-left"></i> Reset</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  <section class="section">
+      <div class="container">
+        <div class="results-header">
+          <span class="results-count">Showing all <strong>12</strong> doctors</span>
+        </div>
+
+        <div class="doctor-grid">
+          <% for(var b=0;b<doctor.length;b++){ %>
+          <article class="doctor-card" data-aos="fade-up">
+            <a href="/doctor-details/<%=doctor[b].doc_id%>" class="doctor-card-media">
+                  <img src="/images/<%=doctor[b].doctor_image%>" alt="<%=doctor[b].doc_name%>" />
+                  <span class="doctor-exp"><%=doctor[b].doc_experience%> Years</span>
+            </a>
+            <div class="doctor-card-body">
+                  <h3><a href="/doctor-details/<%=doctor[b].doc_id%>"></a><%=doctor[b].doc_name%></h3>
+                  <p class="text-primary">Doctor Specialty :- <%=doctor[b].doc_specialty%></p>
+                  <p class="text-muted"> Doctor Department-name :-<strong><%=doctor[b].doc_departmentId%></strong></p>
+
+                  <div class="doctor-card-meta"><span class="stars">
+                    <% for(var c=0;c<doctor[b].doc_rating;c++) { %>
+                    <i class="fa-solid fa-star"></i>
+                    <% } %>
+                       </span> <span>4.9 (210)</span></div>
+                  <a href="/appointment" class="btn btn-primary btn-sm btn-block">Book Appointment</a>
+                </div>
+          </article>
+          <% } %>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section bg-alt">
+      <div class="container">
+        <div class="cta-banner" data-aos="fade-up">
+          <div class="container">
+            <h2>Ready to Book Your Visit?</h2>
+            <p>Choose your doctor and pick a convenient time slot in under a minute.</p>
+            <div class="btn-group">
+              <a href="appointment.html" class="btn btn-white btn-lg"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a>
+              <a href="departments.html" class="btn btn-outline-white btn-lg">Browse Departments</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<%-include('footer.ejs');%>
+ 

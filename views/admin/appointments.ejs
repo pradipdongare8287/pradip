@@ -1,0 +1,182 @@
+<%-include('header.ejs');%>
+
+    <div class="dashboard-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1>Appointments</h1>
+            <p>All patient bookings across every department</p>
+          </div>
+        </div>
+        <div class="topbar-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" id="appointments-search" placeholder="Search by patient or doctor…" />
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-btn-wrap">
+            <button type="button" class="topbar-btn" data-notifications aria-label="Notifications"><i class="fa-solid fa-bell"></i></button>
+          </div>
+          <div class="profile-dropdown">
+            <button type="button" class="profile-trigger">
+              <img data-current-user-avatar src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="" />
+              <span class="profile-name" data-current-user-name>System Admin</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong data-current-user-name>System Admin</strong>
+                <span data-current-user-email>admin@medicare.com</span>
+              </div>
+              <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+              <div class="divider"></div>
+              <a href="login.html" class="danger logout-btn" data-logout="login.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <div class="stat-cards" style="margin-bottom:1.75rem;">
+          <div class="stat-card">
+            <div class="stat-card-icon blue"><i class="fa-solid fa-calendar-days"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Total</div>
+              <div class="stat-card-value" id="appt-stat-total">0</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon orange"><i class="fa-solid fa-hourglass-half"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Pending</div>
+              <div class="stat-card-value" id="appt-stat-pending">0</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon green"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Approved</div>
+              <div class="stat-card-value" id="appt-stat-approved">0</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon purple"><i class="fa-solid fa-flag-checkered"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Completed</div>
+              <div class="stat-card-value" id="appt-stat-completed">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-toolbar">
+          <h2>All Appointments <span class="badge badge-primary" id="appointments-count">0 of 0</span></h2>
+          <div class="page-toolbar-actions">
+            <select id="appointments-status-filter" class="form-control" style="max-width:180px;">
+              <option value="all">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+            <input type="date" id="appointments-date-filter" class="form-control" style="max-width:170px;" />
+            <button type="button" class="btn btn-outline" data-export-csv="#appointments-table" data-filename="appointments.csv">
+              <i class="fa-solid fa-file-arrow-down"></i> Export CSV
+            </button>
+            <button type="button" class="btn btn-primary" id="add-appointment-btn">
+              <i class="fa-solid fa-plus"></i> New Appointment
+            </button>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table" id="appointments-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Department</th>
+                <th>Date &amp; Time</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="appointments-tbody"></tbody>
+          </table>
+        </div>
+        <div class="pagination" id="appointments-pagination"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add Appointment Modal -->
+  <div class="modal-backdrop" id="appointment-modal-backdrop"></div>
+  <div class="modal modal-lg" id="appointment-modal" role="dialog" aria-modal="true" aria-labelledby="appointment-modal-title">
+    <div class="modal-header">
+      <h3 id="appointment-modal-title">Book New Appointment</h3>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="appointment-form">
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="appt-patient">Existing Patient</label>
+          <select id="appt-patient" name="patientId" class="form-control"></select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="appt-patient-name">Patient Name <span class="required">*</span></label>
+            <input type="text" id="appt-patient-name" name="patientName" class="form-control" placeholder="Full name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="appt-patient-phone">Patient Phone</label>
+            <input type="tel" id="appt-patient-phone" name="patientPhone" class="form-control" placeholder="+1 555-0100" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="appt-patient-email">Patient Email</label>
+          <input type="email" id="appt-patient-email" name="patientEmail" class="form-control" placeholder="patient@example.com" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="appt-department">Department <span class="required">*</span></label>
+            <select id="appt-department" name="departmentId" class="form-control" required></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="appt-doctor">Doctor <span class="required">*</span></label>
+            <select id="appt-doctor" name="doctorId" class="form-control" required></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="appt-date">Date <span class="required">*</span></label>
+            <input type="date" id="appt-date" name="date" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="appt-time">Time <span class="required">*</span></label>
+            <select id="appt-time" name="time" class="form-control" required></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="appt-reason">Reason for Visit</label>
+          <textarea id="appt-reason" name="reason" class="form-control" rows="3" placeholder="Reason for visit / symptoms…"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-calendar-plus"></i> Book Appointment</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- View Appointment Modal -->
+  <div class="modal-backdrop" id="appointment-view-modal-backdrop"></div>
+  <div class="modal" id="appointment-view-modal" role="dialog" aria-modal="true" aria-labelledby="appointment-view-title">
+    <div class="modal-header">
+      <h3 id="appointment-view-title">Appointment Details</h3>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body" id="appointment-view-body"></div>
+    <div class="modal-footer" id="appointment-view-footer"></div>
+  </div>
+
+ <%-include('footer.ejs');%>

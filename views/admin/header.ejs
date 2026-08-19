@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin Dashboard | MediCare Plus</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body class="dashboard-body" data-dashboard data-role="admin" data-page="dashboard" data-base-path="../">
+
+  <div class="dashboard-layout role-admin" data-role="admin">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <span class="logo-icon"><i class="fa-solid fa-hospital"></i></span>
+        <span class="sidebar-brand-text">Medi<span>Care</span> Plus</span>
+      </div>
+      <div class="sidebar-user">
+        <img data-current-user-avatar src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="Admin avatar" />
+        <div class="sidebar-user-info">
+          <h5 data-current-user-name>System Admin</h5>
+          <span data-current-user-role>ADMIN</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <span class="nav-section-label">Overview</span>
+        <a href="dashboard" class="nav-item active"><i class="fa-solid fa-gauge-high"></i><span class="nav-label">Dashboard</span></a>
+
+        <span class="nav-section-label">Hospital Management</span>
+        <a href="/admin/doctors" class="nav-item"><i class="fa-solid fa-user-doctor"></i><span class="nav-label">Doctors</span></a>
+        <a href="/admin/patients" class="nav-item"><i class="fa-solid fa-hospital-user"></i><span class="nav-label">Patients</span></a>
+        <a href="/admin/appoinments" class="nav-item"><i class="fa-solid fa-calendar-check"></i><span class="nav-label">Appointments</span></a>
+        <a href="/admin/departments" class="nav-item"><i class="fa-solid fa-sitemap"></i><span class="nav-label">Departments</span></a>
+        <a href="/admin/treatments" class="nav-item"><i class="fa-solid fa-stethoscope"></i><span class="nav-label">Treatments</span></a>
+        <a href="/admin/services" class="nav-item"><i class="fa fa-briefcase"></i><span class="nav-label">Services</span></a>
+        <a href="/admin/about" class="nav-item"><i class="fa fa-life-ring"></i><span class="nav-label">About</span></a>
+        <a href="/admin/contact" class="nav-item"><i class="fa fa-address-book"></i><span class="nav-label">contact</span></a>
+        <a href="/admin/blog" class="nav-item"><i class="fa fa-blog"></i><span class="nav-label">Blog</span></a>
+
+        <a href="/admin/medicines" class="nav-item"><i class="fa-solid fa-pills"></i><span class="nav-label">Medicines</span></a>
+
+        <span class="nav-section-label">Insights</span>
+        <a href="/admin/reports" class="nav-item"><i class="fa-solid fa-chart-line"></i><span class="nav-label">Reports</span></a>
+        <a href="/admin/settings" class="nav-item"><i class="fa-solid fa-gear"></i><span class="nav-label">Settings</span></a>
+        <a href="/" class="nav-item"><i class="fa-solid fa-arrow-left"></i><span class="nav-label">Back to Site</span></a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="/admin/logout" class="nav-item logout-btn"><i class="fa-solid fa-right-from-bracket"></i><span class="nav-label">Logout</span></a>
+      </div>
+    </aside>
+    <div class="sidebar-overlay"></div>

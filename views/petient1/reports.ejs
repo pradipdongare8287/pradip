@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Access and download your medical reports and lab results from MediCare Plus." />
+  <title>Medical Reports | MediCare Plus Patient Portal</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body class="dashboard-body" data-dashboard data-role="patient" data-page="reports" data-base-path="../">
+
+  <div class="page-loader" id="page-loader">
+    <div class="loader-pulse"></div>
+    <span class="loader-text">MediCare Plus</span>
+  </div>
+
+  <div class="dashboard-layout role-patient" data-role="patient">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <span class="logo-icon"><i class="fa-solid fa-hospital"></i></span>
+        <span class="sidebar-brand-text">Medi<span>Care</span> Plus</span>
+      </div>
+
+      <div class="sidebar-user">
+        <img src="" alt="Patient" data-user-avatar />
+        <div class="sidebar-user-info">
+          <h5 data-user-name>Demo Patient</h5>
+          <span>Patient Account</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-label">Main</span>
+        <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-gauge-high"></i><span class="nav-label">Dashboard</span></a>
+        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span class="nav-label">My Profile</span></a>
+        <a href="appointments.html" class="nav-item"><i class="fa-solid fa-calendar-check"></i><span class="nav-label">Appointments</span></a>
+
+        <span class="nav-section-label">Health Records</span>
+        <a href="treatment-history.html" class="nav-item"><i class="fa-solid fa-notes-medical"></i><span class="nav-label">Treatment History</span></a>
+        <a href="reports.html" class="nav-item active"><i class="fa-solid fa-file-medical"></i><span class="nav-label">Reports</span></a>
+        <a href="prescriptions.html" class="nav-item"><i class="fa-solid fa-prescription"></i><span class="nav-label">Prescriptions</span></a>
+
+        <span class="nav-section-label">Billing</span>
+        <a href="payments.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span class="nav-label">Payments</span></a>
+
+        <span class="nav-section-label">Updates</span>
+        <a href="notifications.html" class="nav-item"><i class="fa-solid fa-bell"></i><span class="nav-label">Notifications</span><span class="nav-badge" data-nav-badge="notifications">2</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="../index.html" class="nav-item"><i class="fa-solid fa-house"></i><span class="nav-label">Back to Website</span></a>
+        <a href="../login.html" class="nav-item" data-logout="../login.html"><i class="fa-solid fa-right-from-bracket"></i><span class="nav-label">Logout</span></a>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay"></div>
+
+    <main class="dashboard-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1>Medical Reports</h1>
+            <p>Lab results and diagnostic reports, ready to download.</p>
+          </div>
+        </div>
+
+        <form class="topbar-search" data-topbar-search role="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" name="q" placeholder="Search records, doctors, invoices…" aria-label="Search" />
+        </form>
+
+        <div class="topbar-right">
+          <button type="button" class="topbar-btn theme-toggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+
+          <div class="topbar-btn-wrap" data-notif-wrap>
+            <button type="button" class="topbar-btn" aria-label="Notifications">
+              <i class="fa-solid fa-bell"></i>
+              <span class="badge-dot"></span>
+            </button>
+            <div class="notif-dropdown">
+              <div class="notif-dropdown-header">
+                <h4>Notifications</h4>
+                <a href="#" data-mark-all-read>Mark all read</a>
+              </div>
+              <div class="notification-list"></div>
+              <div class="notif-dropdown-footer">
+                <a href="notifications.html">View All Notifications</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-dropdown" data-profile-dropdown>
+            <button type="button" class="profile-trigger">
+              <img src="" alt="Patient" data-user-avatar />
+              <span class="profile-name" data-user-name>Demo Patient</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong data-user-name>Demo Patient</strong>
+                <span data-user-email>patient@medicare.com</span>
+              </div>
+              <a href="profile.html"><i class="fa-solid fa-user"></i> My Profile</a>
+              <a href="appointments.html"><i class="fa-solid fa-calendar-check"></i> My Appointments</a>
+              <a href="notifications.html"><i class="fa-solid fa-bell"></i> Notifications</a>
+              <div class="divider"></div>
+              <a href="../login.html" class="danger" data-logout="../login.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+
+        <div class="page-toolbar">
+          <h2>Medical Reports</h2>
+          <div class="page-toolbar-actions">
+            <span class="badge badge-success" data-ready-count>0 ready</span>
+            <span class="badge badge-warning" data-pending-count>0 pending</span>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" class="form-control" data-report-search placeholder="Search by report name, type, or doctor…" />
+          </div>
+          <select class="form-control" data-report-filter>
+            <option value="all">All Types</option>
+            <option value="Lab Test">Lab Test</option>
+            <option value="Radiology">Radiology</option>
+            <option value="Cardiac Test">Cardiac Test</option>
+          </select>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table" id="reports-table">
+            <thead>
+              <tr>
+                <th>Report Name</th>
+                <th>Type</th>
+                <th>Ordered By</th>
+                <th>Date</th>
+                <th>Size</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody data-reports-body></tbody>
+          </table>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/appointment.js"></script>
+  <script src="../js/dashboard.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/customer.js"></script>
+  <script>
+    document.addEventListener('medicare:ready', function () {
+      MediCareAuth.requireAuth('patient', '../login.html');
+      MediCareCustomer.initShell();
+
+      var esc = MediCareCustomer.escapeHtml;
+      var reports = MediCareCustomer.getReports();
+      var body = document.querySelector('[data-reports-body]');
+
+      var readyCount = reports.filter(function (r) { return r.status === 'Ready'; }).length;
+      var pendingCount = reports.length - readyCount;
+      document.querySelector('[data-ready-count]').textContent = readyCount + ' ready';
+      document.querySelector('[data-pending-count]').textContent = pendingCount + ' pending';
+
+      function typeIcon(type) {
+        if (type === 'Radiology') return 'fa-x-ray';
+        if (type === 'Cardiac Test') return 'fa-heart-pulse';
+        return 'fa-flask';
+      }
+
+      function row(r) {
+        var statusBadge =
+          r.status === 'Ready'
+            ? '<span class="badge badge-success">Ready</span>'
+            : '<span class="badge badge-warning">Pending</span>';
+        var actionBtn =
+          r.status === 'Ready'
+            ? '<button type="button" class="btn btn-sm btn-outline" data-download-report="' + r.id + '"><i class="fa-solid fa-download"></i> Download</button>'
+            : '<span class="text-muted">Awaiting results</span>';
+
+        return (
+          '<tr data-id="' + r.id + '">' +
+          '<td><div class="table-user"><div class="stat-icon blue" style="width:38px;height:38px;font-size:1rem;"><i class="fa-solid ' + typeIcon(r.type) + '"></i></div>' +
+          '<div><strong>' + esc(r.name) + '</strong><span>' + esc(r.department) + '</span></div></div></td>' +
+          '<td>' + esc(r.type) + '</td>' +
+          '<td>' + esc(r.doctor) + '</td>' +
+          '<td>' + MediCareCustomer.fmtDate(r.date) + '</td>' +
+          '<td>' + esc(r.size) + '</td>' +
+          '<td>' + statusBadge + '</td>' +
+          '<td class="table-actions">' + actionBtn + '</td>' +
+          '</tr>'
+        );
+      }
+
+      function render(list) {
+        body.innerHTML = list.length
+          ? list.map(row).join('')
+          : '<tr class="no-hover"><td colspan="7"><div class="empty-state"><i class="fa-regular fa-folder-open"></i><h4>No reports found</h4></div></td></tr>';
+
+        body.querySelectorAll('[data-download-report]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            MediCareCustomer.toast('Preparing download… your report PDF will save shortly (demo).', 'success');
+          });
+        });
+      }
+
+      function currentList() {
+        var q = (document.querySelector('[data-report-search]').value || '').trim().toLowerCase();
+        var type = document.querySelector('[data-report-filter]').value;
+        return reports.filter(function (r) {
+          if (type && type !== 'all' && r.type !== type) return false;
+          if (q) {
+            var hay = (r.name + ' ' + r.type + ' ' + r.doctor + ' ' + r.department).toLowerCase();
+            if (hay.indexOf(q) === -1) return false;
+          }
+          return true;
+        });
+      }
+
+      render(reports);
+      document.querySelector('[data-report-search]').addEventListener('input', function () { render(currentList()); });
+      document.querySelector('[data-report-filter]').addEventListener('change', function () { render(currentList()); });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<%- include('header.ejs'); %>
+
+      <div class="dashboard-content">
+
+        <div class="page-toolbar">
+          <h2>Payments &amp; Invoices</h2>
+          <div class="page-toolbar-actions">
+            <button type="button" class="btn btn-outline">
+              <i class="fa-solid fa-file-csv"></i> Export CSV
+            </button>
+          </div>
+        </div>
+
+        <div class="stat-cards" style="grid-template-columns:repeat(3,1fr);">
+          <div class="stat-card">
+            <div class="stat-card-icon green"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Total Paid</div>
+              <div class="stat-card-value">$1,240</div>
+              <div class="stat-trend up"><i class="fa-solid fa-arrow-up"></i> 5 settled invoices</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon orange"><i class="fa-solid fa-clock"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Pending Amount</div>
+              <div class="stat-card-value">$85</div>
+              <div class="stat-trend neutral">1 invoice awaiting payment</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon blue"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Total Invoices</div>
+              <div class="stat-card-value">6</div>
+              <div class="stat-trend neutral">Lifetime billing records</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Invoice #</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Doctor / Dept.</th>
+                <th>Amount</th>
+                <th>Method</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0;i<data.length;i++){ %>
+              <tr>
+                <td><code>INV-2041</code></td>
+                <td><%=data[i].Date%></td>
+                <td><%=data[i].Appointment_Reason%></td>
+                <td><%=data[i].Doctor%><br><span class="text-muted" style="font-size:0.8rem;"><%=data[i].doc_departmentId%></span></td>
+                <td><strong><%=data[i].doc_fees%> ₹</strong></td>
+                <td>—</td>
+                <% if(data[i].Payment_status=='Pending'){ %>
+                  <td><span class="badge badge-warning">Pending</span></td>
+                <td class="table-actions">
+                  <a href="/patient/payment_sucess/<%=data[i].app_id%>"><button type="button" class="btn btn-sm btn-primary"><i class="fa-solid fa-credit-card"></i> Pay Now</button></a>
+                </td>
+                  <% }else{ %>
+                    <td><span class="badge badge-success">Paid</span></td>
+                <td class="table-actions"><button type="button" class="btn btn-sm btn-outline"><i class="fa-solid fa-download"></i> Invoice</button></td>
+                    <% } %>
+              </tr>
+              <% } %>
+              
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+<%- include('footer.ejs'); %>

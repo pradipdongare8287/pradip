@@ -1,0 +1,48 @@
+<%-include('header.ejs');%>
+
+      
+
+        <div class="prescription-area" id="rx-detail">
+          <div class="prescription-header">
+            <div class="rx-brand">
+              <span class="logo-icon"><i class="fa-solid fa-hospital"></i></span>
+              <div><h2>MediCare Plus</h2><p>1250 Healing Way, Suite 100, Health City, HC 90210</p></div>
+            </div>
+            <div class="rx-meta"><strong><%=select_doctor.doc_name%></strong><span>Date: Jul 18, 2026</span></div>
+          </div>
+          <div class="prescription-patient">
+            <div class="rx-field"><label>Patient Name</label><span><%=prescription.Patient_name%></span></div>
+            <div class="rx-field"><label>Doctor Name</label><span><%=select_doctor.doc_name%></span></div>
+            <div class="rx-field"><label>Department</label><span><%=select_doctor.doc_departmentId%></span></div>
+          </div>
+          <div class="prescription-rx">
+            <div class="rx-symbol">℞</div>
+            <table class="prescription-meds">
+              <thead><tr><th>Medicine</th><th>Dosage</th><th>Frequency</th><th>Duration</th></tr></thead>
+              <tbody>
+                <% for(var i=0;i<medicin.length;i++){ %>
+                <tr><td><%=medicin[i].Medicine%></td><td><%=medicin[i].Dosage%></td><td><%=medicin[i].Frequency%></td><td><%=medicin[i].Duration%>%></td></tr>
+                <% } %>
+            
+              </tbody>
+            </table>
+          </div>
+          <div class="prescription-notes">
+            <h5><i class="fa-solid fa-note-sticky"></i> Doctor's Notes</h5>
+            <p><%=prescription.Pre_advice%></p>
+          </div>
+          <div class="prescription-footer">
+            <div><strong style="display:block;margin-bottom:0.35rem;color:var(--heading);">Diagnosis</strong>
+            <p style="max-width:340px;font-size:0.9rem;color:var(--text-secondary);margin:0;"><%=prescription.Pre_diagnosis%></p></div>
+            <div class="rx-signature"><div class="sig-line"></div><span><%=prescription.Doc_name%></span></div>
+          </div>
+          <div class="prescription-actions">
+            <button type="button" class="btn btn-outline"><i class="fa-solid fa-print"></i> Print</button>
+            <button type="button" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download PDF</button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+<%-include('footer.ejs');%>

@@ -1,0 +1,72 @@
+<%-include('header.ejs');%>
+ 
+
+  <main id="main-content">
+    <section class="page-banner">
+      <div class="container">
+        <h1>Health Blog</h1>
+        <div class="breadcrumb">
+          <a href="index.html">Home</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>Blog</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="eyebrow">Health Insights</span>
+          <h2>Latest Articles From Our Specialists</h2>
+          <p>Practical, evidence-based guidance to help you and your family stay well.</p>
+        </div>
+        <div class="blog-grid">
+
+          <% for(var i=0;i<Blog.length;i++){ %>
+          <article class="blog-card" data-aos="fade-up">
+            <a href="#article-heart" class="blog-img">
+              <img src="/images/<%=Blog[i].Blog_image%>" alt="Heart health habits" />
+              <span class="blog-category"><%=Blog[i].department%></span>
+            </a>
+            <div class="blog-body">
+              <div class="blog-meta"><span><i class="fa-regular fa-calendar"></i><%=Blog[i].date%></span><span><i class="fa-regular fa-user"></i></span><%=Blog[i].doctor%></div>
+              <h4><a href="#article-heart"><%=Blog[i].heading%></a></h4>
+              <p><%=Blog[i].description%></p>
+              <a href="#article-heart" class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+          <% } %>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="section bg-alt" id="article-heart">
+      <div class="container">
+        <div class="blog-detail">
+          <img class="blog-hero-img" src="https://images.unsplash.com/photo-1505751172876-fa1923c50140?auto=format&fit=crop&w=1200&q=80" alt="Heart health illustration" />
+          <div class="blog-meta"><span><i class="fa-regular fa-calendar"></i> Jun 12, 2026</span><span><i class="fa-regular fa-user"></i> Dr. Sarah Mitchell</span><span><i class="fa-regular fa-folder"></i> Cardiology</span></div>
+          <h2>5 Heart-Healthy Habits You Can Start Today</h2>
+          <div class="blog-content">
+            <p>Your heart works around the clock. Supporting it doesn't require a perfect lifestyle overnight — consistent, realistic habits matter most.</p>
+            <p><strong>1. Move for 30 minutes.</strong> Brisk walking, cycling, or swimming strengthens the heart muscle and improves circulation.</p>
+            <p><strong>2. Choose colorful plates.</strong> Fruits, vegetables, whole grains, and lean proteins reduce inflammation and cholesterol.</p>
+            <p><strong>3. Sleep 7–8 hours.</strong> Poor sleep is linked to hypertension and irregular heart rhythms.</p>
+            <p><strong>4. Know your numbers.</strong> Track blood pressure, cholesterol, and blood sugar with your physician.</p>
+            <p><strong>5. Manage stress.</strong> Breathing exercises, mindfulness, and social connection all protect heart health.</p>
+            <p>If you have chest pain, shortness of breath, or a family history of heart disease, schedule a cardiology consultation at MediCare Plus.</p>
+          </div>
+          <div class="blog-tags">
+            <a href="blog.html">#heart</a>
+            <a href="blog.html">#wellness</a>
+            <a href="blog.html">#prevention</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+<%-include('footer.ejs');%>
+ 

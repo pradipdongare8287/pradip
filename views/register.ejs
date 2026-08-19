@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Create your free MediCare Plus patient account to book appointments, view prescriptions, and manage your health records online." />
+  <meta name="keywords" content="patient registration, create account, sign up hospital" />
+  <meta name="author" content="MediCare Plus" />
+  <title>Register | MediCare Plus</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body data-page="register">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <div class="page-loader" id="page-loader">
+    <div class="loader-pulse"></div>
+    <span class="loader-text">MediCare Plus</span>
+  </div>
+
+  <main id="main-content" class="auth-page">
+    <div class="auth-visual">
+      <div class="auth-visual-content">
+        <a href="index.html" class="logo">
+          <span class="logo-icon"><i class="fa-solid fa-hospital"></i></span>
+          <span class="logo-text">Medi<span>Care</span> Plus</span>
+        </a>
+        <h2>Join the MediCare Plus Family</h2>
+        <p>Create your free account and get access to seamless appointment booking and personalized care.</p>
+        <ul class="auth-visual-features">
+          <li><i class="fa-solid fa-check"></i> Instant appointment confirmations</li>
+          <li><i class="fa-solid fa-check"></i> Digital health record access</li>
+          <li><i class="fa-solid fa-check"></i> Exclusive checkup package offers</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="auth-form-side">
+      <div class="auth-card">
+        <div class="auth-logo-mobile">
+          <a href="index.html" class="logo">
+            <span class="logo-icon"><i class="fa-solid fa-hospital"></i></span>
+            <span class="logo-text">Medi<span>Care</span> Plus</span>
+          </a>
+        </div>
+
+        <div class="auth-header">
+          <h1>Create Account</h1>
+          <p>It only takes a minute to get started.</p>
+        </div>
+
+        <form action="/ragister_petient" method="post" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="reg-name">Full Name <span class="required">*</span></label>
+            <div class="input-icon">
+              <i class="fa-regular fa-user"></i>
+              <input type="text" id="reg-name" name="name" class="form-control" placeholder="Your full name" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reg-email">Email Address <span class="required">*</span></label>
+              <input type="email" id="reg-email" name="email" class="form-control" placeholder="you@example.com" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-phone">Phone Number</label>
+              <input type="tel" id="reg-phone" name="phone" class="form-control" placeholder="+1 (555) 000-0000" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reg-password">Password <span class="required">*</span></label>
+              <input type="password" id="reg-password" name="password" class="form-control" placeholder="Min. 6 characters" required minlength="6" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-confirm">Confirm Password <span class="required">*</span></label>
+              <input type="password" id="reg-confirm" name="confirmPassword" class="form-control" placeholder="Re-enter password" required minlength="6" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-check">
+              <input type="checkbox" required />
+              <span>I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a></span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block">
+            <i class="fa-solid fa-user-plus"></i> Create Account
+          </button>
+        </form>
+
+
+        <p class="auth-footer">
+          Already have an account? <a href="/login">Sign in</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="/js/data.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/components.js"></script>
+  <script src="/js/appointment.js"></script>
+  <script src="/js/dashboard.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/pages.js"></script>
+</body>
+</html>

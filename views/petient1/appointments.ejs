@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="View, filter, and manage your upcoming and past appointments at MediCare Plus." />
+  <title>My Appointments | MediCare Plus Patient Portal</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body class="dashboard-body" data-dashboard data-role="patient" data-page="appointments" data-base-path="../">
+
+  <div class="page-loader" id="page-loader">
+    <div class="loader-pulse"></div>
+    <span class="loader-text">MediCare Plus</span>
+  </div>
+
+  <div class="dashboard-layout role-patient" data-role="patient">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <span class="logo-icon"><i class="fa-solid fa-hospital"></i></span>
+        <span class="sidebar-brand-text">Medi<span>Care</span> Plus</span>
+      </div>
+
+      <div class="sidebar-user">
+        <img src="" alt="Patient" data-user-avatar />
+        <div class="sidebar-user-info">
+          <h5 data-user-name>Demo Patient</h5>
+          <span>Patient Account</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-label">Main</span>
+        <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-gauge-high"></i><span class="nav-label">Dashboard</span></a>
+        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span class="nav-label">My Profile</span></a>
+        <a href="appointments.html" class="nav-item active"><i class="fa-solid fa-calendar-check"></i><span class="nav-label">Appointments</span></a>
+
+        <span class="nav-section-label">Health Records</span>
+        <a href="treatment-history.html" class="nav-item"><i class="fa-solid fa-notes-medical"></i><span class="nav-label">Treatment History</span></a>
+        <a href="reports.html" class="nav-item"><i class="fa-solid fa-file-medical"></i><span class="nav-label">Reports</span></a>
+        <a href="prescriptions.html" class="nav-item"><i class="fa-solid fa-prescription"></i><span class="nav-label">Prescriptions</span></a>
+
+        <span class="nav-section-label">Billing</span>
+        <a href="payments.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span class="nav-label">Payments</span></a>
+
+        <span class="nav-section-label">Updates</span>
+        <a href="notifications.html" class="nav-item"><i class="fa-solid fa-bell"></i><span class="nav-label">Notifications</span><span class="nav-badge" data-nav-badge="notifications">2</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="../index.html" class="nav-item"><i class="fa-solid fa-house"></i><span class="nav-label">Back to Website</span></a>
+        <a href="../login.html" class="nav-item" data-logout="../login.html"><i class="fa-solid fa-right-from-bracket"></i><span class="nav-label">Logout</span></a>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay"></div>
+
+    <main class="dashboard-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1>My Appointments</h1>
+            <p>View, filter, and manage your visits.</p>
+          </div>
+        </div>
+
+        <form class="topbar-search" data-topbar-search role="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" name="q" placeholder="Search records, doctors, invoices…" aria-label="Search" />
+        </form>
+
+        <div class="topbar-right">
+          <button type="button" class="topbar-btn theme-toggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+
+          <div class="topbar-btn-wrap" data-notif-wrap>
+            <button type="button" class="topbar-btn" aria-label="Notifications">
+              <i class="fa-solid fa-bell"></i>
+              <span class="badge-dot"></span>
+            </button>
+            <div class="notif-dropdown">
+              <div class="notif-dropdown-header">
+                <h4>Notifications</h4>
+                <a href="#" data-mark-all-read>Mark all read</a>
+              </div>
+              <div class="notification-list"></div>
+              <div class="notif-dropdown-footer">
+                <a href="notifications.html">View All Notifications</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-dropdown" data-profile-dropdown>
+            <button type="button" class="profile-trigger">
+              <img src="" alt="Patient" data-user-avatar />
+              <span class="profile-name" data-user-name>Demo Patient</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong data-user-name>Demo Patient</strong>
+                <span data-user-email>patient@medicare.com</span>
+              </div>
+              <a href="profile.html"><i class="fa-solid fa-user"></i> My Profile</a>
+              <a href="appointments.html"><i class="fa-solid fa-calendar-check"></i> My Appointments</a>
+              <a href="notifications.html"><i class="fa-solid fa-bell"></i> Notifications</a>
+              <div class="divider"></div>
+              <a href="../login.html" class="danger" data-logout="../login.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+
+        <div class="page-toolbar">
+          <h2>My Appointments</h2>
+          <div class="page-toolbar-actions">
+            <a href="../appointment.html" class="btn btn-primary">
+              <i class="fa-solid fa-calendar-plus"></i> Book New Appointment
+            </a>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" class="form-control" data-appt-search placeholder="Search by doctor, department, or reason…" />
+          </div>
+          <select class="form-control" data-appt-status-filter>
+            <option value="all">All Statuses</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+
+        <div data-tabs>
+          <div class="tabs">
+            <button type="button" class="tab-btn active" data-tab="upcoming">
+              <i class="fa-solid fa-calendar-day"></i> Upcoming
+            </button>
+            <button type="button" class="tab-btn" data-tab="past">
+              <i class="fa-solid fa-calendar-check"></i> Past
+            </button>
+            <button type="button" class="tab-btn" data-tab="all">
+              <i class="fa-solid fa-layer-group"></i> All
+            </button>
+          </div>
+
+          <div class="tab-panel active" data-tab-panel="upcoming">
+            <div class="table-wrapper">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody data-appt-body="upcoming"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="tab-panel" data-tab-panel="past" hidden>
+            <div class="table-wrapper">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody data-appt-body="past"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="tab-panel" data-tab-panel="all" hidden>
+            <div class="table-wrapper">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody data-appt-body="all"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/appointment.js"></script>
+  <script src="../js/dashboard.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/customer.js"></script>
+  <script>
+    document.addEventListener('medicare:ready', function () {
+      MediCareAuth.requireAuth('patient', '../login.html');
+      MediCareCustomer.initShell();
+
+      var cache = { upcoming: [], past: [], all: [] };
+
+      function currentFilter() {
+        return {
+          q: (document.querySelector('[data-appt-search]').value || '').trim().toLowerCase(),
+          status: document.querySelector('[data-appt-status-filter]').value,
+        };
+      }
+
+      function filterList(list, filter) {
+        return list.filter(function (a) {
+          if (filter.status && filter.status !== 'all' && a.status !== filter.status) return false;
+          if (filter.q) {
+            var hay = (a.doctorName + ' ' + a.departmentName + ' ' + (a.reason || '')).toLowerCase();
+            if (hay.indexOf(filter.q) === -1) return false;
+          }
+          return true;
+        });
+      }
+
+      function renderAll() {
+        var filter = currentFilter();
+        MediCareCustomer.renderAppointmentsTable(
+          '[data-appt-body="upcoming"]',
+          filterList(cache.upcoming, filter),
+          { showActions: true, emptyText: 'No upcoming appointments — book your next visit today!' },
+          loadAndRender
+        );
+        MediCareCustomer.renderAppointmentsTable(
+          '[data-appt-body="past"]',
+          filterList(cache.past, filter),
+          { showActions: true, emptyText: 'No past appointments on record yet.' },
+          loadAndRender
+        );
+        MediCareCustomer.renderAppointmentsTable(
+          '[data-appt-body="all"]',
+          filterList(cache.all, filter),
+          { showActions: true, emptyText: 'No appointments found for this account.' },
+          loadAndRender
+        );
+      }
+
+      function loadAndRender() {
+        var appts = MediCareCustomer.loadAppointments();
+        var split = MediCareCustomer.splitAppointments(appts);
+        cache.upcoming = split.upcoming;
+        cache.past = split.past;
+        cache.all = appts.slice().sort(function (a, b) {
+          return (b.date + 'T' + b.time).localeCompare(a.date + 'T' + a.time);
+        });
+        renderAll();
+      }
+
+      document.querySelector('[data-appt-search]').addEventListener('input', renderAll);
+      document.querySelector('[data-appt-status-filter]').addEventListener('change', renderAll);
+
+      loadAndRender();
+    });
+  </script>
+</body>
+</html>

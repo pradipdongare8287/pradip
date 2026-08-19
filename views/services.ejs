@@ -1,0 +1,54 @@
+<%-include('header.ejs');%>
+    <section class="page-banner">
+      <div class="container">
+        <h1>Our Services</h1>
+        <div class="breadcrumb">
+          <a href="index.html">Home</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>Services</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="eyebrow">Hospital-Wide Services</span>
+          <h2>Comprehensive Care, All in One Place</h2>
+          <p>Beyond our specialty departments, MediCare Plus operates a full range of hospital services — from emergency response to home sample collection — designed to support you at every stage of care.</p>
+        </div>
+
+        <div class="service-list">
+
+        <% for(var a=0;a<service.length;a++){ %>
+          <div class="service-list-item" data-aos="fade-up">
+            <img src="/images/<%=service[a].ser_image%>" alt="Emergency care team" loading="lazy" />
+            <div>
+              <h4><i class="fa-solid <%=service[a].ser_icon%> text-primary"></i><%=service[a].ser_name%></h4>
+              <p><%=service[a].ser_description%></p>
+            </div>
+            <a href="<%=service[a].ser_link%>" class="btn btn-danger btn-sm">Learn More</a>
+          </div>
+            <% } %>
+        </div>
+      </div>
+    </section>
+
+    <!-- Link to Treatments -->
+    <section class="section bg-alt">
+      <div class="container">
+        <div class="cta-banner" data-aos="fade-up">
+          <div class="container">
+            <h2>Looking for a Specific Treatment or Procedure?</h2>
+            <p>Browse our full catalog of specialized treatments with pricing, duration, and what to expect.</p>
+            <div class="btn-group">
+              <a href="treatment.html" class="btn btn-white btn-lg"><i class="fa-solid fa-stethoscope"></i> Explore Treatments</a>
+              <a href="appointment.html" class="btn btn-outline-white btn-lg">Book an Appointment</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<%-include('footer.ejs');%>
+ 

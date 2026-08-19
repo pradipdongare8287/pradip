@@ -1,0 +1,80 @@
+<%-include('header.ejs');%>
+
+<main id="main-content">
+    <section class="page-banner">
+      <div class="container">
+        <h1><%= doctors.doc_name %></h1>
+        <div class="breadcrumb">
+          <a href="/">Home</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <a href="/ doctors">Doctors %></a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span><%= doctors.doc_name %></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="treatment-detail">
+          <div class="treatment-content">
+            <img class="treatment-hero" src="/images/<%= doctors.doctor_image %>" alt="<%= doctors.doc_name %>, Interventional Cardiologist" />
+
+            <span class="eyebrow"><%= doctors.doc_specialty %></span>
+            <h2><%= doctors.doc_name %></h2>
+            <p class="text-primary" style="font-weight:600;font-size:1.1rem;margin-bottom:1rem;"><%= doctors.doc_departmentId %></p>
+
+            <div class="treatment-body">
+              <p><%= doctors.doc_name %> .</p>
+
+              <h3>Education &amp; Training</h3>
+              <ul class="treatment-features">
+                <li><i class="fa-solid fa-graduation-cap"></i> MD, Harvard Medical School</li>
+                <li><i class="fa-solid fa-award"></i> Fellowship in Interventional Cardiology, Cleveland Clinic</li>
+                <li><i class="fa-solid fa-certificate"></i> Board Certified, American Board of Internal Medicine (Cardiovascular Disease)</li>
+              </ul>
+
+              <h3>Areas of Expertise</h3>
+              <ul class="treatment-features">
+                <li><i class="fa-solid fa-heart-pulse"></i> Coronary angioplasty &amp; stenting</li>
+                <li><i class="fa-solid fa-heart-pulse"></i> Preventive &amp; lifestyle cardiology</li>
+                <li><i class="fa-solid fa-heart-pulse"></i> Cardiac catheterization</li>
+                <li><i class="fa-solid fa-heart-pulse"></i> Heart failure management</li>
+              </ul>
+            </div>
+          </div>
+
+          <aside class="treatment-sidebar">
+            <div class="sidebar-card">
+              <h4>Doctor Info</h4>
+              <ul class="treatment-meta-list">
+                <li><span>Department</span><span><%= doctors.doc_departmentId %></span></li>
+                <li><span>Experience</span><span><%= doctors.doc_experience %>+ Years</span></li>
+                <li><span>Consultation Fee</span><span><%= doctors.doc_fees %>₹</span></li>
+                <li><span>Rating</span><span><i class="fa-solid fa-star" style="color:var(--warning)"></i><%= doctors.doc_rating %>  (218 reviews)</span></li>
+                <li><span>Languages</span><span>English, Spanish</span></li>
+              </ul>
+            </div>
+            <div class="sidebar-card">
+              <h4>Available Days</h4>
+              <ul class="treatment-meta-list">
+                <li><span>Mon · Tue · Wed · Fri</span><span>9AM – 4PM</span></li>
+              </ul>
+              <a href="appointment.html" class="btn btn-primary btn-block mt-3"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a>
+            </div>
+            <div class="sidebar-card">
+              <h4>Related Doctors</h4>
+              <div class="related-treatments">
+                <a href="doctor-details.html"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=100&q=80" alt="Dr. James Chen" /> Dr. James Chen — Cardiac EP</a>
+                <a href="/doctors"><img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=100&q=80" alt="Dr. Priya Sharma" /> Dr. Priya Sharma — Neurology</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+
+
+<%-include('footer.ejs');%>

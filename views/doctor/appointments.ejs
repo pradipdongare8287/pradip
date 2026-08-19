@@ -1,0 +1,128 @@
+<%- include('header.ejs')%>
+
+      <div class="dashboard-content">
+
+        <div class="page-toolbar">
+          <h2>Manage Appointments</h2>
+          <div class="page-toolbar-actions">
+            <button type="button" class="btn btn-outline btn-sm">
+              <i class="fa-solid fa-download"></i> Export Today
+            </button>
+          </div>
+        </div>
+
+        <div class="dashboard-panel">
+          <div class="dashboard-panel-body">
+            <div data-tabs>
+              <div class="tabs">
+                <button type="button" class="tab-btn active" data-tab="today">Pending <span>3</span></button>
+                <button type="button" class="tab-btn" data-tab="upcoming">Confirm <span>2</span></button>
+                <button type="button" class="tab-btn" data-tab="completed">Reject <span>3</span></button>
+                <button type="button" class="tab-btn" data-tab="cancelled">Complete <span>1</span></button>
+              </div>
+
+              <div class="tab-panel active" data-tab-panel="today">
+                <div class="table-wrapper">
+                  <table class="table">
+                    <thead>
+                      <tr><th>Patient</th><th>Date</th><th>Time</th><th>Reason</th><th>Status</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody>
+                      <% for(var b=0;b<data2.length;b++){ %>
+                      <tr>
+                        <td><div class="table-user"><div><strong><%=data2[b].pname%></strong><span><%=data2[b].p_gender%> ,<%=data2[b].p_dob%>  DOB</span></div></div></td>
+                        <td><%=data2[b].Date%> </td>
+                        <td><%=data2[b].Time%></td>
+                        <td><%=data2[b].Appointment_Reason%></td>
+                        <td><span class="badge badge-approved"><%=data2[b].Status%></span></td>
+                        <td class="table-actions">
+                          <a href="/doctor/confirm_appoinment/<%=data2[b].app_id%>" class="btn btn-sm btn-outline">confirm</a>
+                          <a href="/doctor/reject_appoinment/<%=data2[b].app_id%>" class="btn btn-sm btn-outline">reject</a>
+
+                        </td>
+                      </tr>
+                      <% } %>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="tab-panel" data-tab-panel="upcoming" hidden>
+                <div class="table-wrapper">
+                  <table class="table">
+                    <thead>
+                      <tr><th>Patient</th><th>Date</th><th>Time</th><th>Reason</th><th>Status</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody>
+                      <% for(var b=0;b<confirm.length;b++){ %>
+                      <tr>
+                        <td><div class="table-user"><div><strong><%=confirm[b].pname%></strong><span><%=confirm[b].p_gender%> ,<%=confirm[b].p_dob%>  DOB</span></div></div></td>
+                        <td><%=confirm[b].Date%></td>
+                        <td><%=confirm[b].Time%></td>
+                        <td><%=confirm[b].Appointment_Reason%></td>
+                        <td><span class="badge badge-approved"><%=confirm[b].Status%></span></td>
+                        <td class="table-actions">
+                          <a href="/doctor/completed_appoinment/<%=confirm[b].app_id%>" class="btn btn-sm btn-outline">completed</a>
+                          <a href="/doctor/reject_appoinment/<%=confirm[b].app_id%>" class="btn btn-sm btn-outline">reject</a>
+
+                        </td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="tab-panel" data-tab-panel="completed" hidden>
+                <div class="table-wrapper">
+                  <table class="table">
+                    <thead>
+                      <tr><th>Patient</th><th>Date</th><th>Time</th><th>Reason</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                       <% for(var b=0;b<reject.length;b++){ %>
+                      <tr>
+                        <td><div class="table-user"><div><strong><%=reject[b].pname%></strong><span><%=reject[b].p_gender%> ,<%=reject[b].p_dob%>  DOB</span></div></div></td>
+                        <td><%=reject[b].Date%></td>
+                        <td><%=reject[b].Time%></td>
+                        <td><%=reject[b].Appointment_Reason%></td>
+                        <td><span class="badge badge-approved" style="color:red;"><%=reject[b].Status%></span></td>
+                        
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="tab-panel" data-tab-panel="cancelled" hidden>
+                <div class="table-wrapper">
+                  <table class="table">
+                    <thead>
+                      <tr><th>Patient</th><th>Date</th><th>Time</th><th>Reason</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                      <% for(var b=0;b<completed.length;b++){ %>
+                      <tr>
+                        <td><div class="table-user"><div><strong><%=completed[b].pname%></strong><span><%=completed[b].p_gender%> ,<%=completed[b].p_dob%>  DOB</span></div></div></td>
+                        <td><%=completed[b].Date%></td>
+                        <td><%=completed[b].Time%></td>
+                        <td><%=completed[b].Appointment_Reason%></td>
+                        <td><span class="badge badge-approved"><%=completed[b].Status%></span></td>
+                        
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <%-include('footer.ejs')%>

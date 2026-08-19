@@ -1,0 +1,140 @@
+<%-include('header.ejs');%>
+
+    <div class="dashboard-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1>Treatments</h1>
+            <p>Available medical treatments &amp; procedures</p>
+          </div>
+        </div>
+        <div class="topbar-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" id="treatments-search" placeholder="Search treatments…" />
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-btn-wrap">
+            <button type="button" class="topbar-btn" data-notifications aria-label="Notifications"><i class="fa-solid fa-bell"></i></button>
+          </div>
+          <div class="profile-dropdown">
+            <button type="button" class="profile-trigger">
+              <img data-current-user-avatar src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="" />
+              <span class="profile-name" data-current-user-name>System Admin</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong data-current-user-name>System Admin</strong>
+                <span data-current-user-email>admin@medicare.com</span>
+              </div>
+              <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+              <div class="divider"></div>
+              <a href="login.html" class="danger logout-btn" data-logout="login.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <div class="page-toolbar">
+          <h2>All Treatments <span class="badge badge-primary" id="treatments-count">0 of 0</span></h2>
+          
+        </div>
+
+         <form action="/admin/addtreatment" method="post" enctype="multipart/form-data">
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="treat-name">Treatment Name <span class="required">*</span></label>
+            <input type="text" id="treat-name" name="name" class="form-control" placeholder="MRI Scan" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="treat-department">Department <span class="required">*</span></label>
+            <select name="department" class="form-control" required>
+              <option>Select Department</option>
+              <% for(var i=0;i<department.length;i++){ %>
+
+                <option><%=department[i].dname%></option>
+
+                <% } %>
+
+              
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="treat-duration">Duration</label>
+            <input type="text" id="treat-duration" name="duration" class="form-control" placeholder="45 mins" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="treat-price">Price ($) <span class="required">*</span></label>
+            <input type="number" id="treat-price" name="price" class="form-control" min="0" step="1" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="treat-price"> Image <span class="required">*</span></label>
+            <input type="file" id="treat-price" name="timage" class="form-control" min="0" step="1" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="treat-description">Description</label>
+          <textarea id="treat-description" name="description" class="form-control" rows="3" placeholder="Brief description of the treatment…"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-outline" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Treatment</button>
+      </div>
+    </form>
+
+        <div class="table-wrapper">
+          <table class="table" id="treatments-table">
+            <thead>
+              <tr>
+                <th>Sr.no</th>
+                <th>Treatment</th>
+                <th>Department</th>
+                <th>Duration</th>
+                <th>Price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <% for(var a=0;a<data.length;a++){ %>
+              <tbody>
+                  <td><%=a+1%></td>
+                  <td><%=data[a].tname%></td>
+                  <td><%=data[a].department%></td>
+                  <td><%=data[a].duration%></td>
+                  <td><%=data[a].price%></td>
+                  <td>
+                     <a href="/admin/delete_treatment/<%=data[a].tid%>" onclick="alert('are you sure delete this department')">
+                        
+                         <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                      </a>
+                      <a href="/admin/edit_treattment/<%=data[a].tid%>">
+                         <button class="btn btn-primary "><i class="fa fa-pencil"></i></button>
+
+                      </a>
+                  </td>
+              </tbody>
+              <% } %>
+          </table>
+        </div>
+        <div class="pagination" id="treatments-pagination"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add / Edit Treatment Modal -->
+  <div class="modal-backdrop" id="treatment-modal-backdrop"></div>
+  <div class="modal modal-lg" id="treatment-modal" role="dialog" aria-modal="true" aria-labelledby="treatment-modal-title">
+    <div class="modal-header">
+      <h3 id="treatment-modal-title">Add New Treatment</h3>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+   
+  </div>
+<%-include('footer.ejs');%>
+
+ 

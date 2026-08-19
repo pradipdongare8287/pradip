@@ -1,0 +1,14 @@
+/* ============================================================
+   MediCare Plus — Main Stylesheet Entry
+   Import order matters — do not rearrange.
+   ============================================================ */
+
+@import url("variables.css");
+@import url("reset.css");
+@import url("base.css");
+@import url("components.css");
+@import url("layout.css");
+@import url("pages.css");
+@import url("home-extras.css");
+@import url("dashboard.css");
+@import url("responsive.css");

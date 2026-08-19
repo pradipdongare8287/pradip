@@ -1,0 +1,114 @@
+<%-include('header.ejs');%>
+
+      <div class="dashboard-content">
+
+        <div class="dashboard-grid">
+          <div class="col-4">
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-header">
+                <h3>Upload Report</h3>
+              </div>
+              <div class="dashboard-panel-body">
+                <form action="/doctor/save_report" method="post" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <label class="form-label">Patient <span class="required">*</span></label>
+                    <select class="form-control" name="report_patient_name" required>
+                      <option value="">Select Patient</option>
+                      <% for(var i=0;i<patient.length;i++){ %>
+                      <option><%=patient[i].pname%></option>
+                      <% } %>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Report Title</label>
+                    <input type="text" class="form-control" name="report_title" placeholder="e.g. Complete Blood Count" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Report Date</label>
+                    <input type="date" class="form-control" name="report_date" placeholder="e.g. Complete Blood Count" />
+                  </div>
+                  <div class="form-group">
+                  
+                    <input type="hidden" class="form-control" name="report_submited_doctor"  value="<%=doctor.doc_name%>"/>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Report Logo</label>
+                     <select class="form-control" name="report_logo">
+                      <option value="No logo Selected">No logo Selected</option>
+                      <option value="fa fa-flask">fa fa-flask</option>
+                      <option value="fa fa-heartbeat">fa fa-heartbeat</option>
+                      <option value="fa-solid fa-file-medical">fa-solid fa-file-medical</option>
+                      <option value="fa fa-medkit">fa fa-medkit</option>
+                      <option value="fa-solid fa-stethoscope">fa-solid fa-stethoscope</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Report Type</label>
+                    <select class="form-control" name="report_Type">
+                      <option value="Lab Report">Lab Report</option>
+                      <option value="Imaging / Scan">Imaging / Scan</option>
+                      <option value="Discharge Summary">Discharge Summary</option>
+                      <option value="Prescription">Prescription</option>
+                      <option value="General">General Document</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">File <span class="required">*</span></label>
+                    <label class="empty-state" style="padding:2rem 1rem;border:1.5px dashed var(--border);border-radius:var(--radius-md);cursor:pointer;display:block;">
+                      <i class="fa-solid fa-cloud-arrow-up" style="font-size:2rem;color:var(--primary);margin-bottom:0.75rem;display:block;"></i>
+                      <span style="font-size:0.85rem;color:var(--text-muted);">Drag &amp; drop files here, or click to browse</span>
+                      <input type="file" name="report_file" multiple style="position:absolute;width:1px;height:1px;opacity:0;" />
+                    </label>
+                    <span class="form-hint">Accepted formats: PDF, JPG, PNG (max 10MB).</span>
+                  </div>
+                  <div class="form-actions" style="justify-content:flex-start;">
+                    <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-upload"></i> Upload Report</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-8">
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-header">
+                <h3>Patient Reports</h3>
+                <div class="search-box" style="width:220px;">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <input type="search" placeholder="Search reports…" />
+                </div>
+              </div>
+              <div class="dashboard-panel-body no-pad">
+                <div class="table-wrapper">
+                  <table class="table">
+                    <thead>
+                      <tr><th>Report</th><th>Patient</th><th>Type</th><th>Date</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody>
+                      <% for(var i=0;i<reports.length;i++){ %>
+                      <tr>
+                        <td><div class="table-user"><div class="stat-icon blue" style="width:38px;height:38px;font-size:1rem;"><i class="<%=reports[i].report_logo%>"></i></div><div><strong><%=reports[i].report_title%></strong><span><%=reports[i].report_Type%></span></div></div></td>
+                        <td><%=reports[i].patient_name%></td>
+                        <td><%=reports[i].report_Type%></td>
+                        <td><%=reports[i].report_date%></td>
+                        <td class="table-actions">
+                          <a href="/doctor/dawnload_report/<%=reports[i].report_id%>"><button type="button" class="btn btn-sm btn-outline"><i class="fa-solid fa-download"></i></button></a>
+                          <a href="/doctor/delete_report/<%=reports[i].report_id%>"><button type="button" class="btn btn-sm btn-outline"><i class="fa fa-trash"></i></button></a>
+                        </td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <%-include('footer.ejs');%>

@@ -1,0 +1,207 @@
+<%-include('header.ejs');%>
+
+    <div class="dashboard-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1>Settings</h1>
+            <p>Hospital configuration &amp; website management</p>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-btn-wrap">
+            <button type="button" class="topbar-btn" data-notifications aria-label="Notifications"><i class="fa-solid fa-bell"></i></button>
+          </div>
+          <div class="profile-dropdown">
+            <button type="button" class="profile-trigger">
+              <img data-current-user-avatar src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="" />
+              <span class="profile-name" data-current-user-name>System Admin</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong data-current-user-name>System Admin</strong>
+                <span data-current-user-email>admin@medicare.com</span>
+              </div>
+              <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+              <div class="divider"></div>
+              <a href="login.html" class="danger logout-btn" data-logout="login.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <div class="dashboard-grid">
+          <div class="col-8">
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-header"><h3><i class="fa-solid fa-hospital"></i> Hospital Information</h3></div>
+              <div class="dashboard-panel-body">
+                <form id="settings-form">
+                  <div class="form-group">
+                    <label class="form-label" for="set-name">Hospital Name <span class="required">*</span></label>
+                    <input type="text" id="set-name" name="name" class="form-control" required />
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label" for="set-phone">Phone Number <span class="required">*</span></label>
+                      <input type="tel" id="set-phone" name="phone" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="set-emergency">Emergency Line</label>
+                      <input type="text" id="set-emergency" name="emergency" class="form-control" placeholder="108 / +1-800-911-HELP" />
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label" for="set-email">Email Address <span class="required">*</span></label>
+                      <input type="email" id="set-email" name="email" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="set-supportEmail">Support Email</label>
+                      <input type="email" id="set-supportEmail" name="supportEmail" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="set-address">Address <span class="required">*</span></label>
+                    <input type="text" id="set-address" name="address" class="form-control" required />
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label" for="set-hoursWeekdays">Weekday Hours</label>
+                      <input type="text" id="set-hoursWeekdays" name="hoursWeekdays" class="form-control" placeholder="Mon – Fri: 8:00 AM – 8:00 PM" />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="set-hoursSaturday">Saturday Hours</label>
+                      <input type="text" id="set-hoursSaturday" name="hoursSaturday" class="form-control" placeholder="Sat: 9:00 AM – 5:00 PM" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="set-hoursSunday">Sunday Hours</label>
+                    <input type="text" id="set-hoursSunday" name="hoursSunday" class="form-control" placeholder="Sun: Emergency Only" />
+                  </div>
+                  <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Hospital Info</button>
+                </form>
+              </div>
+            </div>
+
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-header"><h3><i class="fa-solid fa-globe"></i> Website Management</h3></div>
+              <div class="dashboard-panel-body">
+                <div class="settings-toggle-row">
+                  <div>
+                    <h5>Maintenance Mode</h5>
+                    <p>Temporarily show a "Coming Soon" banner to visitors while you make changes.</p>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-maintenance" />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div class="settings-toggle-row">
+                  <div>
+                    <h5>Online Appointment Booking</h5>
+                    <p>Allow patients to book appointments directly from the public website.</p>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-booking" checked />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div class="settings-toggle-row">
+                  <div>
+                    <h5>Photo Gallery</h5>
+                    <p>Show the hospital facilities &amp; events gallery on the public website.</p>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-gallery" checked />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div class="settings-toggle-row">
+                  <div>
+                    <h5>Patient Testimonials</h5>
+                    <p>Display approved patient testimonials on the homepage and testimonials page.</p>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-testimonials" checked />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div class="settings-toggle-row">
+                  <div>
+                    <h5>Blog / Health Articles</h5>
+                    <p>Publish new health articles and blog posts on the public site.</p>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-blogs" checked />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div class="settings-toggle-row">
+                  <div>
+                    <h5>Newsletter Signup</h5>
+                    <p>Show the email newsletter subscription form in the site footer.</p>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-newsletter" checked />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+
+                <div class="quick-actions" style="margin-top:1.5rem;">
+                  <a href="../gallery.html" target="_blank" rel="noopener" class="quick-action"><i class="fa-solid fa-images"></i><span>Manage Gallery</span></a>
+                  <a href="../testimonials.html" target="_blank" rel="noopener" class="quick-action"><i class="fa-solid fa-comment-dots"></i><span>Manage Testimonials</span></a>
+                  <a href="../blog.html" target="_blank" rel="noopener" class="quick-action"><i class="fa-solid fa-newspaper"></i><span>Manage Blog Posts</span></a>
+                  <a href="../index.html" target="_blank" rel="noopener" class="quick-action"><i class="fa-solid fa-arrow-up-right-from-square"></i><span>Preview Live Site</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-header"><h3><i class="fa-solid fa-user-shield"></i> Admin Profile</h3></div>
+              <div class="dashboard-panel-body" style="text-align:center;">
+                <img data-current-user-avatar src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="Admin avatar" style="width:88px;height:88px;border-radius:50%;object-fit:cover;margin-bottom:1rem;" />
+                <h4 data-current-user-name style="margin-bottom:0.25rem;">System Admin</h4>
+                <p style="color:var(--text-muted);font-size:0.875rem;margin-bottom:1.25rem;" data-current-user-email>admin@medicare.com</p>
+                <form id="admin-profile-form" style="text-align:left;">
+                  <div class="form-group">
+                    <label class="form-label" for="admin-profile-name">Display Name</label>
+                    <input type="text" id="admin-profile-name" name="name" class="form-control" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="admin-profile-email">Email</label>
+                    <input type="email" id="admin-profile-email" name="email" class="form-control" disabled />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="admin-profile-phone">Phone</label>
+                    <input type="tel" id="admin-profile-phone" name="phone" class="form-control" />
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-floppy-disk"></i> Update Profile</button>
+                </form>
+              </div>
+            </div>
+
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-header"><h3><i class="fa-solid fa-database"></i> Data Management</h3></div>
+              <div class="dashboard-panel-body">
+                <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:1rem;">All hospital data is stored locally in this browser using <code>localStorage</code>. Use these tools to back up or reset the demo dataset.</p>
+                <button type="button" class="btn btn-outline btn-block" id="export-all-data-btn" style="margin-bottom:0.75rem;">
+                  <i class="fa-solid fa-download"></i> Export Full Backup (JSON)
+                </button>
+                <button type="button" class="btn btn-outline btn-block" id="reset-data-btn" style="color:var(--danger);border-color:var(--danger);">
+                  <i class="fa-solid fa-rotate-left"></i> Reset Demo Data
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+<%-include('footer.ejs');%>
+
+

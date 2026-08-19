@@ -1,0 +1,274 @@
+<%-include('header.ejs')%>
+<div class="dashboard-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1>Add Website Contact Section</h1>
+            <p>Hospital Contact &amp; Page</p>
+          </div>
+        </div>
+        <div class="topbar-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" id="dashboard-search" placeholder="Quick search doctors, patients…" />
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-btn-wrap">
+            <button type="button" class="topbar-btn" data-notifications aria-label="Notifications"><i class="fa-solid fa-bell"></i></button>
+          </div>
+          <div class="profile-dropdown">
+            <button type="button" class="profile-trigger">
+              <img data-current-user-avatar src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="" />
+              <span class="profile-name" data-current-user-name>System Admin</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong data-current-user-name>System Admin</strong>
+                <span data-current-user-email>admin@medicare.com</span>
+              </div>
+              <a href="settings"><i class="fa-solid fa-gear"></i> Settings</a>
+              <div class="divider"></div>
+              <a href="/admin/logout" class="danger logout-btn" ><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+
+                
+
+        <form action="/admin/save_contact" method="post" enctype="multipart/form-data"
+                    style="max-width:700px; margin:30px auto; padding:30px; background:#fff; border-radius:12px; box-shadow:0 8px 25px rgba(0,0,0,0.15); border-top:5px solid #0d6efd;">
+
+                    <!-- Heading -->
+                    <h4 style="text-align:center; color:#0b7219; margin-bottom:10px;">
+                        <i class="fa fa-phone"></i>&nbsp;Add Contact
+                    </h4>
+
+                    <p style="text-align:center; color:#666; margin-bottom:30px;">
+                        Fill in the details below to <b>Add</b> contact
+                    </p>
+
+                    <!-- Mission Icon -->
+                    <label style="font-weight:bold; color:#333; display:block; margin-bottom:8px;">
+                        <i class="fa fa-icons"></i> Contact Icon
+                    </label>
+
+                    <input type="text" name="con_icon" placeholder="fa fa-cogs" value=""
+                        style="width:100%; padding:12px; border:1px solid #ced4da; border-radius:8px; font-size:15px; margin-bottom:20px; outline:none;">
+
+                    <!-- Mission Name -->
+                    <label style="font-weight:bold; color:#333; display:block; margin-bottom:8px;">
+                        <i class="fa fa-flag"></i> Contact Name
+                    </label>
+
+                    <input type="text" name="con_name" placeholder="Enter Contact Name" value=""
+                        style="width:100%; padding:12px; border:1px solid #ced4da; border-radius:8px; font-size:15px; margin-bottom:20px; outline:none;">
+
+
+                    <!-- Mission Description -->
+                    <label style="font-weight:bold; color:#333; display:block; margin-bottom:8px;">
+                        <i class="fa fa-align-left"></i> Contact Description
+                    </label>
+
+                    <textarea name="Con_description" rows="5" placeholder="Contact Description"
+                        style="width:100%; padding:12px; border:1px solid #ced4da; border-radius:8px; resize:none; font-size:15px; margin-bottom:25px; outline:none;">
+                   
+                    </textarea>
+
+                    <!-- Buttons -->
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+
+                        <a href=""><button type="reset"
+                            style="background:#dc3545; color:#fff; border:none; padding:12px 28px; border-radius:8px; font-size:15px; cursor:pointer; transition:0.3s;">
+                            <i class="fa fa-refresh"></i> Reset
+                        </button></a>
+
+                       <a><button type="submit"
+                            style="background:#198754; color:#fff; border:none; padding:12px 28px; border-radius:8px; font-size:15px; cursor:pointer; transition:0.3s;">
+                            <i class="fa fa-save"></i> Save Contact
+                        </button></a>
+
+                    </div>
+
+                   
+
+    </form>
+    <!-- <div class="table-wrapper">
+
+           <h4 style="text-align:center; color:#1d0606; margin-bottom:10px;">
+                        <i style="color:rgb(0, 0, 0);" class="fa-solid fa-phone"></i>&nbsp; Add New Contact Method
+            </h4>
+
+          <table class="table" id="doctors-table">
+            <thead>
+              <tr>
+                <th>Sr.no</th>
+                <th>Contact Logo</th>
+                <th>Contact Name</th>
+                <th>Contact Description</th>
+                
+                <th>Action</th>
+              </tr>
+            </thead>
+          <% for(var d=0;d<contact.length;d++){ %>
+            <tbody>
+            <td><%=d+1%></td>
+            <td><%=contact[d].clogo%></td>
+            <td><%=contact[d].cnaem%></td>
+            <td><%=contact[d].cdiscription%></td>
+            <td>
+                <a href="/admin/delete_contact/<%=contact[d].cid%>" onclick="return confirm('Are you sure you want to delete this department?')">
+                  <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                </a>
+                <a href="/admin/edit_contact/<%=contact[d].cid%>" onclick="return confirm('Are you sure you want to delete this department?')">
+                  <button class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                </a>
+            </td>
+            </tbody>
+           <% } %>
+          </table>
+        </div> -->
+
+
+        <div class="table-wrapper"
+    style="background:#fff; padding:20px; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.08); margin-top:20px; overflow-x:auto;">
+
+    <h4 style="text-align:center; color:#1d0606; margin-bottom:20px; font-weight:bold; font-size:24px;">
+        <i class="fa-solid fa-phone" style="color:#0d6efd;"></i>
+        &nbsp;Add New Contact Method
+    </h4>
+
+    <table id="doctors-table"
+        style="width:100%; border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; overflow:hidden; border-radius:10px;">
+
+        <thead>
+            <tr style="background:linear-gradient(90deg,#0d6efd,#0099ff); color:white; text-align:center;">
+
+                <th style="padding:14px; border:1px solid #dee2e6;">Sr.No</th>
+                <th style="padding:14px; border:1px solid #dee2e6;">Contact Logo</th>
+                <th style="padding:14px; border:1px solid #dee2e6;">Contact Name</th>
+                <th style="padding:14px; border:1px solid #dee2e6;">Contact Description</th>
+                <th style="padding:14px; border:1px solid #dee2e6;">Action</th>
+
+            </tr>
+        </thead>
+
+        <% for(var d=0; d<contact.length; d++){ %>
+
+        <tbody>
+
+            <tr style="text-align:center; transition:0.3s;">
+
+                <td style="padding:12px; border:1px solid #e5e5e5; font-weight:bold;">
+                    <%= d+1 %>
+                </td>
+
+                <td style="padding:12px; border:1px solid #e5e5e5; font-size:20px;">
+                    <%= contact[d].clogo %>
+                </td>
+
+                <td style="padding:12px; border:1px solid #e5e5e5; font-weight:600;">
+                    <%= contact[d].cnaem %>
+                </td>
+
+                <td style="padding:12px; border:1px solid #e5e5e5; color:#555;">
+                    <%= contact[d].cdiscription %>
+                </td>
+
+                <td style="padding:12px; border:1px solid #e5e5e5;">
+
+                    <a href="/admin/delete_contact/<%=contact[d].cid%>"
+                        onclick="return confirm('Are you sure you want to delete this department?')">
+
+                        <button
+                            style="background:#dc3545; color:white; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; margin-right:5px; transition:.3s;">
+                            <i class="fa fa-trash"></i>
+                        </button>
+
+                    </a>
+
+                    <a href="/admin/edit_contact/<%=contact[d].cid%>"
+                        onclick="return confirm('Are you sure you want to edit this contact?')">
+
+                        <button
+                            style="background:#0d6efd; color:white; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; transition:.3s;">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+        <% } %>
+
+    </table>
+
+</div>
+<!-- =========================================GOOGLE MAP SETTING================================================
+=========================================================================================================== -->
+
+
+<div style="width:70%; margin:30px auto; background:#fff; border-radius:10px; box-shadow:0px 0px 15px rgba(0,0,0,0.15); padding:20px;">
+
+    <h3 style="text-align:center; color:#0d6efd; margin-bottom:20px;">
+        <i class="fa fa-map-marker"></i> Google Map Settings
+    </h3>
+
+    <form action="/admin/save_map" method="post">
+
+        <table style="width:100%; border-collapse:collapse;">
+
+            <tr>
+                <th style="width:30%; padding:15px; background:#0d6efd; color:white; text-align:left; border:1px solid #ddd;">
+                    <i class="fa fa-map"></i> Google Map Embed Link
+                </th>
+
+                <td style="padding:15px; border:1px solid #ddd;">
+                    <textarea
+                        name="map"
+                        rows="6"
+                        placeholder="Paste Google Map Embed iframe code here..."
+                        style="width:100%; padding:12px; border:1px solid #ccc; border-radius:6px; resize:none; font-size:15px;"
+                        required>
+                      <%=map.mlink%>
+                      </textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align:center; padding:20px; border:1px solid #ddd;">
+
+                    <button type="submit"
+                        style="background:#198754; color:white; border:none; padding:10px 30px; border-radius:6px; cursor:pointer; font-size:16px; margin-right:10px;">
+                        <i class="fa fa-save"></i> Save Map
+                    </button>
+
+                    <button type="reset"
+                        style="background:#dc3545; color:white; border:none; padding:10px 30px; border-radius:6px; cursor:pointer; font-size:16px;">
+                        <i class="fa fa-refresh"></i> Reset
+                    </button>
+
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+
+</div>
+
+
+<!-- ==================================================================================================================
+================================================================================================================== -->
+
+
+
+</div>
+
+<%-include('footer.ejs')%>

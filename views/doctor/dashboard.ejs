@@ -1,0 +1,182 @@
+<%-include('header.ejs');%>
+
+      <!-- Content -->
+      <div class="dashboard-content">
+
+        <div class="dashboard-welcome">
+          <h2>Good to see you, <%=doctor.doc_name%> 👋</h2>
+          <p>Here's what's happening with your patients today.</p>
+        </div>
+
+        <!-- Stat Cards -->
+        <div class="stat-cards">
+          <div class="stat-card">
+            <div class="stat-card-icon blue"><i class="fa-solid fa-calendar-day"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Today's Appointments</div>
+              <div class="stat-card-value"><%=todays_appointments.today_appointment%></div>
+              <div class="stat-trend neutral"><i class="fa-solid fa-clock"></i> Scheduled today</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon green"><i class="fa-solid fa-hospital-user"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Complete Patients </div>
+              <div class="stat-card-value"><%=complete.Complete_appointment%></div>
+              <div class="stat-trend up"><i class="fa-solid fa-arrow-up"></i> All-time completed</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon orange"><i class="fa-solid fa-hourglass-half"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Pending Approvals</div>
+              <div class="stat-card-value"><%=pending.Pending_appointment%></div>
+              <div class="stat-trend neutral">Needs your review</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon purple"><i class="fa-solid fa-sack-dollar"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Earnings (This Month)</div>
+              <div class="stat-card-value">$8,420</div>
+              <div class="stat-trend up"><i class="fa-solid fa-arrow-up"></i> 12% vs last month</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weekly overview + Today's list -->
+        <div class="dashboard-grid">
+          <div class="col-8">
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-header">
+                <h3>Weekly Patient Activity</h3>
+                <span class="text-muted" style="font-size:0.8rem;">Last 7 days</span>
+              </div>
+              <div class="dashboard-panel-body">
+                <div class="schedule-list">
+                  <div class="schedule-item">
+                    <div class="schedule-info" style="min-width:80px;flex:0 0 80px;"><h5>Monday</h5></div>
+                    <div class="progress" style="flex:1;"><div class="progress-bar" style="width:55%;"></div></div>
+                    <span class="text-muted" style="font-size:0.8rem;min-width:60px;text-align:right;">6 visits</span>
+                  </div>
+                  <div class="schedule-item">
+                    <div class="schedule-info" style="min-width:80px;flex:0 0 80px;"><h5>Tuesday</h5></div>
+                    <div class="progress" style="flex:1;"><div class="progress-bar" style="width:80%;"></div></div>
+                    <span class="text-muted" style="font-size:0.8rem;min-width:60px;text-align:right;">9 visits</span>
+                  </div>
+                  <div class="schedule-item">
+                    <div class="schedule-info" style="min-width:80px;flex:0 0 80px;"><h5>Wednesday</h5></div>
+                    <div class="progress" style="flex:1;"><div class="progress-bar" style="width:40%;"></div></div>
+                    <span class="text-muted" style="font-size:0.8rem;min-width:60px;text-align:right;">4 visits</span>
+                  </div>
+                  <div class="schedule-item">
+                    <div class="schedule-info" style="min-width:80px;flex:0 0 80px;"><h5>Thursday</h5></div>
+                    <div class="progress" style="flex:1;"><div class="progress-bar" style="width:65%;"></div></div>
+                    <span class="text-muted" style="font-size:0.8rem;min-width:60px;text-align:right;">7 visits</span>
+                  </div>
+                  <div class="schedule-item">
+                    <div class="schedule-info" style="min-width:80px;flex:0 0 80px;"><h5>Friday</h5></div>
+                    <div class="progress" style="flex:1;"><div class="progress-bar" style="width:100%;"></div></div>
+                    <span class="text-muted" style="font-size:0.8rem;min-width:60px;text-align:right;">11 visits</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-header">
+                <h3>Today's Appointments</h3>
+                <a href="/doctor/appointments">View all</a>
+              </div>
+              <div class="dashboard-panel-body">
+                <div class="schedule-list">
+                  <% for(i=0;i<total_today_appointment.length;i++){ %>
+                  <div class="schedule-item">
+                    <div class="schedule-time"><strong><%=total_today_appointment[i].Time%></strong><span></span></div>
+                    <div class="schedule-divider"></div>
+                    <div class="schedule-info"><h5><%=total_today_appointment[i].Petient_id%></h5><p>Follow-up · Room 204</p></div>
+                  </div>
+                  <% } %>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="dashboard-panel" style="margin-bottom:1.75rem;">
+          <div class="dashboard-panel-header">
+            <h3>Quick Actions</h3>
+          </div>
+          <div class="dashboard-panel-body">
+            <div class="quick-actions">
+              <a href="prescription.html" class="quick-action">
+                <i class="fa-solid fa-file-prescription"></i>
+                <span>New Prescription</span>
+              </a>
+              <a href="treatment.html" class="quick-action">
+                <i class="fa-solid fa-notes-medical"></i>
+                <span>Add Treatment Note</span>
+              </a>
+              <a href="patients.html" class="quick-action">
+                <i class="fa-solid fa-hospital-user"></i>
+                <span>View Patients</span>
+              </a>
+              <a href="schedule.html" class="quick-action">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Manage Schedule</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notifications section (sidebar anchor target) -->
+        <div class="dashboard-panel" id="notifications">
+          <div class="dashboard-panel-header">
+            <h3>Notifications</h3>
+          </div>
+          <div class="dashboard-panel-body no-pad">
+            <div class="notification-list">
+              <div class="notification-item unread">
+                <div class="notification-icon success"><i class="fa-solid fa-user-plus"></i></div>
+                <div class="notification-body">
+                  <h5>New Patient Assigned</h5>
+                  <p>Michael Carter has been assigned to your care.</p>
+                  <span class="notif-time">1 hour ago</span>
+                </div>
+              </div>
+              <div class="notification-item unread">
+                <div class="notification-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                <div class="notification-body">
+                  <h5>Appointment Request</h5>
+                  <p>Priya Anand requested an appointment for Jul 29.</p>
+                  <span class="notif-time">3 hours ago</span>
+                </div>
+              </div>
+              <div class="notification-item">
+                <div class="notification-icon warning"><i class="fa-solid fa-flask"></i></div>
+                <div class="notification-body">
+                  <h5>Lab Result Alert</h5>
+                  <p>Abnormal result flagged for patient Daniel Osei.</p>
+                  <span class="notif-time">Yesterday</span>
+                </div>
+              </div>
+              <div class="notification-item">
+                <div class="notification-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                <div class="notification-body">
+                  <h5>Leave Request Approved</h5>
+                  <p>Your leave request for Aug 10–12 has been approved by admin.</p>
+                  <span class="notif-time">2 days ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <%-include('footer.ejs'); %>

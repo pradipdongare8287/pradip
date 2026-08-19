@@ -1,0 +1,67 @@
+<%-include('header.ejs')%>
+   
+        <!-- Patient Detail -->
+        <div class="dashboard-panel" id="patient-detail">
+          <div class="dashboard-panel-header">
+            <h3>Patient Details</h3>
+          </div>
+          <div class="dashboard-panel-body">
+            <div class="user-meta" style="margin-bottom:1.5rem;">
+              <img src="/images/<%=patients_details. p_photo%>" alt="Michael Carter" class="avatar avatar-lg" />
+              <div>
+                <div class="name" style="font-size:1.15rem;"><%=patients_details.pname%></div>
+                <div class="sub"><%=patients_details.p_gender%> DOB <%=patients_details.p_dob%><br>Blood Group <strong><%=patients_details.p_bloodgroup%></strong> <br><%=patients_details.Appointment_Reason%></div>
+              </div>
+            </div>
+            <div class="form-row" style="margin-bottom:1.5rem;">
+              <div>
+                <label class="form-label">Phone</label>
+                <p><%=patients_details.pphone%></p>
+              </div>
+              <div>
+                <label class="form-label">Email</label>
+                <p><%=patients_details.pemail%></p>
+              </div>
+            </div>
+            <div style="margin-bottom:1.5rem;">
+              <label class="form-label">Address</label>
+              <p><%=patients_details.p_address%></p>
+            </div>
+            <h4 class="form-section-title">Appointment History</h4>
+            <div class="activity-feed">
+              <div class="activity-item">
+                <div class="notification-icon success"><i class="fa-solid fa-calendar-check"></i></div>
+                <div class="notification-body">
+                  <h5>Follow-up visit — <%=patients_details.Appointment_Reason%></h5>
+                  <p><%=patients_details.Date%> ·<%=patients_details.Time%> </p>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="notification-icon"><i class="fa-solid fa-notes-medical"></i></div>
+                <div class="notification-body">
+                  <h5>Treatment note added — Amlodipine dosage adjusted</h5>
+                  <p>May 02, 2026 · 09:15 AM</p>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="notification-icon warning"><i class="fa-solid fa-flask"></i></div>
+                <div class="notification-body">
+                  <h5>Lab work ordered — Lipid panel</h5>
+                  <p>Feb 10, 2026 · 11:30 AM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-top:1px solid var(--border-light);display:flex;gap:0.75rem;padding-top:1.25rem;">
+            <a href="treatment.html" class="btn btn-outline"><i class="fa-solid fa-notes-medical"></i> New Treatment Note</a>
+            <a href="prescription.html" class="btn btn-primary"><i class="fa-solid fa-file-prescription"></i> New Prescription</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

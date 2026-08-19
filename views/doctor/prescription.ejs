@@ -1,0 +1,141 @@
+<%-include('header.ejs');%>
+
+  <div class="dashboard-content">
+
+    <!-- Builder form -->
+    <div class="dashboard-panel" style="margin-bottom:1.75rem;">
+      <div class="dashboard-panel-header">
+        <h3>New Prescription</h3>
+      </div>
+      <div class="dashboard-panel-body">
+        <form action="/doctor/save_prescription" method="post">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Patient <span class="required">*</span></label>
+              <select class="form-control" name="patient_name" required>
+                <option value="">Select Patient</option>
+                <% for(var i=0;i<patient.length;i++){ %>
+                  <option value="<%=patient[i].pname%>" ><%=patient[i].pname%></option>
+                  <% } %>
+
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Date</label>
+              <input type="date" class="form-control" name="pre_date"  />
+            </div>
+            <div class="form-group">
+            
+              <input type="hidden" class="form-control" name="doc_name" value="<%=doctor_name.doc_name%>" />
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Diagnosis</label>
+            <input type="text" class="form-control" name="pre_diagnosis" />
+          </div>
+
+          <label class="form-label">Medicines</label>
+          <div class="table-wrapper" style="margin-bottom:1rem;">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th style="width:36%;">Medicine</th>
+                  <th>Dosage</th>
+                  <th>Frequency</th>
+                  <th>Duration</th>
+                  <th>Action</th>
+
+                  <th style="width:48px;"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="text" class="form-control" name="medicine[]" /></td>
+                  <td><input type="text" class="form-control" name="dosage[]" /></td>
+                  <td><input type="text" class="form-control" name="frequency[]" /></td>
+                  <td><input type="text" class="form-control" name="duration[]" /></td>
+                  <td><button type="button" class="btn btn-sm btn-ghost" aria-label="Remove row"><i
+                        class="fa-solid fa-trash"></i></button></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="form-control" name="medicine[]" /></td>
+                  <td><input type="text" class="form-control" name="dosage[]" /></td>
+                  <td><input type="text" class="form-control" name="frequency[]" /></td>
+                  <td><input type="text" class="form-control" name="duration[]" /></td>
+                  <td><button type="button" class="btn btn-sm btn-ghost" aria-label="Remove row"><i
+                        class="fa-solid fa-trash"></i></button></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="form-control" name="medicine[]" /></td>
+                  <td><input type="text" class="form-control" name="dosage[]" /></td>
+                  <td><input type="text" class="form-control" name="frequency[]" /></td>
+                  <td><input type="text" class="form-control" name="duration[]" /></td>
+                  <td><button type="button" class="btn btn-sm btn-ghost" aria-label="Remove row"><i
+                        class="fa-solid fa-trash"></i></button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button type="button" class="btn btn-ghost btn-sm" style="margin-bottom:1.25rem;">
+            <i class="fa-solid fa-plus"></i> Add Medicine
+          </button>
+
+          <div class="form-group">
+            <label class="form-label">Advice / Instructions</label>
+            <textarea class="form-control" name="pre_advice"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="reset" class="btn btn-outline">Clear</button>
+
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save
+              Prescription</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Printable preview -->
+
+    <!-- History -->
+    <div class="dashboard-panel">
+      <div class="dashboard-panel-header">
+        <h3>Prescription History</h3>
+      </div>
+      <div class="dashboard-panel-body no-pad">
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Rx No.</th>
+                <th>Patient</th>
+                <th>Date</th>
+                <th>Diagnosis</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0;i<prescription_patient.length;i++){ %>
+              <tr>
+                <td><code>RX<%=RXNUMBER%><%=i+1%></code></td>
+                <td><%=prescription_patient[i].Patient_name%></td>
+                <td><%=prescription_patient[i].Pre_date%></td>
+                <td><%=prescription_patient[i].Pre_diagnosis%></td>
+               
+                <td class="table-actions">
+                  <a href="/doctor/prescription_view/<%=prescription_patient[i].Prescription_id%>"><button type="button" class="btn btn-sm btn-outline"><i class="fa-solid fa-eye"></i></button></a>
+                </td>
+              </tr>
+              <% } %>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  </div>
+  <%-include('footer.ejs');%>

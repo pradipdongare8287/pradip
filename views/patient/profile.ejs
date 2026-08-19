@@ -1,0 +1,139 @@
+<%- include('header.ejs'); %>
+
+      <div class="dashboard-content">
+
+        <div class="profile-layout">
+          <div class="profile-sidebar-card">
+            <div class="profile-avatar-wrap">
+              <img src="/images/<%=petient.p_photo%>" alt="<%= petient.pname %>" />
+              <span class="avatar-edit" title="Change photo"><i class="fa-solid fa-camera"></i></span>
+            </div>
+            <h3><%= petient.pname %></h3>
+            <span class="role-tag">Patient Account</span>
+            <p class="text-muted" style="font-size:0.875rem; margin-bottom:0;"><h3><%= petient.pemail %></h3></p>
+            <div class="profile-stats-mini">
+              <div>
+                <strong>12</strong>
+                <span>Appointments</span>
+              </div>
+              <div>
+                <strong>2022</strong>
+                <span>Member Since</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-form-card">
+            <div class="profile-form-tabs" data-tabs>
+              <button type="button" class="active" data-tab="info">Personal Information</button>
+              <button type="button" data-tab="security">Security</button>
+            </div>
+
+            <div class="profile-form-body">
+              <div class="tab-panel active" data-tab-panel="info">
+                <div class="form-section-title">Personal Information</div>
+                <form action="/patient/update_profile/<%=petient.pid%>" method="post" enctype="multipart/form-data">
+                  <div class="form-row">
+                    <div class="form-group">
+                      
+                      <label class="form-label">Full Name <span class="required"></span></label>
+                      <input type="text" name="p_name" class="form-control" value="<%=petient.pname%>" required />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Email Address</label>
+                      <input type="email" name="p_email" class="form-control" value="<%=petient.pemail%>" />
+                      <p class="form-hint">Contact support to change your registered email.</p>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label">Phone Number</label>
+                      <input type="tel" name="p_phone" class="form-control" value="<%=petient.pphone%>" placeholder="+1 555-0100" />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Date of Birth</label>
+                      <input type="date" name="p_dob" class="form-control" value="<%=petient.p_dob%>" />
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label">Blood Group</label>
+                      <select name="p_bloodGroup" class="form-control">
+                        <option value="">Select</option>
+                        <option value="A+" <%= petient.p_bloodgroup== 'A+' ? 'selected' : ''  %> >A+</option>
+                        <option value="A-" <%= petient.p_bloodgroup== 'A-' ? 'selected' : ''  %>>A-</option>
+                        <option value="B+" <%= petient.p_bloodgroup== 'B+' ? 'selected' : ''  %>>B+</option>
+                        <option value="B-" <%= petient.p_bloodgroup== 'B-' ? 'selected' : ''  %>>B-</option>
+                        <option value="AB+" <%= petient.p_bloodgroup== 'AB+' ? 'selected' : ''  %>>AB+</option>
+                        <option value="AB-" <%= petient.p_bloodgroup== 'AB-' ? 'selected' : ''  %>>AB-</option>
+                        <option value="O+" <%= petient.p_bloodgroup== 'O+' ? 'selected' : ''  %>>O+</option>
+                        <option value="O-" <%= petient.p_bloodgroup== 'O-' ? 'selected' : ''  %>>O-</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Gender</label>
+                      <select name="p_gender" class="form-control">
+                        <option value="Select" <%= petient.p_gender== 'Select' ? 'selected' :'' %>>Select</option>
+                        <option value="female" <%= petient.p_gender== 'female' ? 'selected' :'' %>>Female</option>
+                        <option value="male" <%= petient.p_gender== 'male' ? 'selected' :'' %>>Male</option>
+                        <option value="other" <%= petient.p_gender== 'other' ? 'selected' :'' %>>Other</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Address</label>
+                    <textarea name="p_address" class="form-control" rows="3" placeholder="Street, city, state, ZIP">
+                      <%=petient.p_address %>
+                    </textarea>
+                  </div>
+                  <div class="form-group">
+                      <label class="form-label">update Photo</label>
+                      <input type="file" name="p_photo" class="form-control"/>
+
+                      <img src="/images/<%=petient.p_photo%>" height="100px" width="100px"/>
+                    </div>
+                  <div class="form-actions">
+                    <button type="reset" class="btn btn-outline">Reset</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+                  </div>
+                </form>
+              </div>
+              
+              <div class="tab-panel" data-tab-panel="security" hidden>
+                <div class="form-section-title">Change Password</div>
+                <form action="#" method="post">
+                  <div class="form-group">
+                    <label class="form-label">Current Password <span class="required">*</span></label>
+                    <div class="input-icon right">
+                      <input type="password" name="oldPassword" id="oldPassword" class="form-control" required />
+                      <i class="fa-regular fa-eye" data-toggle-password="oldPassword"></i>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label">New Password <span class="required">*</span></label>
+                      <input type="password" name="newPassword" class="form-control" minlength="6" required />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Confirm New Password <span class="required">*</span></label>
+                      <input type="password" name="confirmPassword" class="form-control" minlength="6" required />
+                    </div>
+                  </div>
+                  <div class="alert alert-info">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Use at least 6 characters, mixing letters and numbers for a stronger password.</span>
+                  </div>
+                  <div class="form-actions">
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-shield-halved"></i> Update Password</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <%- include('footer.ejs'); %>

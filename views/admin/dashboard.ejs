@@ -1,0 +1,173 @@
+<%-include('header.ejs')%>
+
+    <div class="dashboard-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1>Dashboard</h1>
+            <p>Hospital-wide overview &amp; analytics</p>
+          </div>
+        </div>
+        <div class="topbar-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" id="dashboard-search" placeholder="Quick search doctors, patients…" />
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-btn-wrap">
+            <button type="button" class="topbar-btn" data-notifications aria-label="Notifications"><i class="fa-solid fa-bell"></i></button>
+          </div>
+          <div class="profile-dropdown">
+            <button type="button" class="profile-trigger">
+              <img data-current-user-avatar src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="" />
+              <span class="profile-name" data-current-user-name>System Admin</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong data-current-user-name>System Admin</strong>
+                <span data-current-user-email>admin@medicare.com</span>
+              </div>
+              <a href="settings"><i class="fa-solid fa-gear"></i> Settings</a>
+              <div class="divider"></div>
+              <a href="/admin/logout" class="danger logout-btn" ><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <div class="dashboard-welcome">
+          <h2>Welcome back, <span data-current-user-name>Admin</span> 👋</h2>
+          <p>Here's what's happening across MediCare Plus today.</p>
+        </div>
+
+        <div class="stat-cards">
+          <div class="stat-card">
+            <div class="stat-card-icon blue"><i class="fa-solid fa-hospital-user"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Total Patients</div>
+              <div class="stat-card-value" id="stat-total-patients">0</div>
+              <div class="stat-trend up"><i class="fa-solid fa-arrow-trend-up"></i> Active records</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon green"><i class="fa-solid fa-user-doctor"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Total Doctors</div>
+              <div class="stat-card-value" id="stat-total-doctors">0</div>
+              <div class="stat-trend neutral"><span id="stat-doctors-note">— active</span></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon orange"><i class="fa-solid fa-calendar-day"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Today's Appointments</div>
+              <div class="stat-card-value" id="stat-today-appointments">0</div>
+              <div class="stat-trend neutral"><span id="stat-pending-note">— pending approval</span></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon purple"><i class="fa-solid fa-sack-dollar"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Total Revenue</div>
+              <div class="stat-card-value" id="stat-revenue">$0</div>
+              <div class="stat-trend neutral"><span id="stat-lowstock-note">— low stock</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="col-8">
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <h3>Appointment Trend</h3>
+                <div class="chart-actions">
+                  <span class="badge badge-primary"><i class="fa-solid fa-calendar-week"></i> Last 7 months</span>
+                </div>
+              </div>
+              <div class="chart-body"><canvas id="admin-chart-trend"></canvas></div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="chart-card">
+              <div class="chart-card-header"><h3>Appointment Status</h3></div>
+              <div class="chart-body"><canvas id="admin-chart-status"></canvas></div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="chart-card">
+              <div class="chart-card-header"><h3>Doctors by Department</h3></div>
+              <div class="chart-body chart-body-md"><canvas id="admin-chart-departments"></canvas></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="col-12">
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-header">
+                <h3>Recent Appointments</h3>
+                <a href="appointments">View all <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+              <div class="dashboard-panel-body no-pad">
+                <div class="table-wrapper">
+                  <table class="table">
+                    <thead>
+                      <tr><th>Patient</th><th>Doctor</th><th>Date &amp; Time</th><th>Status</th></tr>
+                    </thead>
+                    <tbody id="recent-appointments-body"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-panel" style="margin-bottom:1.75rem;">
+          <div class="dashboard-panel-header"><h3>Quick Actions</h3></div>
+          <div class="dashboard-panel-body">
+            <div class="quick-actions">
+              <a href="doctors" class="quick-action"><i class="fa-solid fa-user-doctor"></i><span>Manage Doctors</span></a>
+              <a href="patients" class="quick-action"><i class="fa-solid fa-hospital-user"></i><span>Manage Patients</span></a>
+              <a href="appointments" class="quick-action"><i class="fa-solid fa-calendar-check"></i><span>Appointments</span></a>
+              <a href="departments" class="quick-action"><i class="fa-solid fa-sitemap"></i><span>Departments</span></a>
+              <a href="medicines" class="quick-action"><i class="fa-solid fa-pills"></i><span>Pharmacy Inventory</span></a>
+              <a href="reports" class="quick-action"><i class="fa-solid fa-chart-line"></i><span>View Reports</span></a>
+              <a href="settings" class="quick-action"><i class="fa-solid fa-gear"></i><span>Hospital Settings</span></a>
+              <a href="../gallery" target="_blank" rel="noopener" class="quick-action"><i class="fa-solid fa-images"></i><span>Preview Website</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="col-6">
+            <div class="note-card">
+              <h4><i class="fa-solid fa-bell-concierge" style="color:var(--primary)"></i> Reception Desk</h4>
+              <p>Front-desk checklist for today's shift — front office staff should confirm the following before clocking out:</p>
+              <ul>
+                <li>Verify all walk-in patients are logged under <a href="patients">Patients</a>.</li>
+                <li>Confirm pending appointments in the queue have been approved or rescheduled.</li>
+                <li>Update ID/insurance documentation for new registrations.</li>
+                <li>Hand off emergency intake notes to the on-call department.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="note-card billing">
+              <h4><i class="fa-solid fa-file-invoice-dollar text-secondary"></i> Billing Desk</h4>
+              <p>End-of-day billing reminders — finance staff should reconcile the following:</p>
+              <ul>
+                <li>Match completed appointments against <a href="reports">Revenue Reports</a> for the day.</li>
+                <li>Flag overdue consultation fees for follow-up calls.</li>
+                <li>Cross-check pharmacy dispensations against <a href="medicines">Medicine Inventory</a>.</li>
+                <li>Export the daily ledger via the CSV export button on Reports.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+<%-include('footer.ejs')%>

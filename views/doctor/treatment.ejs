@@ -1,0 +1,94 @@
+<%-include('header.ejs');%>
+
+      <div class="dashboard-content">
+
+        <div class="dashboard-grid">
+          <div class="col-5">
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-header">
+                <h3>New Treatment Note</h3>
+              </div>
+              <div class="dashboard-panel-body">
+                <form action="/doctor/save_treatment" method="post" >
+                  <div class="form-group">
+                    <label class="form-label">Patient <span class="required">*</span></label>
+                    <select class="form-control" name="treat_patient_name" required>
+                      <option value="">Select Patient</option>
+                      <% for(var i=0;i<deta.length;i++){ %>
+                      <option><%=deta[i].pname%></option>
+                     <% } %>
+                    </select>
+                    
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Select Doctor <span class="required"></span></label>
+                    <select class="form-control" name="treat_doctor_name" readonly  required>
+                      
+                      <option value="<%= doctor.doc_name %>" <%= doctor.doc_name == doctor.doc_name ? 'selected' : '' %>><%= doctor.doc_name %>
+                    </option>
+                      
+                    </select>
+                    
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Disease / Condition <span class="required">*</span></label>
+                    <input type="text" name="treat_disease" class="form-control" placeholder="e.g. Hypertension" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Diagnosis <span class="required">*</span></label>
+                    <textarea name="treat_diagnosis" class="form-control" placeholder="Clinical findings and diagnosis summary…" required></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Treatment Notes</label>
+                    <textarea name="treat_notes" class="form-control" placeholder="Recommended treatment plan, procedures, advice…"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Medicines</label>
+                    <input type="text" name="treat_medicines" class="form-control" placeholder="e.g. Amlodipine 5mg, Atorvastatin 20mg" />
+                   
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Next Visit</label>
+                    <input type="date" name="treat_nextVisit" class="form-control" />
+                  </div>
+                  <div class="form-actions">
+                    <button type="reset" class="btn btn-outline">Clear</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Note</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-7">
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-header">
+                <h3>Recent Treatment Notes</h3>
+              </div>
+              <div class="dashboard-panel-body no-pad">
+                <div class="activity-feed" style="padding:0.5rem 1.35rem;">
+                  <% for(var a=0;a<treatments_last5.length;a++){ %>
+                  <div class="activity-item">
+                    <div class="notification-icon success"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <div class="notification-body">
+                      <h5><%=treatments_last5[a].treat_patient_name%></h5>
+                      <p><%=treatments_last5[a].treat_diagnosis%>, <%=treatments_last5[a].treat_condition%> .<%=treatments_last5[a].treat_medicines%> .<%=treatments_last5[a].treat_nextVisit%> .</p>
+                      <span class="notif-time">Jul 23, 2026</span>
+                    </div>
+                  </div>
+                  <% } %>
+                
+                  
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<%-include('footer.ejs');%>
+

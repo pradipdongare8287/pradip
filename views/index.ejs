@@ -1,0 +1,414 @@
+<%-include('header.ejs');%>
+    <!-- Hero Slider -->
+    <section class="hero-slider">
+      <div class="swiper hero-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide hero-slide" style="background-image:url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1920&q=80')">
+            <div class="container hero-content">
+              <div class="hero-text" data-aos="fade-right">
+                <span class="hero-eyebrow"><i class="fa-solid fa-shield-heart"></i> Trusted Healthcare Since 1998</span>
+                <h1>Medi<span>Care</span> Plus</h1>
+                <p class="lead">World-class medical care with compassionate specialists, modern facilities, and round-the-clock emergency support.</p>
+                <div class="btn-group">
+                  <a href="appointment.html" class="btn btn-secondary btn-lg"><i class="fa-solid fa-calendar-check"></i> Book Appointment</a>
+                  <a href="doctors.html" class="btn btn-outline-white btn-lg"><i class="fa-solid fa-user-doctor"></i> Find a Doctor</a>
+                </div>
+              </div>
+              <div class="hero-form-card card-glass" data-aos="fade-left" data-aos-delay="150">
+                <h3><i class="fa-solid fa-calendar-plus"></i> Quick Appointment</h3>
+                <p>Book your visit in under a minute</p>
+                <form id="hero-appointment-form" data-appointment-form>
+                  <div class="form-group">
+                    <input type="text" name="patientName" class="form-control" placeholder="Your Full Name" required />
+                  </div>
+                  <div class="form-group">
+                    <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required />
+                  </div>
+                  <div class="form-group">
+                    <select name="departmentId" class="form-control" data-dept-select required>
+                      <option value="">Select Department</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <select name="doctorId" class="form-control" data-doctor-select required>
+                      <option value="">Select Doctor</option>
+                    </select>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <input type="date" name="date" class="form-control" data-date-input required />
+                    </div>
+                    <div class="form-group">
+                      <select name="time" class="form-control" data-time-select required>
+                        <option value="">Time</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-paper-plane"></i> Request Appointment</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide hero-slide" style="background-image:url('https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=1920&q=80')">
+            <div class="container hero-content hero-content-center">
+              <div class="hero-text text-center" data-aos="fade-up">
+                <span class="hero-eyebrow"><i class="fa-solid fa-heartbeat"></i> 24/7 Emergency Care</span>
+                <h1>Expert Care When<br>Every Second Counts</h1>
+                <p class="lead">Our trauma and emergency teams are ready around the clock with advanced life-support systems.</p>
+                <div class="btn-group justify-center">
+                  <a href="tel:108" class="btn btn-danger btn-lg"><i class="fa-solid fa-phone-volume"></i> Call Emergency</a>
+                  <a href="services.html" class="btn btn-outline-white btn-lg">Our Services</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide hero-slide" style="background-image:url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1920&q=80')">
+            <div class="container hero-content hero-content-center">
+              <div class="hero-text text-center" data-aos="zoom-in">
+                <span class="hero-eyebrow"><i class="fa-solid fa-stethoscope"></i> Multi-Specialty Excellence</span>
+                <h1>Meet Our Specialist Doctors</h1>
+                <p class="lead">Board-certified physicians across cardiology, neurology, orthopedics, pediatrics, and more.</p>
+                <div class="btn-group justify-center">
+                  <a href="doctors.html" class="btn btn-secondary btn-lg">View Doctors</a>
+                  <a href="about.html" class="btn btn-outline-white btn-lg">About Hospital</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </section>
+
+    <!-- Emergency Banner -->
+    <section class="emergency-banner">
+      <div class="container">
+        <div class="emergency-banner-inner">
+          <div class="emergency-info">
+            <i class="fa-solid fa-truck-medical"></i>
+            <div>
+              <strong>24/7 Emergency Helpline</strong>
+              <span>Immediate ambulance &amp; trauma response</span>
+            </div>
+          </div>
+          <a href="tel:108" class="emergency-number">108 / +1-800-911-HELP</a>
+          <a href="/appointment" class="btn btn-white btn-sm">Book Now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="section section-sm bg-white">
+    
+      <div class="container">
+      <form action="/search_doctor" method="get">
+        <div class="search-filter-bar" data-aos="fade-up">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" placeholder="Search doctor by name..." name="Doctor_name" />
+          </div>
+          <select class="form-control" name="Doctor_department_id">
+            <option value="">All Departments</option>
+             <% for(var i=0;i<department.length;i++){ %>
+              <option value="<%=department[i].did%>"><%=department[i].dname%></option>
+              <% } %>
+          </select>
+         <button class="btn btn-primary"><i class="fa-solid fa-user-doctor"></i> Search Doctors</button>
+          <a href="services.html" class="btn btn-outline"><i class="fa-solid fa-building"></i> Browse Departments</a>
+        </div>
+      </form>
+      </div>
+    </section>
+
+    <!-- Departments -->
+    <section class="section" id="departments">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="eyebrow">Our Departments</span>
+          <h2>Specialized Care Units</h2>
+          <p>Eight centers of excellence delivering advanced diagnostics and treatment under one roof.</p>
+        </div>
+         <div class="dept-grid">
+          <% for(var a=0;a<department.length;a++){ %>
+          <article class="dept-card card-interactive" data-aos="fade-up">
+            <div class="dept-card-icon"><i class="<%=department[a].icon%>"></i></div>
+            <h3><%=department[a].dname%></h3>
+            <p><%=department[a].description%></p>
+            <div class="dept-card-meta"><span><i class="fa-solid fa-user-doctor"></i><%=department[a].doctor%> Doctors</span><span><i class="fa-solid fa-bed"></i><%=department[a].beds%> Beds</span></div>
+            <a href="/doctors" class="btn btn-ghost btn-sm">View Doctors</a>
+          </article>
+          <% } %>
+        </div>
+      </div>
+              <div class="text-center mt-4"><a href="/departments" class="btn btn-outline">View All Departments <i class="fa-solid fa-arrow-right"></i></a></div>
+    </section>
+
+    <!-- Special Treatments -->
+    <section class="section bg-alt" id="treatments">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="eyebrow">Treatments</span>
+          <h2>Special Treatments</h2>
+          <p>Evidence-based therapies designed for faster recovery and lasting wellness.</p>
+        </div>
+        <div class="treatment-grid" id="">
+          <% for(var a=0;a<treatment.length;a++){ %>
+
+          <article class="treatment-card card-interactive" data-aos="fade-up">
+          <div class="treatment-card-media">
+            <img src="/images/<%=treatment[a].Images%>" alt="<%=treatment[a].tname%>" loading="lazy" />
+          </div>
+          <div class="treatment-card-body">
+            <span class="badge badge-primary"><%=treatment[a].department%></span>
+            <h3><%=treatment[a].tname%></h3>
+            <p><%=treatment[a].description%></p>
+            <div class="treatment-card-footer">
+              <strong><%=treatment[a].price%></strong>
+              <span class="text-muted"><i class="fa-regular fa-clock"></i><%=treatment[a].duration%></span>
+            </div>
+            <a href="treatment/<%=treatment[a].tid%>" class="btn btn-outline btn-sm">Learn More</a>
+          </div>
+        </article>
+
+            <% } %>
+
+        </div>
+        <div class="text-center mt-4">
+          <a href="/treatment" class="btn btn-primary">Explore Treatments</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Doctors Slider -->
+    <section class="section" id="doctors">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="eyebrow">Medical Team</span>
+          <h2>Meet Our Top Doctors</h2>
+          <p>Experienced specialists dedicated to personalized, compassionate care.</p>
+        </div>
+        
+            <div class="swiper doctors-swiper">
+          <div class="swiper-wrapper">
+
+            <% for(var j=0;j<doctors.length;j++){ %>
+            <div class="swiper-slide">
+              <article class="doctor-card">
+                <a href="/doctor-details/<%=doctors[j].doc_id%>" class="doctor-card-media">
+                  <img src="/images/<%=doctors[j].doctor_image%>" alt="<%=doctors[j].doc_name%>" />
+                  <span class="doctor-exp"><%=doctors[j].doc_experience%> Years</span>
+                </a>
+                <div class="doctor-card-body">
+                  <h3><a href="/doctor-details/<%=doctors[j].doc_id%>"></a><%=doctors[j].doc_name%></h3>
+                  <p class="text-primary"><%=doctors[j].doc_specialty%></p>
+                  <p class="text-muted"><%=doctors[j].doc_departmentId%></p>
+
+                  <div class="doctor-card-meta"><span class="stars">
+                    <% for(var c=0;c<doctors[j].doc_rating;c++) { %>
+                    <i class="fa-solid fa-star"></i>
+                    <% } %>
+                       </span> <span>4.9 (210)</span></div>
+                  <a href="/appointment" class="btn btn-primary btn-sm btn-block">Book Appointment</a>
+                </div>
+              </article>
+            </div>
+             <% } %>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+
+        <div class="text-center mt-4">
+          <a href="/doctors" class="btn btn-outline">View All Doctors</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="section stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item" data-aos="zoom-in">
+            <div class="stat-icon blue"><i class="fa-solid fa-user-doctor"></i></div>
+            <div class="stat-number" data-count="250">0</div>
+            <div class="stat-label">Expert Doctors</div>
+          </div>
+          <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+            <div class="stat-icon green"><i class="fa-solid fa-hospital-user"></i></div>
+            <div class="stat-number" data-count="45000">0</div>
+            <div class="stat-label">Happy Patients</div>
+          </div>
+          <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+            <div class="stat-icon orange"><i class="fa-solid fa-bed"></i></div>
+            <div class="stat-number" data-count="320">0</div>
+            <div class="stat-label">Hospital Beds</div>
+          </div>
+          <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+            <div class="stat-icon red"><i class="fa-solid fa-award"></i></div>
+            <div class="stat-number" data-count="28">0</div>
+            <div class="stat-label">Years of Excellence</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="section video-section">
+      <div class="container">
+        <div class="video-wrapper" data-aos="fade-up">
+          <img src="https://images.unsplash.com/photo-1581595220892-405f2800a4b5?auto=format&fit=crop&w=1400&q=80" alt="Hospital facility tour" />
+          <button type="button" class="video-play-btn" id="video-play-btn" aria-label="Play hospital tour video">
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <div class="video-caption">
+            <h3>Take a Virtual Tour</h3>
+            <p>Explore our modern wards, labs, and surgical suites</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section bg-alt" id="testimonials">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="eyebrow">Patient Stories</span>
+          <h2>What Our Patients Say</h2>
+          <p>Real experiences from families who trusted MediCare Plus with their health.</p>
+        </div>
+        <div class="swiper testimonials-swiper" data-aos="fade-up">
+          <div class="swiper-wrapper" id="home-testimonials"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+        <div class="text-center mt-4">
+          <a href="testimonials.html" class="btn btn-outline">All Testimonials</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="eyebrow">Health Packages</span>
+          <h2>Affordable Care Plans</h2>
+          <p>Transparent packages designed for individuals and families.</p>
+        </div>
+        <div class="pricing-grid" id="home-pricing"></div>
+      </div>
+    </section>
+
+    <!-- Latest Blogs -->
+    <section class="section bg-alt" id="blog">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="eyebrow">Health Insights</span>
+          <h2>Latest From Our Blog</h2>
+          <p>Tips, research updates, and wellness guidance from our specialists.</p>
+        </div>
+        <div class="blog-grid" id="home-blogs"></div>
+        <div class="text-center mt-4">
+          <a href="blog.html" class="btn btn-primary">Read More Articles</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="eyebrow">Help Center</span>
+          <h2>Frequently Asked Questions</h2>
+          <p>Quick answers about appointments, insurance, and hospital visits.</p>
+        </div>
+        <div class="faq-layout">
+          <div class="faq-image" data-aos="fade-right">
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Doctor consulting patient" />
+          </div>
+          <div class="accordion" id="home-faq" data-aos="fade-left"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Preview -->
+    <section class="section bg-alt" id="gallery">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="eyebrow">Facilities</span>
+          <h2>Hospital Gallery</h2>
+          <p>A glimpse inside our healing spaces and advanced medical technology.</p>
+        </div>
+        <div class="gallery-grid gallery-preview" id="home-gallery"></div>
+        <div class="text-center mt-4">
+          <a href="gallery.html" class="btn btn-outline">View Full Gallery</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact + Map -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="eyebrow">Get In Touch</span>
+          <h2>Visit or Contact Us</h2>
+          <p>We are here to help you schedule care and answer your questions.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info-cards" data-aos="fade-right">
+            <div class="contact-info-card">
+              <i class="fa-solid fa-location-dot"></i>
+              <div>
+                <h4>Address</h4>
+                <p>1250 Healing Way, Suite 100<br>Health City, HC 90210</p>
+              </div>
+            </div>
+            <div class="contact-info-card">
+              <i class="fa-solid fa-phone"></i>
+              <div>
+                <h4>Phone</h4>
+                <p>+1 (800) 555-0147<br>Emergency: 108</p>
+              </div>
+            </div>
+            <div class="contact-info-card">
+              <i class="fa-solid fa-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <p>info@medicareplus.com<br>support@medicareplus.com</p>
+              </div>
+            </div>
+            <div class="contact-info-card">
+              <i class="fa-regular fa-clock"></i>
+              <div>
+                <h4>Working Hours</h4>
+                <p>Mon–Fri 8AM–8PM · Sat 9AM–5PM<br>Sun: Emergency Only</p>
+              </div>
+            </div>
+          </div>
+          <div class="map-embed" data-aos="fade-left">
+            <iframe title="MediCare Plus location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              src="https://maps.google.com/maps?q=New%20York%20Hospital&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+      <div class="container">
+        <div class="newsletter-inner" data-aos="fade-up">
+          <div>
+            <h2>Stay Informed About Your Health</h2>
+            <p>Subscribe for wellness tips, hospital updates, and exclusive checkup offers.</p>
+          </div>
+          <form class="newsletter-form-inline" data-newsletter-form>
+            <input type="email" name="email" placeholder="Enter your email" required />
+            <button type="submit" class="btn btn-secondary">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  
+<%-include('footer.ejs');%>
+  

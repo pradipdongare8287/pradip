@@ -1,0 +1,141 @@
+<%- include('header.ejs'); %>
+      <div class="dashboard-content">
+
+        <div class="dashboard-welcome">
+          <h2>Welcome back, <%=petient.pname%>!</h2>
+          <p>Track your appointments, prescriptions, and health records — all in one place.</p>
+        </div>
+
+        <div class="stat-cards">
+          <div class="stat-card">
+            <div class="stat-card-icon blue"><i class="fa-solid fa-calendar-check"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Upcoming Appointments</div>
+              <div class="stat-card-value">2</div>
+              <div class="stat-trend neutral">Next: Jul 28, 10:30 AM</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon green"><i class="fa-solid fa-prescription"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Active Prescriptions</div>
+              <div class="stat-card-value">3</div>
+              <div class="stat-trend up"><i class="fa-solid fa-arrow-up"></i> 1 <span>new this month</span></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon orange"><i class="fa-solid fa-file-medical"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Medical Reports</div>
+              <div class="stat-card-value">5</div>
+              <div class="stat-trend neutral">1 pending review</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon purple"><i class="fa-solid fa-credit-card"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Total Payments</div>
+              <div class="stat-card-value">$1,240</div>
+              <div class="stat-trend neutral">6 invoices total</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="col-8 dashboard-panel">
+            <div class="dashboard-panel-header">
+              <h3>Your Care Team</h3>
+            </div>
+            <div class="dashboard-panel-body">
+              <div class="user-meta" style="margin-bottom:1.25rem;">
+                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=200&q=80" class="avatar" alt="Dr. Sarah Mitchell" />
+                <div>
+                  <div class="name">Dr. Sarah Mitchell</div>
+                  <div class="sub">Cardiology · Primary Care Physician</div>
+                </div>
+              </div>
+              <div class="user-meta">
+                <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=200&q=80" class="avatar" alt="Dr. Priya Sharma" />
+                <div>
+                  <div class="name">Dr. Priya Sharma</div>
+                  <div class="sub">Neurology · Specialist</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-4 dashboard-panel">
+            <div class="dashboard-panel-header">
+              <h3><i class="fa-solid fa-lightbulb" style="color:var(--warning);margin-right:0.4rem;"></i>Health Tip of the Day</h3>
+            </div>
+            <div class="dashboard-panel-body">
+              <p style="color:var(--text-secondary); line-height:1.75; margin-bottom:0;">
+                Stay hydrated — aim for at least 8 glasses of water a day to support circulation, digestion, and skin health.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-panel" style="margin-bottom: 1.75rem;">
+          <div class="dashboard-panel-header">
+            <h3>Upcoming Appointments</h3>
+            <a href="appointments.html">View All <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <div class="dashboard-panel-body no-pad">
+            <div class="table-wrapper">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><div class="table-user"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=200&q=80" alt="" /><div><strong>Dr. Sarah Mitchell</strong><span>Cardiology</span></div></div></td>
+                    <td>Jul 28, 2026</td>
+                    <td>10:30 AM</td>
+                    <td>Routine heart checkup</td>
+                    <td><span class="badge badge-approved">Approved</span></td>
+                  </tr>
+                  <tr>
+                    <td><div class="table-user"><img src="https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&w=200&q=80" alt="" /><div><strong>Dr. Lisa Nguyen</strong><span>Dental</span></div></div></td>
+                    <td>Aug 03, 2026</td>
+                    <td>02:00 PM</td>
+                    <td>Dental cleaning</td>
+                    <td><span class="badge badge-pending">Pending</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="margin-bottom: 1rem;">Quick Actions</h3>
+        <div class="quick-actions">
+          <a href="../appointment.html" class="quick-action">
+            <i class="fa-solid fa-calendar-plus"></i>
+            <span>Book Appointment</span>
+          </a>
+          <a href="prescriptions.html" class="quick-action">
+            <i class="fa-solid fa-prescription-bottle-medical"></i>
+            <span>View Prescriptions</span>
+          </a>
+          <a href="reports.html" class="quick-action">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            <span>Download Reports</span>
+          </a>
+          <a href="payments.html" class="quick-action">
+            <i class="fa-solid fa-credit-card"></i>
+            <span>View Payments</span>
+          </a>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+<%- include('footer.ejs'); %>

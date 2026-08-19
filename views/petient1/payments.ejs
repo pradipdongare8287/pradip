@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Review your payment history and download invoices from MediCare Plus." />
+  <title>Payments &amp; Invoices | MediCare Plus Patient Portal</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body class="dashboard-body" data-dashboard data-role="patient" data-page="payments" data-base-path="../">
+
+  <div class="page-loader" id="page-loader">
+    <div class="loader-pulse"></div>
+    <span class="loader-text">MediCare Plus</span>
+  </div>
+
+  <div class="dashboard-layout role-patient" data-role="patient">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <span class="logo-icon"><i class="fa-solid fa-hospital"></i></span>
+        <span class="sidebar-brand-text">Medi<span>Care</span> Plus</span>
+      </div>
+
+      <div class="sidebar-user">
+        <img src="" alt="Patient" data-user-avatar />
+        <div class="sidebar-user-info">
+          <h5 data-user-name>Demo Patient</h5>
+          <span>Patient Account</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-label">Main</span>
+        <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-gauge-high"></i><span class="nav-label">Dashboard</span></a>
+        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span class="nav-label">My Profile</span></a>
+        <a href="appointments.html" class="nav-item"><i class="fa-solid fa-calendar-check"></i><span class="nav-label">Appointments</span></a>
+
+        <span class="nav-section-label">Health Records</span>
+        <a href="treatment-history.html" class="nav-item"><i class="fa-solid fa-notes-medical"></i><span class="nav-label">Treatment History</span></a>
+        <a href="reports.html" class="nav-item"><i class="fa-solid fa-file-medical"></i><span class="nav-label">Reports</span></a>
+        <a href="prescriptions.html" class="nav-item"><i class="fa-solid fa-prescription"></i><span class="nav-label">Prescriptions</span></a>
+
+        <span class="nav-section-label">Billing</span>
+        <a href="payments.html" class="nav-item active"><i class="fa-solid fa-credit-card"></i><span class="nav-label">Payments</span></a>
+
+        <span class="nav-section-label">Updates</span>
+        <a href="notifications.html" class="nav-item"><i class="fa-solid fa-bell"></i><span class="nav-label">Notifications</span><span class="nav-badge" data-nav-badge="notifications">2</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="../index.html" class="nav-item"><i class="fa-solid fa-house"></i><span class="nav-label">Back to Website</span></a>
+        <a href="../login.html" class="nav-item" data-logout="../login.html"><i class="fa-solid fa-right-from-bracket"></i><span class="nav-label">Logout</span></a>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay"></div>
+
+    <main class="dashboard-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1>Payments &amp; Invoices</h1>
+            <p>Your billing history and downloadable invoices.</p>
+          </div>
+        </div>
+
+        <form class="topbar-search" data-topbar-search role="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" name="q" placeholder="Search records, doctors, invoices…" aria-label="Search" />
+        </form>
+
+        <div class="topbar-right">
+          <button type="button" class="topbar-btn theme-toggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+
+          <div class="topbar-btn-wrap" data-notif-wrap>
+            <button type="button" class="topbar-btn" aria-label="Notifications">
+              <i class="fa-solid fa-bell"></i>
+              <span class="badge-dot"></span>
+            </button>
+            <div class="notif-dropdown">
+              <div class="notif-dropdown-header">
+                <h4>Notifications</h4>
+                <a href="#" data-mark-all-read>Mark all read</a>
+              </div>
+              <div class="notification-list"></div>
+              <div class="notif-dropdown-footer">
+                <a href="notifications.html">View All Notifications</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-dropdown" data-profile-dropdown>
+            <button type="button" class="profile-trigger">
+              <img src="" alt="Patient" data-user-avatar />
+              <span class="profile-name" data-user-name>Demo Patient</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong data-user-name>Demo Patient</strong>
+                <span data-user-email>patient@medicare.com</span>
+              </div>
+              <a href="profile.html"><i class="fa-solid fa-user"></i> My Profile</a>
+              <a href="appointments.html"><i class="fa-solid fa-calendar-check"></i> My Appointments</a>
+              <a href="notifications.html"><i class="fa-solid fa-bell"></i> Notifications</a>
+              <div class="divider"></div>
+              <a href="../login.html" class="danger" data-logout="../login.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+
+        <div class="page-toolbar">
+          <h2>Payments &amp; Invoices</h2>
+          <div class="page-toolbar-actions">
+            <button type="button" class="btn btn-outline" data-export-csv="#payments-table" data-filename="medicare-payments.csv">
+              <i class="fa-solid fa-file-csv"></i> Export CSV
+            </button>
+          </div>
+        </div>
+
+        <div class="stat-cards" style="grid-template-columns:repeat(3,1fr);">
+          <div class="stat-card">
+            <div class="stat-card-icon green"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Total Paid</div>
+              <div class="stat-card-value" data-stat-total-paid>$0</div>
+              <div class="stat-trend up" data-stat-paid-count><i class="fa-solid fa-arrow-up"></i></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon orange"><i class="fa-solid fa-clock"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Pending Amount</div>
+              <div class="stat-card-value" data-stat-pending>$0</div>
+              <div class="stat-trend neutral" data-stat-pending-count>—</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon blue"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Total Invoices</div>
+              <div class="stat-card-value" data-stat-invoice-count>0</div>
+              <div class="stat-trend neutral">Lifetime billing records</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table" id="payments-table">
+            <thead>
+              <tr>
+                <th>Invoice #</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Doctor / Dept.</th>
+                <th>Amount</th>
+                <th>Method</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody data-payments-body></tbody>
+          </table>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/appointment.js"></script>
+  <script src="../js/dashboard.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/customer.js"></script>
+  <script>
+    document.addEventListener('medicare:ready', function () {
+      MediCareAuth.requireAuth('patient', '../login.html');
+      MediCareCustomer.initShell();
+
+      var esc = MediCareCustomer.escapeHtml;
+      var payments = MediCareCustomer.getPayments();
+      var body = document.querySelector('[data-payments-body]');
+
+      var paid = payments.filter(function (p) { return p.status === 'paid'; });
+      var pending = payments.filter(function (p) { return p.status === 'pending'; });
+      var totalPaid = paid.reduce(function (s, p) { return s + p.amount; }, 0);
+      var totalPending = pending.reduce(function (s, p) { return s + p.amount; }, 0);
+
+      document.querySelector('[data-stat-total-paid]').textContent = MediCareCustomer.fmtMoney(totalPaid);
+      document.querySelector('[data-stat-paid-count]').innerHTML = '<i class="fa-solid fa-arrow-up"></i> ' + paid.length + ' <span>settled invoices</span>';
+      document.querySelector('[data-stat-pending]').textContent = MediCareCustomer.fmtMoney(totalPending);
+      document.querySelector('[data-stat-pending-count]').textContent = pending.length + ' invoice(s) awaiting payment';
+      document.querySelector('[data-stat-invoice-count]').textContent = payments.length;
+
+      function row(p) {
+        var statusBadge =
+          p.status === 'paid'
+            ? '<span class="badge badge-success">Paid</span>'
+            : '<span class="badge badge-warning">Pending</span>';
+        var actionBtn =
+          p.status === 'paid'
+            ? '<button type="button" class="btn btn-sm btn-outline" data-download-invoice="' + p.id + '"><i class="fa-solid fa-download"></i> Invoice</button>'
+            : '<button type="button" class="btn btn-sm btn-primary" data-pay-now="' + p.id + '"><i class="fa-solid fa-credit-card"></i> Pay Now</button>';
+
+        return (
+          '<tr data-id="' + p.id + '">' +
+          '<td><code>' + esc(p.id) + '</code></td>' +
+          '<td>' + MediCareCustomer.fmtDate(p.date) + '</td>' +
+          '<td>' + esc(p.description) + '</td>' +
+          '<td>' + esc(p.doctor) + '<br><span class="text-muted" style="font-size:0.8rem;">' + esc(p.department) + '</span></td>' +
+          '<td><strong>' + MediCareCustomer.fmtMoney(p.amount) + '</strong></td>' +
+          '<td>' + esc(p.method) + '</td>' +
+          '<td>' + statusBadge + '</td>' +
+          '<td class="table-actions">' + actionBtn + '</td>' +
+          '</tr>'
+        );
+      }
+
+      body.innerHTML = payments.map(row).join('');
+
+      body.querySelectorAll('[data-download-invoice]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          MediCareCustomer.toast('Invoice PDF download started (demo).', 'success');
+        });
+      });
+      body.querySelectorAll('[data-pay-now]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          MediCareCustomer.toast('Redirecting to secure payment gateway… (demo)', 'info');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

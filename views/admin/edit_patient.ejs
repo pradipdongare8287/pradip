@@ -1,0 +1,179 @@
+<%-include('header.ejs')%>
+
+
+    <div class="dashboard-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1>Patients</h1>
+            <p>Registered patients across the hospital</p>
+          </div>
+        </div>
+        <div class="topbar-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" id="patients-search" placeholder="Search patients by name, email…" />
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-btn-wrap">
+            <button type="button" class="topbar-btn" data-notifications aria-label="Notifications"><i class="fa-solid fa-bell"></i></button>
+          </div>
+          <div class="profile-dropdown">
+            <button type="button" class="profile-trigger">
+              <img data-current-user-avatar src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="" />
+              <span class="profile-name" data-current-user-name>System Admin</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong data-current-user-name>System Admin</strong>
+                <span data-current-user-email>admin@medicare.com</span>
+              </div>
+              <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+              <div class="divider"></div>
+              <a href="login.html" class="danger logout-btn" data-logout="login.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <div class="page-toolbar">
+          <h2>All Patients <span class="badge badge-primary" id="patients-count">0 of 0</span></h2>
+          <div class="page-toolbar-actions">
+            
+           
+            <button type="button" class="btn btn-primary" id="add-patient-btn">
+              <i class="fa-solid fa-plus"></i> Update Patient
+            </button>
+          </div>
+        </div>
+
+                        <form action="/admin/update_patient/<%=patient.p_photo%>/<%=patient.pid%>"method="POST"enctype="multipart/form-data"style="max-width: 950px; margin: 30px auto; padding: 30px; background: #fff; border-radius: 18px; box-shadow: 0 8px 30px rgba(0,0,0,0.10); font-family: Arial, sans-serif;">
+
+                                            <h2 style="margin: 0 0 8px; color: #1e293b;"> ✨ Update <%=patient.pname %> Profile</h2>
+                                            <p style="margin: 0 0 28px; color: #64748b; font-size: 14px;">Update patient personal and medical information</p>
+                                            <!-- Personal Information -->
+                                            <h3 style="border-bottom: 1px solid #e5e7eb;color: #4f46e5;padding-bottom: 10px;margin-bottom: 20px;">👤 Personal Information</h3>
+
+
+                                            <table style="width: 100%; border-spacing: 15px;">
+
+                                                <tr>
+                                                    <td style="width: 50%;">
+                                                        <label style="font-size: 13px; font-weight: 600; color: #334155;"> Patient Name</label>
+                                                        <input type="text"name="pname" value="<%=patient.pname %>" placeholder="Enter patient name"requiredstyle="width: 100%; box-sizing: border-box; padding: 12px; margin-top: 7px; border: 1px solid #d1d5db; border-radius: 9px; outline: none; font-size: 14px;">
+                                                    </td>
+
+                                                    <td style="width: 50%;">
+                                                        <label style="font-size: 13px; font-weight: 600; color: #334155;"> Patient Email</label>
+                                                        <input type="email"name="pemail" value="<%=patient.pemail %>" placeholder="Enter patient email"requiredstyle="width: 100%; box-sizing: border-box; padding: 12px; margin-top: 7px; border: 1px solid #d1d5db; border-radius: 9px; outline: none; font-size: 14px;">
+                                                    </td>
+
+                                                </tr>
+
+
+                                                <tr>
+                                                    <td>
+                                                        <label style="font-size: 13px; font-weight: 600; color: #334155;">Patient Phone</label>
+                                                        <input type="tel"name="pphone" value="<%=patient.pphone %>" placeholder="Enter phone number"requiredstyle="width: 100%; box-sizing: border-box; padding: 12px; margin-top: 7px; border: 1px solid #d1d5db; border-radius: 9px; outline: none; font-size: 14px;">
+                                                    </td>
+                                                    <td>
+                                                        <label style="font-size: 13px; font-weight: 600; color: #334155;">Patient Password</label>
+                                                        <input type="password"name="ppassword"  value="<%=patient.ppassword %>" placeholder="Enter password"requiredstyle="width: 100%; box-sizing: border-box; padding: 12px; margin-top: 7px; border: 1px solid #d1d5db; border-radius: 9px; outline: none; font-size: 14px;">
+                                                    </td>
+                                                </tr>
+
+
+                                                <tr>
+                                                    <td>
+                                                        <label style="font-size: 13px; font-weight: 600; color: #334155;">Patient DOB
+                                                        </label>
+                                                        <input type="date"name="Patient_dob" value="<%=patient.p_dob %>" style="width: 100%; box-sizing: border-box; padding: 12px; margin-top: 7px; border: 1px solid #d1d5db; border-radius: 9px; outline: none; font-size: 14px;">
+                                                    </td>
+                                                    <td>
+                                                        <label style="font-size: 13px; font-weight: 600; color: #334155;">Blood Group</label>
+                                                            <select name="Patient_Blood_group"style="width: 100%; box-sizing: border-box; padding: 12px; margin-top: 7px; border: 1px solid #d1d5db; border-radius: 9px; outline: none; font-size: 14px;">
+                                                                    <option value=""   <%= patient.p_bloodgroup=='' ? 'selected' : '' %>>Select Blood Group</option>
+                                                                    <option value="A+" <%= patient.p_bloodgroup=='A+' ? 'selected' : '' %>>A+</option>
+                                                                    <option value="B-" <%= patient.p_bloodgroup=='B-' ? 'selected' : '' %>>B-</option>
+                                                                    <option value="AB+"<%= patient.p_bloodgroup=='AB+' ? 'selected' : '' %>>AB+</option>
+                                                                    <option value="B+" <%= patient.p_bloodgroup=='B+' ? 'selected' : '' %>>B+</option>
+                                                                    <option value="AB-"<%= patient.p_bloodgroup=='AB-' ? 'selected' : '' %>>AB-</option>
+                                                                    <option value="O+" <%= patient.p_bloodgroup=='O+' ? 'selected' : '' %>>O+</option>
+                                                                    <option value="O-" <%= patient.p_bloodgroup=='O-' ? 'selected' : '' %>>O-</option>
+                                                                    <option value="A-" <%= patient.p_bloodgroup=='A-' ? 'selected' : '' %>>A-</option>
+                                                            </select>
+                                                    </td>
+                                                </tr>
+
+
+                                                <tr>
+                                                    <td>
+                                                        <label style="font-size: 13px; font-weight: 600; color: #334155;">Gender</label>
+                                                        <select name="Patient_Gender"style="width: 100%; box-sizing: border-box; padding: 12px; margin-top: 7px; border: 1px solid #d1d5db; border-radius: 9px; outline: none; font-size: 14px;">
+                                                            <option value="">Select Gender</option>
+                                                            <option value="male" <%= patient.p_gender=='male'? 'selected' : ''  %>>Male</option>
+                                                            <option value="female" <%= patient.p_gender=='female'? 'selected' : ''  %>>Female</option>
+                                                            <option value="other" <%= patient.p_gender=='other'? 'selected' : ''  %>>Other</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <label style="font-size: 13px; font-weight: 600; color: #334155;"> Patient Status</label>
+                                                        <select name="Patient_Status"style="width: 100%; box-sizing: border-box; padding: 12px; margin-top: 7px; border: 1px solid #d1d5db; border-radius: 9px; outline: none; font-size: 14px;">
+                                                            <option value="Active" <%= patient.Patient_Status=='Active'? 'selected' : ''  %>>Active</option>
+                                                            <option value="Inctive" <%= patient.Patient_Status=='Inctive'? 'selected' : ''  %>>Inactive</option>
+                                                            <option value="Discharges" <%= patient.Patient_Status=='Discharges'? 'selected' : ''  %>>Discharged</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <label style="font-size: 13px; font-weight: 600; color: #334155;"> Patient Address</label>
+                                                        <textarea name="Patient_Address"rows="4"placeholder="Enter complete patient address"style="width: 100%; box-sizing: border-box; padding: 12px; margin-top: 7px; border: 1px solid #d1d5db; border-radius: 9px; outline: none; font-size: 14px; resize:none;">
+                                                            <%=patient.p_address%>
+                                                        </textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+
+                                                        <!-- Patient Photo -->
+
+                                            <h3 style="color: #4f46e5;border-bottom: 1px solid #e5e7eb;padding-bottom: 10px;margin: 20px 0;">📷 Patient Photo</h3>
+                                                    <label style="font-size: 13px; font-weight: 600; color: #334155;">Upload Patient Photo</label>
+                                                    <input type="file"name="Patient_Photo"accept="image/*"style="display: block; width: 100%; box-sizing: border-box; padding: 11px; margin-top: 8px; border: 1px dashed #cbd5e1; border-radius: 9px; background: #f8fafc;">
+                                                    <img src="/images/<%=patient.p_photo%>" style="height:100px;width:100px;"/>
+
+                                                            <!-- Buttons -->
+
+                                            <div style="display: flex;justify-content: flex-end;gap: 10px;margin-top: 30px;">
+
+                                                <a href="/admin/patients"
+                                                style="padding: 11px 22px;border-radius: 9px;border: 1px solid #d1d5db;color: #475569;text-decoration: none;font-size: 14px;font-weight: 600;">Cancel
+                                                </a>
+
+
+                                                <button type="submit"
+                                                        style="padding: 11px 24px;border: none;border-radius: 9px;background: linear-gradient(135deg,#4f46e5,#6366f1);color: white;font-size: 14px;font-weight: 600;cursor: pointer;">✓ Update Patient
+                                                </button>
+
+                                            </div>
+
+                        </form>
+
+      
+        <div class="pagination" ></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- View Patient Modal -->
+
+
+
+<%-include('footer.ejs')%>
+
+
+
+

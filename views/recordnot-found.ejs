@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Record Not Found</title>
+</head>
+
+<body style="margin:0;padding:0;height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb,#38bdf8);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;overflow:hidden;">
+
+<div style="width:470px;background:rgba(255,255,255,0.12);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,0.25);border-radius:28px;padding:45px;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,.45);animation:zoom .7s ease;">
+
+    <!-- Search Icon -->
+    <div style="width:120px;height:120px;margin:auto;border-radius:50%;background:#ffffff;display:flex;justify-content:center;align-items:center;font-size:60px;box-shadow:0 12px 30px rgba(255,255,255,.35);color:#2563eb;">
+        🔍
+    </div>
+
+    <h1 style="margin-top:28px;font-size:36px;font-weight:700;color:#fff;letter-spacing:1px;">
+        Record Not Found
+    </h1>
+
+    <div style="width:90px;height:4px;background:#38bdf8;margin:18px auto;border-radius:10px;"></div>
+
+    <p style="font-size:17px;color:#e5e7eb;line-height:30px;margin-top:18px;">
+        We searched everywhere, but couldn't find the record you requested.
+        It may have been deleted, moved, or never existed.
+    </p>
+
+    <div style="margin-top:35px;">
+
+        <a href="javascript:history.back()"
+        style="display:inline-block;text-decoration:none;background:#ffffff;color:#2563eb;padding:15px 35px;font-size:17px;font-weight:bold;border-radius:50px;box-shadow:0 10px 25px rgba(255,255,255,.3);margin-right:10px;">
+            ← Go Back
+        </a>
+
+        <a href="/"
+        style="display:inline-block;text-decoration:none;background:transparent;color:#fff;border:2px solid #fff;padding:13px 30px;font-size:17px;font-weight:bold;border-radius:50px;">
+            Home
+        </a>
+
+    </div>
+
+    <div style="margin-top:30px;color:#cbd5e1;font-size:14px;">
+        Please verify your search or try again with different information.
+    </div>
+
+</div>
+
+<style>
+
+@keyframes zoom{
+    0%{
+        transform:scale(.6) translateY(40px);
+        opacity:0;
+    }
+    100%{
+        transform:scale(1) translateY(0);
+        opacity:1;
+    }
+}
+
+a{
+    transition:.35s;
+}
+
+a:hover{
+    transform:translateY(-5px) scale(1.04);
+}
+
+</style>
+
+</body>
+</html>

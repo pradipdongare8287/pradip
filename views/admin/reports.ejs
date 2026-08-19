@@ -1,0 +1,169 @@
+<%-include('header.ejs');%>
+
+    <div class="dashboard-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1>Reports &amp; Analytics</h1>
+            <p>Hospital performance insights</p>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-btn-wrap">
+            <button type="button" class="topbar-btn" data-notifications aria-label="Notifications"><i class="fa-solid fa-bell"></i></button>
+          </div>
+          <div class="profile-dropdown">
+            <button type="button" class="profile-trigger">
+              <img data-current-user-avatar src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="" />
+              <span class="profile-name" data-current-user-name>System Admin</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong data-current-user-name>System Admin</strong>
+                <span data-current-user-email>admin@medicare.com</span>
+              </div>
+              <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+              <div class="divider"></div>
+              <a href="/admin/login" class="danger logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <div class="page-toolbar">
+          <h2>Filter Report Range</h2>
+          <div class="page-toolbar-actions">
+            <input type="date" id="report-date-from" class="form-control" style="max-width:170px;" />
+            <span style="color:var(--text-muted);">to</span>
+            <input type="date" id="report-date-to" class="form-control" style="max-width:170px;" />
+            <select id="report-department-filter" class="form-control" style="max-width:190px;">
+              <option value="all">All Departments</option>
+            </select>
+            <button type="button" class="btn btn-primary" id="report-apply-btn"><i class="fa-solid fa-filter"></i> Apply</button>
+            <button type="button" class="btn btn-outline" id="report-export-btn"><i class="fa-solid fa-file-arrow-down"></i> Export Report</button>
+          </div>
+        </div>
+
+        <div class="stat-cards">
+          <div class="stat-card">
+            <div class="stat-card-icon blue"><i class="fa-solid fa-calendar-check"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Appointments in Range</div>
+              <div class="stat-card-value" id="report-stat-appointments">0</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon green"><i class="fa-solid fa-sack-dollar"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Revenue in Range</div>
+              <div class="stat-card-value" id="report-stat-revenue">$0</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon orange"><i class="fa-solid fa-hospital-user"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Patients Seen</div>
+              <div class="stat-card-value" id="report-stat-newpatients">0</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon purple"><i class="fa-solid fa-star"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Avg Doctor Rating</div>
+              <div class="stat-card-value" id="report-stat-rating">0.0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="col-8">
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <h3>Revenue &amp; Appointment Trend</h3>
+              </div>
+              <div class="chart-body"><canvas id="report-chart-revenue"></canvas></div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="chart-card">
+              <div class="chart-card-header"><h3>By Department</h3></div>
+              <div class="chart-body"><canvas id="report-chart-department"></canvas></div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="chart-card">
+              <div class="chart-card-header"><h3>Appointment Status Breakdown</h3></div>
+              <div class="chart-body"><canvas id="report-chart-status"></canvas></div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="chart-card">
+              <div class="chart-card-header"><h3>Top Performing Doctors</h3></div>
+              <div class="chart-body"><canvas id="report-chart-doctors"></canvas></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-panel" style="margin-top:0.25rem;">
+          <div class="dashboard-panel-header">
+            <h3>Detailed Appointment Log</h3>
+            <button type="button" class="btn btn-sm btn-outline" data-export-csv="#report-log-table" data-filename="appointment-report.csv">
+              <i class="fa-solid fa-file-arrow-down"></i> Export CSV
+            </button>
+          </div>
+          <div class="dashboard-panel-body no-pad">
+            <div class="table-wrapper">
+              <table class="table" id="report-log-table">
+                <thead>
+                  <tr><th>Date</th><th>Patient</th><th>Doctor</th><th>Department</th><th>Status</th><th>Fee</th></tr>
+                </thead>
+                <tbody>
+                  <% for(var a=0;a<all_appointments.length;a++){ %>
+                  <tr>
+                    <td style="color:rgb(248, 108, 14);"><%=all_appointments[a].Date%></td>
+                    <td style="color:rgb(183, 0, 255);"><%=all_appointments[a].pname%></td>
+                    <td style="color:rgb(128, 37, 25);"><%=all_appointments[a].Doctor%></td>
+                    <td style="color:rgb(58, 9, 190);"><%=all_appointments[a].doc_departmentId%></td>
+
+                    <% if(all_appointments[a].Status=='pending'){ %>
+                    <td style="color:rgb(255, 177, 59);">
+                      <%=all_appointments[a].Status%>
+                    </td>
+                    <% }else if(all_appointments[a].Status=='confirm'){ %>
+                            <td style="color:rgb(56, 245, 9);">
+                              <%=all_appointments[a].Status%>
+                            </td>
+                      <% }else if(all_appointments[a].Status=='completed'){ %>
+                            <td style="color:rgb(21, 61, 10);">
+                              <%=all_appointments[a].Status%>
+                            </td>
+                      <% }
+                       else{ %>
+
+                      <td style="color:rgb(255, 32, 32);">
+                      <%=all_appointments[a].Status%>
+                    </td>
+
+                      <% } %>
+
+                    <td style="color:rgb(9, 190, 121);">₹<%=all_appointments[a].doc_fees%></td>
+
+
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- all_appointments -->
+
+<%-include('footer.ejs');%>
+  

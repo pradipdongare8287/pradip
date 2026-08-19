@@ -1,0 +1,137 @@
+<%- include('header.ejs')%>
+
+      <div class="dashboard-content">
+
+        <div class="page-toolbar">
+          <h2>Manage Appointments</h2>
+          <div class="page-toolbar-actions">
+            <button type="button" class="btn btn-outline btn-sm">
+              <i class="fa-solid fa-download"></i> Export Today
+            </button>
+          </div>
+        </div>
+
+        <div class="dashboard-panel">
+          <div class="dashboard-panel-body">
+            <div data-tabs>
+              <div class="tabs">
+                <button type="button" class="tab-btn active" data-tab="today">Pending <span>3</span></button>
+                <button type="button" class="tab-btn" data-tab="upcoming">Confirm <span>2</span></button>
+                <button type="button" class="tab-btn" data-tab="completed">Reject <span>3</span></button>
+                <button type="button" class="tab-btn" data-tab="cancelled">Complete <span>1</span></button>
+              </div>
+
+              <div class="tab-panel active" data-tab-panel="today">
+                <div class="table-wrapper">
+                  <table class="table">
+                    <thead>
+                      <tr><th>Sr.no</th><th>Patient</th><th>Date</th><th>Time</th><th>Reason</th><th>Status</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody>
+                      <% for(var b=0;b<appointments.length;b++){ %>
+                      <tr>
+                        <td><%=b+1%></td>
+                        <td><div class="table-user"><div><strong><%=appointments[b].app_patientName%></strong><span></span></div></div></td>
+                        <td><%=appointments[b].app_date%> </td>
+                        <td><%=appointments[b].app_time%></td>
+                        <td><%=appointments[b].app_reason%></td>
+                        <td><span class="badge badge-approved"><%=appointments[b].status%></span></td>
+                        <td class="table-actions">
+                          <a href="/doctor/confirm_web_appoinment/<%=appointments[b].app_id%>" class="btn btn-sm btn-outline">confirm</a>
+                          <a href="/doctor/reject_web_appoinment/<%=appointments[b].app_id%>" class="btn btn-sm btn-outline">reject</a>
+
+                        </td>
+                      </tr>
+                      <% } %>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="tab-panel" data-tab-panel="upcoming" hidden>
+                <div class="table-wrapper">
+                  <table class="table">
+                    <thead>
+                      <tr><th>Patient</th><th>Date</th><th>Time</th><th>Reason</th><th>Status</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody>
+                            <% for(var b=0;b<confirm.length;b++){ %>
+                      <tr>
+                        <td><%=b+1%></td>
+                        <td><div class="table-user"><div><strong><%=confirm[b].app_patientName%></strong><span></span></div></div></td>
+                        <td><%=confirm[b].app_date%> </td>
+                        <td><%=confirm[b].app_time%></td>
+                        <td><%=confirm[b].app_reason%></td>
+                        <td><span class="badge badge-approved"><%=confirm[b].status%></span></td>
+                        <td class="table-actions">
+                          <a href="/doctor/complete_web_appoinment/<%=confirm[b].app_id%>" class="btn btn-sm btn-outline">Complete</a>
+                          <a href="/doctor/reject_web_appoinment/<%=confirm[b].app_id%>" class="btn btn-sm btn-outline">reject</a>
+
+                        </td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="tab-panel" data-tab-panel="completed" hidden>
+                <div class="table-wrapper">
+                  <table class="table">
+                    <thead>
+                   <th>Sr.no</th><th>Patient</th><th>Date</th><th>Time</th><th>Reason</th><th>Status</th><th>Action</th></tr>
+                    </thead>
+                    <tbody>
+                       <% for(var b=0;b<reject.length;b++){ %>
+                      <tr>
+                        <td><%=b+1%></td>
+                        <td><div class="table-user"><div><strong><%=reject[b].app_patientName%></strong><span></span></div></div></td>
+                        <td><%=reject[b].app_date%> </td>
+                        <td><%=reject[b].app_time%></td>
+                        <td><%=reject[b].app_reason%></td>
+                        <td><span class="badge badge-approved" style="color:red;"><%=reject[b].status%></span></td>
+                        <td class="table-actions">
+                          <a href="/doctor/confirm_web_appoinment/<%=reject[b].app_id%>" class="btn btn-sm btn-outline">confirm</a>
+                          
+
+                        </td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="tab-panel" data-tab-panel="cancelled" hidden>
+                <div class="table-wrapper">
+                  <table class="table">
+                    <thead>
+                      <tr><th>Sr.no</th><th>Patient</th><th>Date</th><th>Time</th><th>Reason</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <% for(var b=0;b<complet.length;b++){ %>
+                      <tr>
+                        <td><%=b+1%></td>
+                        <td><div class="table-user"><div><strong><%=complet[b].app_patientName%></strong><span></span></div></div></td>
+                        <td><%=complet[b].app_date%> </td>
+                        <td><%=complet[b].app_time%></td>
+                        <td><%=complet[b].app_reason%></td>
+                        <td><span class="badge badge-approved"><%=complet[b].status%></span></td>
+                        
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <%-include('footer.ejs')%>
+

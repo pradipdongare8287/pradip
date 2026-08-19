@@ -1,0 +1,82 @@
+<%-include('header.ejs');%>
+    <section class="page-banner">
+      <div class="container">
+        <h1>Contact Us</h1>
+        <div class="breadcrumb">
+          <a href="index.html">Home</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>Contact</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info-cards" data-aos="fade-right">
+            <% for(var a=0;a<contact.length;a++){ %>
+            <div class="contact-info-card">
+              <div class="info-icon"><i class="<%=contact[a].clogo%>"></i></div>
+              <div>
+                <h4><%=contact[a].cnaem%></h4>
+                <p><%=contact[a].cdiscription%></p>
+              </div>
+            </div>
+            <% } %>
+          </div>
+
+          <div class="contact-form-card" data-aos="fade-left">
+            <h3><i class="fa-solid fa-paper-plane text-primary"></i> Send Us a Message</h3>
+            <p>Have a question about services, billing, or visiting hours? Our team typically replies within one business day.</p>
+            <form data-contact-form novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="contact-name">Full Name <span class="required">*</span></label>
+                  <input type="text" id="contact-name" name="name" class="form-control" placeholder="Your full name" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="contact-phone">Phone Number</label>
+                  <input type="tel" id="contact-phone" name="phone" class="form-control" placeholder="+1 (555) 000-0000" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="contact-email">Email Address <span class="required">*</span></label>
+                  <input type="email" id="contact-email" name="email" class="form-control" placeholder="you@example.com" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="contact-subject">Subject</label>
+                  <input type="text" id="contact-subject" name="subject" class="form-control" placeholder="How can we help?" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contact-message">Message <span class="required">*</span></label>
+                <textarea id="contact-message" name="message" class="form-control" rows="5" placeholder="Type your message here..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg btn-block">
+                <i class="fa-solid fa-paper-plane"></i> Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="map-embed" data-aos="fade-up">
+          <iframe title="MediCare Plus location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="<%=map.mlink%>"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section bg-alt faq-section">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="eyebrow">Common Questions</span>
+          <h2>Frequently Asked Questions</h2>
+          <p>Quick answers about appointments, insurance, and hospital visits.</p>
+        </div>
+        <div class="accordion" data-faq-list></div>
+      </div>
+    </section>
+<%-include('footer.ejs');%>
+ 

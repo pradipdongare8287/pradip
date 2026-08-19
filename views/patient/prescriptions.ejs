@@ -1,0 +1,38 @@
+<%-include('header.ejs');%>
+
+      <div class="dashboard-content">
+
+        <div class="page-toolbar">
+          <h2>Prescriptions</h2>
+          <div class="page-toolbar-actions">
+            <span class="badge badge-primary">3 prescriptions</span>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:1.25rem; margin-bottom:1.75rem;">
+    
+          <% for(var i=0;i<prescriptin.length;i++){ %>
+          <div class="card">
+            <div class="card-body">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.75rem;margin-bottom:1rem;">
+                <div><h4 style="margin-bottom:0.25rem;">RX2041</h4>
+                <span class="text-muted" style="font-size:0.85rem;"><%=prescriptin[i].Pre_date%></span></div>
+                <span class="badge badge-primary"><i class="fa-solid fa-prescription"></i> 2 meds</span>
+              </div>
+              <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;"><strong>Diagnosis:</strong><%=prescriptin[i].Pre_diagnosis%></p>
+              <div class="user-meta" style="margin-bottom:1.35rem;">
+                <img src="/images/<%=prescriptin[i].doctor_image%>" class="avatar avatar-sm" alt="<%=prescriptin[i].doc_name%>" />
+                <div><div class="name"><%=prescriptin[i].doc_name%></div><div class="sub"><%=prescriptin[i].doc_departmentId%></div></div>
+              </div>
+              <a href="/patient/prescription_view/<%=prescriptin[i].Prescription_id%>/<%=prescriptin[i].doc_name%>" class="btn btn-primary btn-block btn-sm"><i class="fa-solid fa-eye"></i> View &amp; Print</a>
+            </div>
+          </div>
+            <% } %>
+          
+        </div>
+
+
+      </div>
+    </main>
+  </div>
+<%-include('footer.ejs');%>

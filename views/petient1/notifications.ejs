@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="View and manage your MediCare Plus notifications." />
+  <title>Notifications | MediCare Plus Patient Portal</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body class="dashboard-body" data-dashboard data-role="patient" data-page="notifications" data-base-path="../">
+
+  <div class="page-loader" id="page-loader">
+    <div class="loader-pulse"></div>
+    <span class="loader-text">MediCare Plus</span>
+  </div>
+
+  <div class="dashboard-layout role-patient" data-role="patient">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <span class="logo-icon"><i class="fa-solid fa-hospital"></i></span>
+        <span class="sidebar-brand-text">Medi<span>Care</span> Plus</span>
+      </div>
+
+      <div class="sidebar-user">
+        <img src="" alt="Patient" data-user-avatar />
+        <div class="sidebar-user-info">
+          <h5 data-user-name>Demo Patient</h5>
+          <span>Patient Account</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-label">Main</span>
+        <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-gauge-high"></i><span class="nav-label">Dashboard</span></a>
+        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span class="nav-label">My Profile</span></a>
+        <a href="appointments.html" class="nav-item"><i class="fa-solid fa-calendar-check"></i><span class="nav-label">Appointments</span></a>
+
+        <span class="nav-section-label">Health Records</span>
+        <a href="treatment-history.html" class="nav-item"><i class="fa-solid fa-notes-medical"></i><span class="nav-label">Treatment History</span></a>
+        <a href="reports.html" class="nav-item"><i class="fa-solid fa-file-medical"></i><span class="nav-label">Reports</span></a>
+        <a href="prescriptions.html" class="nav-item"><i class="fa-solid fa-prescription"></i><span class="nav-label">Prescriptions</span></a>
+
+        <span class="nav-section-label">Billing</span>
+        <a href="payments.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span class="nav-label">Payments</span></a>
+
+        <span class="nav-section-label">Updates</span>
+        <a href="notifications.html" class="nav-item active"><i class="fa-solid fa-bell"></i><span class="nav-label">Notifications</span><span class="nav-badge" data-nav-badge="notifications">2</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="../index.html" class="nav-item"><i class="fa-solid fa-house"></i><span class="nav-label">Back to Website</span></a>
+        <a href="../login.html" class="nav-item" data-logout="../login.html"><i class="fa-solid fa-right-from-bracket"></i><span class="nav-label">Logout</span></a>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay"></div>
+
+    <main class="dashboard-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1>Notifications</h1>
+            <p>Stay up to date on appointments, results, and messages.</p>
+          </div>
+        </div>
+
+        <form class="topbar-search" data-topbar-search role="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" name="q" placeholder="Search records, doctors, invoices…" aria-label="Search" />
+        </form>
+
+        <div class="topbar-right">
+          <button type="button" class="topbar-btn theme-toggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+
+          <div class="topbar-btn-wrap" data-notif-wrap>
+            <button type="button" class="topbar-btn" aria-label="Notifications">
+              <i class="fa-solid fa-bell"></i>
+              <span class="badge-dot"></span>
+            </button>
+            <div class="notif-dropdown">
+              <div class="notif-dropdown-header">
+                <h4>Notifications</h4>
+                <a href="#" data-mark-all-read>Mark all read</a>
+              </div>
+              <div class="notification-list"></div>
+              <div class="notif-dropdown-footer">
+                <a href="notifications.html">View All Notifications</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-dropdown" data-profile-dropdown>
+            <button type="button" class="profile-trigger">
+              <img src="" alt="Patient" data-user-avatar />
+              <span class="profile-name" data-user-name>Demo Patient</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong data-user-name>Demo Patient</strong>
+                <span data-user-email>patient@medicare.com</span>
+              </div>
+              <a href="profile.html"><i class="fa-solid fa-user"></i> My Profile</a>
+              <a href="appointments.html"><i class="fa-solid fa-calendar-check"></i> My Appointments</a>
+              <a href="notifications.html"><i class="fa-solid fa-bell"></i> Notifications</a>
+              <div class="divider"></div>
+              <a href="../login.html" class="danger" data-logout="../login.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+
+        <div class="page-toolbar">
+          <h2>Notifications</h2>
+          <div class="page-toolbar-actions">
+            <button type="button" class="btn btn-outline" data-mark-all-read-page>
+              <i class="fa-solid fa-check-double"></i> Mark All as Read
+            </button>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button type="button" class="tab-btn active" data-notif-filter="all">All</button>
+          <button type="button" class="tab-btn" data-notif-filter="unread">Unread</button>
+        </div>
+
+        <div class="dashboard-panel">
+          <div class="dashboard-panel-body no-pad">
+            <div class="notification-list" data-notif-list-full></div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/appointment.js"></script>
+  <script src="../js/dashboard.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/customer.js"></script>
+  <script>
+    document.addEventListener('medicare:ready', function () {
+      MediCareAuth.requireAuth('patient', '../login.html');
+      MediCareCustomer.initShell();
+
+      var esc = MediCareCustomer.escapeHtml;
+      var listEl = document.querySelector('[data-notif-list-full]');
+      var currentFilter = 'all';
+
+      function render() {
+        var list = MediCareDashboard.readNotifications();
+        if (currentFilter === 'unread') {
+          list = list.filter(function (n) { return !n.read; });
+        }
+
+        listEl.innerHTML = list.length
+          ? list
+              .map(function (n) {
+                var iconClass = MediCareCustomer.iconClassForType(n.type);
+                var icon = MediCareCustomer.iconForType(n.type);
+                var action = n.read
+                  ? '<span class="text-muted" style="font-size:0.75rem;white-space:nowrap;">Read</span>'
+                  : '<button type="button" class="btn btn-sm btn-ghost" data-mark-read="' + n.id + '">Mark read</button>';
+
+                return (
+                  '<div class="notification-item ' + (n.read ? '' : 'unread') + '" data-id="' + n.id + '" style="cursor:default;">' +
+                  '<div class="notification-icon ' + iconClass + '"><i class="fa-solid ' + icon + '"></i></div>' +
+                  '<div class="notification-body">' +
+                  '<h5>' + esc(n.title) + '</h5>' +
+                  '<p>' + esc(n.text) + '</p>' +
+                  '<span class="notif-time">' + esc(n.time) + '</span>' +
+                  '</div>' +
+                  action +
+                  '</div>'
+                );
+              })
+              .join('')
+          : '<div class="empty-state"><i class="fa-regular fa-bell-slash"></i><h4>No notifications here</h4><p class="text-muted">You are all caught up.</p></div>';
+
+        listEl.querySelectorAll('[data-mark-read]').forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            MediCareDashboard.markNotificationsRead(btn.getAttribute('data-mark-read'));
+            render();
+            MediCareCustomer.refreshNotifUI();
+          });
+        });
+      }
+
+      document.querySelectorAll('[data-notif-filter]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('[data-notif-filter]').forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          currentFilter = btn.getAttribute('data-notif-filter');
+          render();
+        });
+      });
+
+      document.querySelector('[data-mark-all-read-page]').addEventListener('click', function () {
+        MediCareDashboard.markNotificationsRead();
+        render();
+        MediCareCustomer.refreshNotifUI();
+        MediCareCustomer.toast('All notifications marked as read.', 'success');
+      });
+
+      render();
+    });
+  </script>
+</body>
+</html>

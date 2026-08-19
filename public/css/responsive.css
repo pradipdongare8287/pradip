@@ -1,0 +1,924 @@
+/* ============================================================
+   MediCare Plus — Responsive Breakpoints
+   1200px · 992px · 768px · 576px
+   ============================================================ */
+
+/* ---------- ≤ 1200px ---------- */
+@media (max-width: 1200px) {
+  :root {
+    --container: 960px;
+  }
+
+  .dept-grid,
+  .doctor-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .hero-slide > .container {
+    gap: 2rem;
+  }
+
+  .stat-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-grid .col-8,
+  .dashboard-grid .col-7 {
+    grid-column: span 12;
+  }
+
+  .dashboard-grid .col-5,
+  .dashboard-grid .col-4 {
+    grid-column: span 6;
+  }
+
+  .treatment-detail {
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+  }
+
+  .search-filters .filters-row {
+    grid-template-columns: 1.5fr 1fr 1fr auto;
+  }
+
+  .quick-actions {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---------- ≤ 992px ---------- */
+@media (max-width: 992px) {
+  :root {
+    --container: 720px;
+    --header-height: 72px;
+  }
+
+  /* Header nav collapse */
+  .nav-main {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .header-actions .btn:not(.theme-toggle) .btn-text {
+    display: none;
+  }
+
+  /* Mega menu disabled on tablet/mobile */
+  .mega-menu,
+  .nav-dropdown {
+    display: none !important;
+  }
+
+  .nav-item.has-mega:hover .mega-menu,
+  .nav-item.has-dropdown:hover .nav-dropdown {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* Hero */
+  .hero-slide > .container {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+    gap: 2.5rem;
+  }
+
+  .hero-slider {
+    min-height: auto;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .hero-content p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-content .btn-group {
+    justify-content: center;
+  }
+
+  .hero-form-card {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .hero-arrow {
+    display: none;
+  }
+
+  /* Grids */
+  .dept-grid,
+  .doctor-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .testimonial-grid,
+  .pricing-grid,
+  .blog-grid,
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pricing-card.featured {
+    transform: none;
+  }
+
+  .pricing-card.featured:hover {
+    transform: translateY(-6px);
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery-item.wide {
+    grid-column: span 1;
+    aspect-ratio: 1;
+  }
+
+  .gallery-item.tall {
+    grid-row: span 1;
+    aspect-ratio: 1;
+  }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  /* About */
+  .about-intro {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .about-intro .about-image {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .mission-vision {
+    grid-template-columns: 1fr;
+  }
+
+  /* Timeline — single column */
+  .timeline::before {
+    left: 18px;
+  }
+
+  .timeline-item,
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    width: 100%;
+    left: 0;
+    text-align: left;
+    padding: 0 0 2rem 3rem;
+  }
+
+  .timeline-item::before,
+  .timeline-item:nth-child(odd)::before,
+  .timeline-item:nth-child(even)::before {
+    left: 9px;
+    right: auto;
+  }
+
+  /* Contact */
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Treatment */
+  .treatment-detail {
+    grid-template-columns: 1fr;
+  }
+
+  .treatment-sidebar {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Auth */
+  .auth-page {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-visual {
+    display: none;
+  }
+
+  .auth-form-side {
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+  }
+
+  .auth-card .auth-logo-mobile {
+    display: flex;
+  }
+
+  /* Search filters */
+  .search-filters .filters-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .search-filters .filter-actions {
+    grid-column: span 2;
+  }
+
+  .service-list-item {
+    grid-template-columns: 120px 1fr;
+  }
+
+  .service-list-item .btn {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  /* Form rows */
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Dashboard — off-canvas sidebar */
+  .sidebar {
+    transform: translateX(-100%);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .dashboard-main {
+    margin-left: 0;
+  }
+
+  .dashboard-layout.sidebar-collapsed .dashboard-main {
+    margin-left: 0;
+  }
+
+  .dashboard-layout.sidebar-collapsed .sidebar {
+    width: var(--sidebar-width);
+  }
+
+  .dashboard-layout.sidebar-collapsed .sidebar .nav-label,
+  .dashboard-layout.sidebar-collapsed .sidebar .sidebar-brand-text,
+  .dashboard-layout.sidebar-collapsed .sidebar .nav-badge,
+  .dashboard-layout.sidebar-collapsed .sidebar .sidebar-user-info {
+    display: block;
+  }
+
+  .dashboard-layout.sidebar-collapsed .sidebar .nav-item {
+    justify-content: flex-start;
+    padding: 0.75rem 0.95rem;
+  }
+
+  .dashboard-grid .col-6,
+  .dashboard-grid .col-5,
+  .dashboard-grid .col-4,
+  .dashboard-grid .col-3 {
+    grid-column: span 12;
+  }
+
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-sidebar-card {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .profile-trigger .profile-name {
+    display: none;
+  }
+
+  .topbar-search {
+    max-width: 260px;
+  }
+
+  .prescription-patient {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .quick-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Chat stacks */
+  .chat-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 70vh;
+  }
+
+  .chat-sidebar {
+    max-height: 280px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .chat-main {
+    min-height: 400px;
+  }
+}
+
+/* ---------- ≤ 768px ---------- */
+@media (max-width: 768px) {
+  :root {
+    --container: 540px;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .section-lg {
+    padding: 4.5rem 0;
+  }
+
+  .section-sm {
+    padding: 2.5rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  /* Top bar */
+  .top-bar-left span:not(.emergency),
+  .top-bar .social-links {
+    display: none;
+  }
+
+  .top-bar .container {
+    justify-content: center;
+  }
+
+  /* Hero */
+  .hero-content h1 {
+    font-size: clamp(2rem, 7vw, 2.75rem);
+  }
+
+  .hero-form-card {
+    padding: 1.5rem;
+  }
+
+  .hero-nav {
+    bottom: 1.5rem;
+  }
+
+  /* Cards grids */
+  .dept-grid,
+  .doctor-grid,
+  .testimonial-grid,
+  .pricing-grid,
+  .blog-grid,
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .stat-item .stat-number {
+    font-size: 2.25rem;
+  }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .footer-col h4::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .footer-brand .logo {
+    justify-content: center;
+  }
+
+  .footer-brand p {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .footer-links a {
+    justify-content: center;
+  }
+
+  .footer-links a:hover {
+    padding-left: 0;
+  }
+
+  .footer-contact-item {
+    justify-content: center;
+    text-align: left;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-legal {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Page banner */
+  .page-banner {
+    padding: 3rem 0 2.5rem;
+  }
+
+  /* Float appointment — hide text */
+  .float-btn.appointment span,
+  .float-btn.appointment .btn-text {
+    display: none;
+  }
+
+  .float-btn.appointment {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .float-btns {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  /* Emergency banner */
+  .emergency-banner .container {
+    padding-right: 2.5rem;
+    gap: 0.75rem;
+  }
+
+  /* Video */
+  .play-btn {
+    width: 68px;
+    height: 68px;
+    font-size: 1.35rem;
+  }
+
+  /* Contact form */
+  .contact-form-card {
+    padding: 1.5rem;
+  }
+
+  .map-embed {
+    aspect-ratio: 4 / 3;
+  }
+
+  /* Treatment sidebar */
+  .treatment-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  /* Search */
+  .search-filters .filters-row {
+    grid-template-columns: 1fr;
+  }
+
+  .search-filters .filter-actions {
+    grid-column: span 1;
+  }
+
+  .results-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .service-list-item {
+    grid-template-columns: 1fr;
+  }
+
+  .service-list-item img {
+    width: 100%;
+    height: 180px;
+  }
+
+  /* Auth */
+  .auth-page.centered .auth-card {
+    padding: 1.75rem;
+  }
+
+  /* Dashboard */
+  .dashboard-content {
+    padding: 1.15rem;
+  }
+
+  .topbar {
+    padding: 0 1rem;
+    height: 64px;
+  }
+
+  .topbar-search {
+    display: none;
+  }
+
+  .topbar-title h1 {
+    font-size: 1.05rem;
+  }
+
+  .topbar-title p {
+    display: none;
+  }
+
+  .stat-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .chart-body {
+    min-height: 220px;
+  }
+
+  .calendar-day {
+    min-height: 60px;
+    padding: 0.3rem;
+  }
+
+  .calendar-day .day-events {
+    display: none;
+  }
+
+  .calendar-day .day-number {
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+  }
+
+  .schedule-item {
+    flex-wrap: wrap;
+  }
+
+  .prescription-area {
+    padding: 1.5rem;
+  }
+
+  .prescription-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .prescription-header .rx-brand {
+    justify-content: center;
+  }
+
+  .prescription-header .rx-meta {
+    text-align: center;
+  }
+
+  .prescription-patient {
+    grid-template-columns: 1fr;
+  }
+
+  .prescription-footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .notif-dropdown {
+    width: min(340px, calc(100vw - 2rem));
+    right: -1rem;
+  }
+
+  .page-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .page-toolbar-actions {
+    width: 100%;
+  }
+
+  .page-toolbar-actions .btn {
+    flex: 1;
+  }
+
+  /* Chat */
+  .chat-layout {
+    min-height: 60vh;
+  }
+
+  .chat-sidebar {
+    max-height: 220px;
+  }
+}
+
+/* ---------- ≤ 576px ---------- */
+@media (max-width: 576px) {
+  :root {
+    --container: 100%;
+  }
+
+  .container,
+  .container-wide {
+    padding: 0 1rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  h1 {
+    font-size: 1.85rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Logo */
+  .logo-tagline {
+    display: none;
+  }
+
+  .logo-text {
+    font-size: 1.2rem;
+  }
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  /* Hero */
+  .hero-slide > .container {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-content .eyebrow {
+    font-size: 0.75rem;
+  }
+
+  .hero-content .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-content .btn-group .btn {
+    width: 100%;
+  }
+
+  .hero-form-card h3 {
+    font-size: 1.15rem;
+  }
+
+  /* Stats */
+  .stats-section {
+    padding: 3rem 0;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-item {
+    padding: 0.5rem;
+  }
+
+  /* Gallery */
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+
+  /* Buttons */
+  .btn-lg {
+    padding: 0.85rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+
+  .btn-group .btn {
+    width: 100%;
+  }
+
+  /* CTA */
+  .cta-banner {
+    padding: 3rem 1.25rem;
+    border-radius: var(--radius-lg);
+  }
+
+  /* Doctor card social always visible on touch */
+  .doctor-card .doctor-social {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Video caption */
+  .video-caption {
+    font-size: 0.95rem;
+    padding: 0 1rem;
+  }
+
+  /* Auth */
+  .auth-card .auth-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .auth-social {
+    flex-direction: column;
+  }
+
+  .auth-remember {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  /* Dashboard extras */
+  .stat-card {
+    padding: 1.15rem;
+  }
+
+  .stat-card .stat-card-value {
+    font-size: 1.5rem;
+  }
+
+  .chart-card {
+    padding: 1.15rem;
+  }
+
+  .chart-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dashboard-panel-header {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dashboard-panel-body {
+    padding: 1rem;
+  }
+
+  .quick-actions {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .quick-action {
+    padding: 1rem 0.75rem;
+  }
+
+  .profile-form-tabs button {
+    padding: 0.85rem 1rem;
+    font-size: 0.825rem;
+  }
+
+  .profile-form-body {
+    padding: 1.25rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+
+  .calendar-day-name {
+    font-size: 0.65rem;
+    padding: 0.5rem 0.15rem;
+  }
+
+  .topbar-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 0.95rem;
+  }
+
+  /* Mobile nav full width on small phones */
+  .mobile-nav {
+    width: 100%;
+  }
+
+  /* Table horizontal scroll hint */
+  .table-wrapper {
+    margin: 0 -0.25rem;
+    border-radius: var(--radius-md);
+  }
+}
+
+/* ---------- Landscape phones / short viewports ---------- */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-slider,
+  .hero-slide > .container {
+    min-height: auto;
+  }
+
+  .hero-slide > .container {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .auth-page {
+    min-height: auto;
+  }
+
+  .auth-form-side {
+    min-height: auto;
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* ---------- Print (public pages) ---------- */
+@media print {
+  .site-header,
+  .top-bar,
+  .site-footer,
+  .float-btns,
+  .mobile-nav,
+  .mobile-overlay,
+  .emergency-banner,
+  .hero-nav,
+  .hero-arrow,
+  .hero-form-card {
+    display: none !important;
+  }
+
+  .hero-slider,
+  .hero-slide {
+    min-height: auto;
+    position: relative;
+  }
+
+  .hero-slide {
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .hero-content,
+  .hero-form-card {
+    animation: none;
+  }
+
+  .play-btn::before {
+    animation: none;
+  }
+}

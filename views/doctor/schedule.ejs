@@ -1,0 +1,152 @@
+<%-include('header.ejs');%>
+
+      <div class="dashboard-content">
+
+        <!-- Working hours summary -->
+        <div class="dashboard-panel" style="margin-bottom:1.75rem;">
+          <div class="dashboard-panel-header">
+            <h3>Standard Working Hours</h3>
+          </div>
+          <div class="dashboard-panel-body">
+            <div class="schedule-list">
+              <div class="schedule-item">
+                <div class="schedule-divider"></div>
+                <div class="schedule-info"><h5>Monday – Friday</h5><p>9:00 AM – 5:00 PM</p></div>
+                <span class="badge badge-success">Available</span>
+              </div>
+              <div class="schedule-item">
+                <div class="schedule-divider orange"></div>
+                <div class="schedule-info"><h5>Saturday</h5><p>9:00 AM – 1:00 PM</p></div>
+                <span class="badge badge-success">Available</span>
+              </div>
+              <div class="schedule-item">
+                <div class="schedule-divider red"></div>
+                <div class="schedule-info"><h5>Sunday</h5><p>Not available</p></div>
+                <span class="badge badge-cancelled">Closed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <!-- Weekly availability grid -->
+          <div class="col-7">
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-header">
+                <h3>Weekly Availability</h3>
+              </div>
+              <div class="dashboard-panel-body">
+                <form action="#" method="post">
+                  <div class="schedule-list">
+                    <div class="schedule-item">
+                      <label style="display:flex;align-items:center;gap:0.5rem;min-width:110px;"><input type="checkbox" name="available[]" value="monday" checked /> Monday</label>
+                      <input type="time" name="mondayStart" class="form-control" value="09:00" style="max-width:130px;" />
+                      <span class="text-muted">to</span>
+                      <input type="time" name="mondayEnd" class="form-control" value="17:00" style="max-width:130px;" />
+                    </div>
+                    <div class="schedule-item">
+                      <label style="display:flex;align-items:center;gap:0.5rem;min-width:110px;"><input type="checkbox" name="available[]" value="tuesday" checked /> Tuesday</label>
+                      <input type="time" name="tuesdayStart" class="form-control" value="09:00" style="max-width:130px;" />
+                      <span class="text-muted">to</span>
+                      <input type="time" name="tuesdayEnd" class="form-control" value="17:00" style="max-width:130px;" />
+                    </div>
+                    <div class="schedule-item">
+                      <label style="display:flex;align-items:center;gap:0.5rem;min-width:110px;"><input type="checkbox" name="available[]" value="wednesday" checked /> Wednesday</label>
+                      <input type="time" name="wednesdayStart" class="form-control" value="09:00" style="max-width:130px;" />
+                      <span class="text-muted">to</span>
+                      <input type="time" name="wednesdayEnd" class="form-control" value="17:00" style="max-width:130px;" />
+                    </div>
+                    <div class="schedule-item">
+                      <label style="display:flex;align-items:center;gap:0.5rem;min-width:110px;"><input type="checkbox" name="available[]" value="thursday" checked /> Thursday</label>
+                      <input type="time" name="thursdayStart" class="form-control" value="09:00" style="max-width:130px;" />
+                      <span class="text-muted">to</span>
+                      <input type="time" name="thursdayEnd" class="form-control" value="17:00" style="max-width:130px;" />
+                    </div>
+                    <div class="schedule-item">
+                      <label style="display:flex;align-items:center;gap:0.5rem;min-width:110px;"><input type="checkbox" name="available[]" value="friday" checked /> Friday</label>
+                      <input type="time" name="fridayStart" class="form-control" value="09:00" style="max-width:130px;" />
+                      <span class="text-muted">to</span>
+                      <input type="time" name="fridayEnd" class="form-control" value="17:00" style="max-width:130px;" />
+                    </div>
+                    <div class="schedule-item">
+                      <label style="display:flex;align-items:center;gap:0.5rem;min-width:110px;"><input type="checkbox" name="available[]" value="saturday" checked /> Saturday</label>
+                      <input type="time" name="saturdayStart" class="form-control" value="09:00" style="max-width:130px;" />
+                      <span class="text-muted">to</span>
+                      <input type="time" name="saturdayEnd" class="form-control" value="13:00" style="max-width:130px;" />
+                    </div>
+                    <div class="schedule-item">
+                      <label style="display:flex;align-items:center;gap:0.5rem;min-width:110px;"><input type="checkbox" name="available[]" value="sunday" /> Sunday</label>
+                      <input type="time" name="sundayStart" class="form-control" value="09:00" disabled style="max-width:130px;" />
+                      <span class="text-muted">to</span>
+                      <input type="time" name="sundayEnd" class="form-control" value="13:00" disabled style="max-width:130px;" />
+                    </div>
+                  </div>
+                  <div class="form-actions">
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Availability</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Leave request -->
+          <div class="col-5">
+            <div class="dashboard-panel" style="margin-bottom:1.25rem;">
+              <div class="dashboard-panel-header">
+                <h3>Request Leave</h3>
+              </div>
+              <div class="dashboard-panel-body">
+                <form action="#" method="post">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label">From <span class="required">*</span></label>
+                      <input type="date" name="fromDate" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">To <span class="required">*</span></label>
+                      <input type="date" name="toDate" class="form-control" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Reason <span class="required">*</span></label>
+                    <textarea name="reason" class="form-control" placeholder="e.g. Attending a medical conference" required></textarea>
+                  </div>
+                  <div class="form-actions" style="justify-content:flex-start;">
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Submit Request</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-header">
+                <h3>Leave Requests</h3>
+              </div>
+              <div class="dashboard-panel-body">
+                <div class="schedule-list">
+                  <div class="schedule-item">
+                    <div class="schedule-divider orange"></div>
+                    <div class="schedule-info"><h5>Aug 10 – Aug 12, 2026</h5><p>Attending a medical conference</p></div>
+                    <span class="badge badge-pending">Pending</span>
+                  </div>
+                  <div class="schedule-item">
+                    <div class="schedule-divider"></div>
+                    <div class="schedule-info"><h5>Jun 05 – Jun 06, 2026</h5><p>Personal leave</p></div>
+                    <span class="badge badge-approved">Approved</span>
+                  </div>
+                  <div class="schedule-item">
+                    <div class="schedule-divider red"></div>
+                    <div class="schedule-info"><h5>Mar 14, 2026</h5><p>Family emergency</p></div>
+                    <span class="badge badge-approved">Approved</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<%-include('footer.ejs');%>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="View and manage your MediCare Plus notifications." />
+  <title>Notifications | MediCare Plus Patient Portal</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body class="dashboard-body" data-role="patient" data-page="notifications">
+
+  <div class="dashboard-layout role-patient" data-role="patient">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <span class="logo-icon"><i class="fa-solid fa-hospital"></i></span>
+        <span class="sidebar-brand-text">Medi<span>Care</span> Plus</span>
+      </div>
+
+      <div class="sidebar-user">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Emma Johnson" />
+        <div class="sidebar-user-info">
+          <h5>Emma Johnson</h5>
+          <span>Patient Account</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-label">Main</span>
+        <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-gauge-high"></i><span class="nav-label">Dashboard</span></a>
+        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span class="nav-label">My Profile</span></a>
+        <a href="appointments.html" class="nav-item"><i class="fa-solid fa-calendar-check"></i><span class="nav-label">Appointments</span></a>
+
+        <span class="nav-section-label">Health Records</span>
+        <a href="treatment-history.html" class="nav-item"><i class="fa-solid fa-notes-medical"></i><span class="nav-label">Treatment History</span></a>
+        <a href="reports.html" class="nav-item"><i class="fa-solid fa-file-medical"></i><span class="nav-label">Reports</span></a>
+        <a href="prescriptions.html" class="nav-item"><i class="fa-solid fa-prescription"></i><span class="nav-label">Prescriptions</span></a>
+
+        <span class="nav-section-label">Billing</span>
+        <a href="payments.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span class="nav-label">Payments</span></a>
+
+        <span class="nav-section-label">Updates</span>
+        <a href="notifications.html" class="nav-item active"><i class="fa-solid fa-bell"></i><span class="nav-label">Notifications</span><span class="nav-badge">2</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="../index.html" class="nav-item"><i class="fa-solid fa-house"></i><span class="nav-label">Back to Website</span></a>
+        <a href="../login.html" class="nav-item"><i class="fa-solid fa-right-from-bracket"></i><span class="nav-label">Logout</span></a>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay"></div>
+
+    <main class="dashboard-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1>Notifications</h1>
+            <p>Stay up to date on appointments, results, and messages.</p>
+          </div>
+        </div>
+
+        <form class="topbar-search" action="#" method="get" role="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" name="q" placeholder="Search records, doctors, invoices…" aria-label="Search" />
+        </form>
+
+        <div class="topbar-right">
+          <button type="button" class="topbar-btn theme-toggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+
+          <div class="topbar-btn-wrap dropdown">
+            <button type="button" class="topbar-btn" data-dropdown aria-label="Notifications">
+              <i class="fa-solid fa-bell"></i>
+              <span class="badge-dot">2</span>
+            </button>
+            <div class="notif-dropdown">
+              <div class="notif-dropdown-header">
+                <h4>Notifications</h4>
+                <a href="notifications.html">Mark all read</a>
+              </div>
+              <div class="notification-list">
+                <div class="notification-item unread">
+                  <div class="notification-icon success"><i class="fa-solid fa-calendar-check"></i></div>
+                  <div class="notification-body">
+                    <h5>Appointment Confirmed</h5>
+                    <p>Your visit with Dr. Sarah Mitchell on Jul 28 at 10:30 AM is confirmed.</p>
+                    <span class="notif-time">2 hours ago</span>
+                  </div>
+                </div>
+                <div class="notification-item unread">
+                  <div class="notification-icon"><i class="fa-solid fa-flask"></i></div>
+                  <div class="notification-body">
+                    <h5>Lab Report Ready</h5>
+                    <p>Your Complete Blood Count report is ready to download.</p>
+                    <span class="notif-time">Yesterday</span>
+                  </div>
+                </div>
+                <div class="notification-item">
+                  <div class="notification-icon warning"><i class="fa-solid fa-credit-card"></i></div>
+                  <div class="notification-body">
+                    <h5>Payment Due</h5>
+                    <p>Invoice INV-2041 of $85.00 is due on Aug 2.</p>
+                    <span class="notif-time">2 days ago</span>
+                  </div>
+                </div>
+              </div>
+              <div class="notif-dropdown-footer">
+                <a href="notifications.html">View All Notifications</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-dropdown dropdown">
+            <button type="button" class="profile-trigger" data-dropdown>
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Emma Johnson" />
+              <span class="profile-name">Emma Johnson</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong>Emma Johnson</strong>
+                <span>emma.johnson@example.com</span>
+              </div>
+              <a href="profile.html"><i class="fa-solid fa-user"></i> My Profile</a>
+              <a href="appointments.html"><i class="fa-solid fa-calendar-check"></i> My Appointments</a>
+              <a href="notifications.html"><i class="fa-solid fa-bell"></i> Notifications</a>
+              <div class="divider"></div>
+              <a href="../login.html" class="danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+
+        <div class="page-toolbar">
+          <h2>Notifications</h2>
+          <div class="page-toolbar-actions">
+            <button type="button" class="btn btn-outline">
+              <i class="fa-solid fa-check-double"></i> Mark All as Read
+            </button>
+          </div>
+        </div>
+
+        <div data-tabs>
+          <div class="tabs">
+            <button type="button" class="tab-btn active" data-tab="all">All</button>
+            <button type="button" class="tab-btn" data-tab="unread">Unread</button>
+          </div>
+
+          <div class="tab-panel active" data-tab-panel="all">
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-body no-pad">
+                <div class="notification-list">
+                  <div class="notification-item unread">
+                    <div class="notification-icon success"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="notification-body">
+                      <h5>Appointment Confirmed</h5>
+                      <p>Your visit with Dr. Sarah Mitchell on Jul 28 at 10:30 AM is confirmed.</p>
+                      <span class="notif-time">2 hours ago</span>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-ghost">Mark read</button>
+                  </div>
+                  <div class="notification-item unread">
+                    <div class="notification-icon"><i class="fa-solid fa-flask"></i></div>
+                    <div class="notification-body">
+                      <h5>Lab Report Ready</h5>
+                      <p>Your Complete Blood Count report is ready to download from the Reports page.</p>
+                      <span class="notif-time">Yesterday</span>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-ghost">Mark read</button>
+                  </div>
+                  <div class="notification-item">
+                    <div class="notification-icon warning"><i class="fa-solid fa-credit-card"></i></div>
+                    <div class="notification-body">
+                      <h5>Payment Due</h5>
+                      <p>Invoice INV-2041 of $85.00 is due on Aug 2.</p>
+                      <span class="notif-time">2 days ago</span>
+                    </div>
+                    <span class="text-muted" style="font-size:0.75rem;white-space:nowrap;">Read</span>
+                  </div>
+                  <div class="notification-item">
+                    <div class="notification-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></div>
+                    <div class="notification-body">
+                      <h5>Prescription Renewed</h5>
+                      <p>Dr. Sarah Mitchell renewed your Amlodipine prescription (RX2041).</p>
+                      <span class="notif-time">5 days ago</span>
+                    </div>
+                    <span class="text-muted" style="font-size:0.75rem;white-space:nowrap;">Read</span>
+                  </div>
+                  <div class="notification-item">
+                    <div class="notification-icon danger"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="notification-body">
+                      <h5>Appointment Cancelled</h5>
+                      <p>Your appointment with Dr. James Carter on Apr 20 was cancelled and refunded.</p>
+                      <span class="notif-time">3 months ago</span>
+                    </div>
+                    <span class="text-muted" style="font-size:0.75rem;white-space:nowrap;">Read</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-panel" data-tab-panel="unread" hidden>
+            <div class="dashboard-panel">
+              <div class="dashboard-panel-body no-pad">
+                <div class="notification-list">
+                  <div class="notification-item unread">
+                    <div class="notification-icon success"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="notification-body">
+                      <h5>Appointment Confirmed</h5>
+                      <p>Your visit with Dr. Sarah Mitchell on Jul 28 at 10:30 AM is confirmed.</p>
+                      <span class="notif-time">2 hours ago</span>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-ghost">Mark read</button>
+                  </div>
+                  <div class="notification-item unread">
+                    <div class="notification-icon"><i class="fa-solid fa-flask"></i></div>
+                    <div class="notification-body">
+                      <h5>Lab Report Ready</h5>
+                      <p>Your Complete Blood Count report is ready to download from the Reports page.</p>
+                      <span class="notif-time">Yesterday</span>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-ghost">Mark read</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

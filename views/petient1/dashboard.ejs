@@ -1,0 +1,384 @@
+<%-include('header.ejs')%>
+
+    <main class="dashboard-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1 data-greeting>Good morning, there</h1>
+            <p>Here's a summary of your health activity.</p>
+          </div>
+        </div>
+
+        <form class="topbar-search" data-topbar-search role="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" name="q" placeholder="Search records, doctors, invoices…" aria-label="Search" />
+        </form>
+
+        <div class="topbar-right">
+          <button type="button" class="topbar-btn theme-toggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+
+          <div class="topbar-btn-wrap" data-notif-wrap>
+            <button type="button" class="topbar-btn" aria-label="Notifications">
+              <i class="fa-solid fa-bell"></i>
+              <span class="badge-dot"></span>
+            </button>
+            <div class="notif-dropdown">
+              <div class="notif-dropdown-header">
+                <h4>Notifications</h4>
+                <a href="#" data-mark-all-read>Mark all read</a>
+              </div>
+              <div class="notification-list"></div>
+              <div class="notif-dropdown-footer">
+                <a href="notifications.html">View All Notifications</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-dropdown" data-profile-dropdown>
+            <button type="button" class="profile-trigger">
+              <img src="" alt="Patient" data-user-avatar />
+              <span class="profile-name" data-user-name>Demo Patient</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong data-user-name>Demo Patient</strong>
+                <span data-user-email>patient@medicare.com</span>
+              </div>
+              <a href="profile.html"><i class="fa-solid fa-user"></i> My Profile</a>
+              <a href="appointments.html"><i class="fa-solid fa-calendar-check"></i> My Appointments</a>
+              <a href="notifications.html"><i class="fa-solid fa-bell"></i> Notifications</a>
+              <div class="divider"></div>
+              <a href="../login.html" class="danger" data-logout="../login.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+
+        <div class="dashboard-welcome">
+          <h2>Welcome back, <span data-user-firstname>Patient</span>!</h2>
+          <p>Track your appointments, prescriptions, and health records — all in one place.</p>
+        </div>
+
+        <div class="stat-cards">
+          <div class="stat-card">
+            <div class="stat-card-icon blue"><i class="fa-solid fa-calendar-check"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Upcoming Appointments</div>
+              <div class="stat-card-value" data-stat="upcoming">0</div>
+              <div class="stat-trend neutral" data-stat-trend="upcoming">Checking schedule…</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon green"><i class="fa-solid fa-prescription"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Active Prescriptions</div>
+              <div class="stat-card-value" data-stat="prescriptions">0</div>
+              <div class="stat-trend up"><i class="fa-solid fa-arrow-up"></i> 1 <span>new this month</span></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon orange"><i class="fa-solid fa-file-medical"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Medical Reports</div>
+              <div class="stat-card-value" data-stat="reports">0</div>
+              <div class="stat-trend neutral" data-stat-trend="reports">Loading…</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon purple"><i class="fa-solid fa-credit-card"></i></div>
+            <div class="stat-card-body">
+              <div class="stat-card-label">Total Payments</div>
+              <div class="stat-card-value" data-stat="payments">$0</div>
+              <div class="stat-trend neutral" data-stat-trend="payments">Loading…</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="col-8 chart-card">
+            <div class="chart-card-header">
+              <h3>Appointment Activity Trend</h3>
+              <div class="chart-actions">
+                <span class="badge badge-primary"><i class="fa-solid fa-calendar"></i> Last 7 months</span>
+              </div>
+            </div>
+            <div class="chart-body">
+              <canvas id="chart-appointments"></canvas>
+            </div>
+          </div>
+
+          <div class="col-4 dashboard-panel">
+            <div class="dashboard-panel-header">
+              <h3><i class="fa-solid fa-lightbulb" style="color:var(--warning);margin-right:0.4rem;"></i>Health Tip of the Day</h3>
+            </div>
+            <div class="dashboard-panel-body">
+              <p style="color:var(--text-secondary); line-height:1.75; margin-bottom:1.25rem;" data-health-tip>
+                Loading tip…
+              </p>
+              <button type="button" class="btn btn-ghost btn-sm btn-block" data-new-tip>
+                <i class="fa-solid fa-arrows-rotate"></i> Show Another Tip
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-panel" style="margin-bottom: 1.75rem;">
+          <div class="dashboard-panel-header">
+            <h3>Upcoming Appointments</h3>
+            <a href="appointments.html">View All <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <div class="dashboard-panel-body no-pad">
+            <div class="table-wrapper">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody data-upcoming-body>
+                  <tr><td colspan="5"><div class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i></div></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="margin-bottom: 1rem;">Quick Actions</h3>
+        <div class="quick-actions" style="margin-bottom: 1.75rem;">
+          <a href="../appointment.html" class="quick-action">
+            <i class="fa-solid fa-calendar-plus"></i>
+            <span>Book Appointment</span>
+          </a>
+          <a href="prescriptions.html" class="quick-action">
+            <i class="fa-solid fa-prescription-bottle-medical"></i>
+            <span>View Prescriptions</span>
+          </a>
+          <a href="reports.html" class="quick-action">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            <span>Download Reports</span>
+          </a>
+          <a href="#doctor-chat" class="quick-action">
+            <i class="fa-solid fa-comment-medical"></i>
+            <span>Chat with Doctor</span>
+          </a>
+        </div>
+
+        <div class="dashboard-panel" id="doctor-chat">
+          <div class="dashboard-panel-header">
+            <h3>Chat with Your Doctor</h3>
+            <span class="badge badge-success"><i class="fa-solid fa-circle" style="font-size:6px"></i> Online</span>
+          </div>
+          <div class="dashboard-panel-body no-pad">
+            <div class="chat-layout">
+              <div class="chat-sidebar" data-chat-contacts>
+                <div class="chat-contact active" data-chat-contact="d1">
+                  <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=200&q=80" class="avatar" alt="Dr. Sarah Mitchell" />
+                  <div>
+                    <strong style="display:block;font-size:0.9rem;">Dr. Sarah Mitchell</strong>
+                    <span class="text-muted" style="font-size:0.775rem;">Cardiology</span>
+                  </div>
+                </div>
+                <div class="chat-contact" data-chat-contact="d3">
+                  <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=200&q=80" class="avatar" alt="Dr. Priya Sharma" />
+                  <div>
+                    <strong style="display:block;font-size:0.9rem;">Dr. Priya Sharma</strong>
+                    <span class="text-muted" style="font-size:0.775rem;">Neurology</span>
+                  </div>
+                </div>
+                <div class="chat-contact" data-chat-contact="d9">
+                  <img src="https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&w=200&q=80" class="avatar" alt="Dr. Lisa Nguyen" />
+                  <div>
+                    <strong style="display:block;font-size:0.9rem;">Dr. Lisa Nguyen</strong>
+                    <span class="text-muted" style="font-size:0.775rem;">Dental</span>
+                  </div>
+                </div>
+              </div>
+              <div class="chat-main">
+                <div class="chat-header">
+                  <img class="avatar avatar-sm" data-chat-header-avatar src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=200&q=80" alt="" />
+                  <div>
+                    <strong data-chat-header-name style="display:block;">Dr. Sarah Mitchell</strong>
+                    <span class="text-muted" style="font-size:0.8rem;" data-chat-header-status>Active now</span>
+                  </div>
+                </div>
+                <div class="chat-messages" data-chat-messages></div>
+                <form class="chat-input" data-chat-input-form>
+                  <input type="text" placeholder="Type your message…" data-chat-input required />
+                  <button type="submit" class="btn btn-primary btn-icon" aria-label="Send message"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/appointment.js"></script>
+  <script src="../js/dashboard.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/customer.js"></script>
+  <script>
+    document.addEventListener('medicare:ready', function () {
+      MediCareAuth.requireAuth('patient', '../login.html');
+      MediCareCustomer.initShell();
+
+      var appts = MediCareCustomer.loadAppointments();
+      var split = MediCareCustomer.splitAppointments(appts);
+      var upcoming = split.upcoming;
+      var reports = MediCareCustomer.getReports();
+      var prescriptions = MediCareCustomer.getPrescriptions();
+      var payments = MediCareCustomer.getPayments();
+
+      document.querySelector('[data-stat="upcoming"]').textContent = upcoming.length;
+      var next = upcoming[0];
+      document.querySelector('[data-stat-trend="upcoming"]').textContent = next
+        ? 'Next: ' + MediCareCustomer.fmtDate(next.date)
+        : 'No appointments scheduled';
+
+      document.querySelector('[data-stat="prescriptions"]').textContent = prescriptions.length;
+
+      document.querySelector('[data-stat="reports"]').textContent = reports.length;
+      var pendingReports = reports.filter(function (r) { return r.status === 'Pending'; }).length;
+      document.querySelector('[data-stat-trend="reports"]').textContent = pendingReports
+        ? pendingReports + ' pending review'
+        : 'All reports ready';
+
+      var totalPaid = payments
+        .filter(function (p) { return p.status === 'paid'; })
+        .reduce(function (sum, p) { return sum + p.amount; }, 0);
+      document.querySelector('[data-stat="payments"]').textContent = MediCareCustomer.fmtMoney(totalPaid);
+      document.querySelector('[data-stat-trend="payments"]').textContent = payments.length + ' invoices total';
+
+      MediCareCustomer.renderAppointmentsTable('[data-upcoming-body]', upcoming.slice(0, 5), {
+        showActions: false,
+        emptyText: 'Book your next visit to see it appear here.',
+      });
+
+      // Health tip rotator
+      var tips = [
+        'Stay hydrated — aim for at least 8 glasses of water a day to support circulation, digestion, and skin health.',
+        'A brisk 30-minute walk five days a week can lower blood pressure and improve heart health.',
+        'Prioritize 7–8 hours of quality sleep each night — it strengthens immunity and mental clarity.',
+        'Wash your hands regularly for at least 20 seconds to reduce the spread of common infections.',
+        'Schedule an annual checkup even if you feel healthy — early detection saves lives.',
+        'Limit added sugar and processed foods; choose whole grains, vegetables, and lean proteins instead.',
+        'Practice deep breathing or a few minutes of mindfulness daily to help manage stress levels.',
+      ];
+      var tipIndex = Math.floor(Math.random() * tips.length);
+      var tipEl = document.querySelector('[data-health-tip]');
+      function showTip() {
+        tipEl.textContent = tips[tipIndex];
+        tipIndex = (tipIndex + 1) % tips.length;
+      }
+      showTip();
+      document.querySelector('[data-new-tip]').addEventListener('click', showTip);
+
+      // Doctor chat (sample conversation)
+      var conversations = {
+        d1: {
+          name: 'Dr. Sarah Mitchell',
+          status: 'Active now',
+          avatar: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=200&q=80',
+          messages: [
+            { from: 'doctor', text: 'Hi! I reviewed your latest lipid panel — your LDL has improved nicely since last visit.', time: '9:02 AM' },
+            { from: 'me', text: 'That\'s great to hear! Should I continue with the same dosage of Atorvastatin?', time: '9:05 AM' },
+            { from: 'doctor', text: 'Yes, keep it at 20mg nightly. Let\'s recheck levels in 6 weeks and see how the trend continues.', time: '9:07 AM' },
+            { from: 'doctor', text: 'Also, keep up the daily walks — they are clearly helping your numbers.', time: '9:07 AM' },
+            { from: 'me', text: 'Will do, thank you Dr. Mitchell!', time: '9:10 AM' },
+          ],
+        },
+        d3: {
+          name: 'Dr. Priya Sharma',
+          status: 'Away · replies within a few hours',
+          avatar: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=200&q=80',
+          messages: [
+            { from: 'doctor', text: 'How has the migraine frequency been since we adjusted your Propranolol dose?', time: 'Yesterday' },
+            { from: 'me', text: 'Much better — only one mild episode this week, down from three.', time: 'Yesterday' },
+            { from: 'doctor', text: 'Excellent progress. Keep logging triggers in your headache diary and we\'ll review at your next visit.', time: 'Yesterday' },
+          ],
+        },
+        d9: {
+          name: 'Dr. Lisa Nguyen',
+          status: 'Active now',
+          avatar: 'https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&w=200&q=80',
+          messages: [
+            { from: 'doctor', text: 'Your gums are healing well after the last cleaning. Any sensitivity with the mouthwash?', time: '2 days ago' },
+            { from: 'me', text: 'A little at first, but it\'s fine now.', time: '2 days ago' },
+            { from: 'doctor', text: 'Perfect — finish the 14-day course and we\'ll reassess at your 6-month cleaning.', time: '2 days ago' },
+          ],
+        },
+      };
+
+      var chatMessagesEl = document.querySelector('[data-chat-messages]');
+      var chatHeaderName = document.querySelector('[data-chat-header-name]');
+      var chatHeaderStatus = document.querySelector('[data-chat-header-status]');
+      var chatHeaderAvatar = document.querySelector('[data-chat-header-avatar]');
+      var activeDoctorId = 'd1';
+
+      function bubble(msg) {
+        var cls = msg.from === 'me' ? 'sent' : 'received';
+        return '<div class="chat-bubble ' + cls + '">' + MediCareCustomer.escapeHtml(msg.text) +
+          '<div style="font-size:0.7rem; opacity:0.7; margin-top:0.35rem;">' + MediCareCustomer.escapeHtml(msg.time) + '</div></div>';
+      }
+
+      function renderChat(doctorId) {
+        var convo = conversations[doctorId];
+        if (!convo) return;
+        activeDoctorId = doctorId;
+        chatHeaderName.textContent = convo.name;
+        chatHeaderStatus.textContent = convo.status;
+        chatHeaderAvatar.src = convo.avatar;
+        chatMessagesEl.innerHTML = convo.messages.map(bubble).join('');
+        chatMessagesEl.scrollTop = chatMessagesEl.scrollHeight;
+
+        document.querySelectorAll('[data-chat-contact]').forEach(function (el) {
+          el.classList.toggle('active', el.getAttribute('data-chat-contact') === doctorId);
+        });
+      }
+
+      document.querySelectorAll('[data-chat-contact]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          renderChat(el.getAttribute('data-chat-contact'));
+        });
+      });
+
+      document.querySelector('[data-chat-input-form]').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var input = document.querySelector('[data-chat-input]');
+        var text = input.value.trim();
+        if (!text) return;
+        var now = new Date();
+        var timeStr = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        conversations[activeDoctorId].messages.push({ from: 'me', text: text, time: timeStr });
+        renderChat(activeDoctorId);
+        input.value = '';
+
+        setTimeout(function () {
+          conversations[activeDoctorId].messages.push({
+            from: 'doctor',
+            text: 'Thanks for the update — noted in your chart. I\'ll follow up if anything needs adjusting.',
+            time: 'Just now',
+          });
+          renderChat(activeDoctorId);
+        }, 1400);
+      });
+
+      renderChat('d1');
+    });
+  </script>
+</body>
+</html>

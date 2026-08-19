@@ -1,0 +1,52 @@
+<%-include('header.ejs')%>
+
+      <div class="dashboard-content">
+
+        <div class="page-toolbar">
+          <h2>Patient Records</h2>
+          <div class="page-toolbar-actions">
+            <div class="search-box" style="width:280px;">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="search" placeholder="Search by name, phone, blood group…" />
+            </div>
+            <button type="button" class="btn btn-outline btn-sm">
+              <i class="fa-solid fa-download"></i> Export CSV
+            </button>
+          </div>
+        </div>
+
+        <div class="dashboard-panel" style="margin-bottom:1.75rem;">
+          <div class="dashboard-panel-body no-pad">
+            <div class="table-wrapper">
+              <table class="table">
+                <thead>
+                  <tr><th>Sr.no</th><th>Patient</th><th>Gender / Age</th><th>Phone</th><th>Blood Group</th><th>Last Visit</th><th>Total Visits</th><th>Actions</th></tr>
+                </thead>
+                <tbody>
+                  <% for(var i=0;i<patients.length;i++){ %>
+                  <tr>
+                    <td><%=i+1%></td>
+                    <td><div class="table-user"><img src="/images/<%=patients[i].p_photo%>" alt="patient img" /><div><strong><%=patients[i].pname%></strong><span>Hypertension <%=patients[i].Appointment_Reason%></span></div></div></td>
+                    <td><%=patients[i].p_gender%> <br>DOB <%=patients[i].p_dob%> </td>
+                    <td><%=patients[i].pphone%></td>
+                    <td><%=patients[i].p_bloodgroup%></td>
+                    <td><%=patients[i].Date%></td>
+                    <td><%=patients.length%></td>
+                    <td class="table-actions"><a href="/doctor/patients_details/<%=patients[i].Petient_id%>" class="btn btn-sm btn-outline"><i class="fa-solid fa-eye"></i> View</a></td>
+                  </tr>
+                  <% } %>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Patient Detail -->
+       
+
+      </div>
+    </div>
+  </div>
+
+<%-include('footer.ejs');%>

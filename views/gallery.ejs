@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Take a visual tour of MediCare Plus — our facilities, operating theaters, patient wards, diagnostic labs, and more." />
+  <meta name="keywords" content="hospital gallery, hospital photos, medical facilities, hospital tour" />
+  <meta name="author" content="MediCare Plus" />
+  <title>Gallery | MediCare Plus</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body data-page="gallery">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <div class="page-loader" id="page-loader">
+    <div class="loader-pulse"></div>
+    <span class="loader-text">MediCare Plus</span>
+  </div>
+
+  <div id="site-header"></div>
+
+  <main id="main-content">
+    <section class="page-banner">
+      <div class="container">
+        <h1>Hospital Gallery</h1>
+        <div class="breadcrumb">
+          <a href="index.html">Home</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>Gallery</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="eyebrow">A Look Inside</span>
+          <h2>Our Facilities &amp; Technology</h2>
+          <p>From surgical suites to healing gardens — explore the spaces where our patients are cared for.</p>
+        </div>
+
+        <div class="filter-bar justify-center" data-aos="fade-up">
+          <button type="button" class="btn btn-primary" data-gallery-filter="all">All</button>
+          <button type="button" class="btn btn-outline" data-gallery-filter="Facility">Facility</button>
+          <button type="button" class="btn btn-outline" data-gallery-filter="Surgery">Surgery</button>
+          <button type="button" class="btn btn-outline" data-gallery-filter="Departments">Departments</button>
+          <button type="button" class="btn btn-outline" data-gallery-filter="Technology">Technology</button>
+          <button type="button" class="btn btn-outline" data-gallery-filter="Emergency">Emergency</button>
+          <button type="button" class="btn btn-outline" data-gallery-filter="Therapy">Therapy</button>
+        </div>
+
+        <div class="gallery-grid" data-gallery-grid></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <div id="floating-buttons"></div>
+  <div class="toast-container"></div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="gallery-lightbox">
+    <div class="lightbox-close" aria-label="Close gallery viewer"><i class="fa-solid fa-xmark"></i></div>
+    <figure>
+      <img id="gallery-lightbox-img" src="" alt="Gallery preview" />
+      <figcaption id="gallery-lightbox-caption" class="text-center text-white mt-2"></figcaption>
+    </figure>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/appointment.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/pages.js"></script>
+</body>
+</html>

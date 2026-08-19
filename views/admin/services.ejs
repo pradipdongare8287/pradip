@@ -1,0 +1,123 @@
+<%-include('header.ejs')%>
+<div class="dashboard-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1>Services</h1>
+            <p>Hospital-wide overview &amp; analytics</p>
+          </div>
+        </div>
+        <div class="topbar-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" id="dashboard-search" placeholder="Quick search doctors, patients…" />
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-btn-wrap">
+            <button type="button" class="topbar-btn" data-notifications aria-label="Notifications"><i class="fa-solid fa-bell"></i></button>
+          </div>
+          <div class="profile-dropdown">
+            <button type="button" class="profile-trigger">
+              <img data-current-user-avatar src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="" />
+              <span class="profile-name" data-current-user-name>System Admin</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong data-current-user-name>System Admin</strong>
+                <span data-current-user-email>admin@medicare.com</span>
+              </div>
+              <a href="settings"><i class="fa-solid fa-gear"></i> Settings</a>
+              <div class="divider"></div>
+              <a href="/admin/logout" class="danger logout-btn" ><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+
+                 <div style="width:550px; margin:40px auto; background:#fff; padding:30px; border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.2);">
+
+                            <h3 style="text-align:center; color:#0d6efd;">
+                                <i class="fa fa-cogs"></i> Add New Service
+                            </h3>
+
+                            <form action="/admin/save_service" method="post" enctype="multipart/form-data">
+
+                                <!-- Image -->
+                                <label style="font-weight:bold;">Service Image</label><br>
+                                <input type="file" name="ser_image"
+                                    style="width:100%; padding:10px; margin:8px 0 18px; border:1px solid #ccc; border-radius:5px;">
+
+                                <!-- Icon -->
+                                <label style="font-weight:bold;">Service Icon</label><br>
+                                <input type="text" name="ser_icon" placeholder="fa fa-cogs"
+                                    style="width:100%; padding:10px; margin:8px 0 18px; border:1px solid #ccc; border-radius:5px;">
+
+                                <!-- Service Name -->
+                                <label style="font-weight:bold;">Service Name</label><br>
+                                <input type="text" name="ser_name" placeholder="Enter Service Name"
+                                    style="width:100%; padding:10px; margin:8px 0 18px; border:1px solid #ccc; border-radius:5px;">
+
+                                <!-- Description -->
+                                <label style="font-weight:bold;">Description</label><br>
+                                <textarea name="ser_description" rows="5" placeholder="Enter Description"
+                                    style="width:100%; padding:10px; margin:8px 0 18px; border:1px solid #ccc; border-radius:5px;resize:none;"></textarea>
+
+                                <!-- Link -->
+                                <label style="font-weight:bold;">Service Link</label><br>
+                                <input type="text" name="ser_link" placeholder="https://example.com"
+                                    style="width:100%; padding:10px; margin:8px 0 20px; border:1px solid #ccc; border-radius:5px;">
+
+                                <button type="reset"
+                                    style="background:#dc3545; color:#fff; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">
+                                    <i class="fa fa-refresh"></i> Reset
+                                </button>
+
+                                <button type="submit"
+                                    style="background:#198754; color:#fff; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; float:right;">
+                                    <i class="fa fa-save"></i> Save Service
+                                </button>
+
+                            </form>
+
+                </div>
+            <div class="table-wrapper">
+          <table class="table" id="doctors-table">
+            <thead>
+              <tr>
+                <th>Sr.no</th>
+                <th>Service Image</th>
+                <th>Service Icon</th>
+                <th>Service Name</th>
+                <th>Service Discription</th>
+                <th>Service Link</th>
+
+                <th>Action</th>
+              </tr>
+            </thead>
+          <% for(var b=0;b<services.length;b++){ %>
+            <tbody>
+            <td><%=b+1%></td>
+            <td>
+                <img src="/images/<%=services[b].ser_image%>" height="60px" width="50px" alt="service image">
+                
+            </td>
+            <td><%=services[b].ser_icon%></td>
+            <td><%=services[b].ser_name%></td>
+            <td><%=services[b].ser_description%></td>
+            <td><%=services[b].ser_link%></td>
+
+            <td>
+                <a href="/admin/delete_service/<%=services[b].sid%>" onclick="alert('are you sure delete this department')">
+                  <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                </a>
+            </td>
+            </tbody>
+           <% } %>
+          </table>
+        </div>
+
+      </div>
+
+<%-include('footer.ejs')%>

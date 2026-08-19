@@ -1,0 +1,315 @@
+<%-include('header.ejs')%>
+<div class="dashboard-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1>Edit Website About Section</h1>
+            <p>Hospital About &amp; Page</p>
+          </div>
+        </div>
+        <div class="topbar-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" id="dashboard-search" placeholder="Quick search doctors, patients…" />
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-btn-wrap">
+            <button type="button" class="topbar-btn" data-notifications aria-label="Notifications"><i class="fa-solid fa-bell"></i></button>
+          </div>
+          <div class="profile-dropdown">
+            <button type="button" class="profile-trigger">
+              <img data-current-user-avatar src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="" />
+              <span class="profile-name" data-current-user-name>System Admin</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong data-current-user-name>System Admin</strong>
+                <span data-current-user-email>admin@medicare.com</span>
+              </div>
+              <a href="settings"><i class="fa-solid fa-gear"></i> Settings</a>
+              <div class="divider"></div>
+              <a href="/admin/logout" class="danger logout-btn" ><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+
+                
+
+        <form action="/admin/save_misshion" method="post" enctype="multipart/form-data"
+                    style="max-width:700px; margin:30px auto; padding:30px; background:#fff; border-radius:12px; box-shadow:0 8px 25px rgba(0,0,0,0.15); border-top:5px solid #0d6efd;">
+
+                    <!-- Heading -->
+                    <h2 style="text-align:center; color:#0d6efd; margin-bottom:10px;">
+                        <i class="fa fa-bullseye"></i> Add New Mission
+                    </h2>
+
+                    <p style="text-align:center; color:#666; margin-bottom:30px;">
+                        Fill in the details below to add a new mission.
+                    </p>
+
+                    <!-- Mission Icon -->
+                    <label style="font-weight:bold; color:#333; display:block; margin-bottom:8px;">
+                        <i class="fa fa-icons"></i> Mission Icon
+                    </label>
+
+                    <input type="text" name="mis_icon" placeholder="fa fa-cogs"
+                        style="width:100%; padding:12px; border:1px solid #ced4da; border-radius:8px; font-size:15px; margin-bottom:20px; outline:none;">
+
+                    <!-- Mission Name -->
+                    <label style="font-weight:bold; color:#333; display:block; margin-bottom:8px;">
+                        <i class="fa fa-flag"></i> Mission Name
+                    </label>
+
+                    <input type="text" name="mis_name" placeholder="Enter Mission Name"
+                        style="width:100%; padding:12px; border:1px solid #ced4da; border-radius:8px; font-size:15px; margin-bottom:20px; outline:none;">
+
+                    <!-- Mission Description -->
+                    <label style="font-weight:bold; color:#333; display:block; margin-bottom:8px;">
+                        <i class="fa fa-align-left"></i> Mission Description
+                    </label>
+
+                    <textarea name="mis_description" rows="5" placeholder="Enter Description"
+                        style="width:100%; padding:12px; border:1px solid #ced4da; border-radius:8px; resize:none; font-size:15px; margin-bottom:25px; outline:none;"></textarea>
+
+                    <!-- Buttons -->
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+
+                        <a href=""><button type="reset"
+                            style="background:#dc3545; color:#fff; border:none; padding:12px 28px; border-radius:8px; font-size:15px; cursor:pointer; transition:0.3s;">
+                            <i class="fa fa-refresh"></i> Reset
+                        </button></a>
+
+                       <a><button type="submit"
+                            style="background:#198754; color:#fff; border:none; padding:12px 28px; border-radius:8px; font-size:15px; cursor:pointer; transition:0.3s;">
+                            <i class="fa fa-save"></i> Save Mission
+                        </button></a>
+
+                    </div>
+
+    </form>
+
+         
+    
+       <div class="table-wrapper">
+
+           <h4 style="text-align:center; color:#1d0606; margin-bottom:10px;">
+                        <i class="fa fa-bullseye"></i> Added Mission's
+            </h4>
+
+          <table class="table" id="doctors-table">
+            <thead>
+              <tr>
+                <th>Sr.no</th>
+                <th>Mission Icon</th>
+                <th>Mission Name</th>
+                <th>Mission Discription</th>
+                
+                <th>Action</th>
+              </tr>
+            </thead>
+          <% for(var b=0;b<deta.length;b++){ %>
+            <tbody>
+            <td><%=b+1%></td>
+            <td><%=deta[b].micon%></td>
+            <td><%=deta[b].mname%></td>
+            <td><%=deta[b].mdescription%></td>
+            <td>
+                <a href="/admin/delete_mission/<%=deta[b].mid%>" onclick="return confirm('Are you sure you want to delete this department?')">
+                  <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                </a>
+            </td>
+            </tbody>
+           <% } %>
+          </table>
+        </div>
+
+<!-- =============================================What Drives Us================================================================================================          -->
+
+           <form action="/admin/save_drives" method="post" enctype="multipart/form-data"
+                    style="max-width:700px; margin:30px auto; padding:30px; background:#fff; border-radius:12px; box-shadow:0 8px 25px rgba(0,0,0,0.15); border-top:5px solid #0d6efd;">
+
+                    <!-- Heading -->
+                    <h3 style="text-align:center; color:#fd310d; margin-bottom:10px;">
+                        <i class="fa-solid fa-heart-pulse"></i> Add New Drives 
+                    </h3>
+
+                    <p style="text-align:center; color:#666; margin-bottom:30px;">
+                        Fill in the details below to add a new Drives.
+                    </p>
+
+                    <!-- Mission Icon -->
+                    <label style="font-weight:bold; color:#333; display:block; margin-bottom:8px;">
+                        <i class="fa fa-icons"></i> Drives Icon
+                    </label>
+
+                    <input type="text" name="dri_icon" placeholder="fa fa-cogs"
+                        style="width:100%; padding:12px; border:1px solid #ced4da; border-radius:8px; font-size:15px; margin-bottom:20px; outline:none;">
+
+                    <!-- Mission Name -->
+                    <label style="font-weight:bold; color:#333; display:block; margin-bottom:8px;">
+                        <i class="fa fa-flag"></i> Drives Name
+                    </label>
+
+                    <input type="text" name="dri_name" placeholder="Enter Drives Name"
+                        style="width:100%; padding:12px; border:1px solid #ced4da; border-radius:8px; font-size:15px; margin-bottom:20px; outline:none;">
+
+                    <!-- Mission Description -->
+                    <label style="font-weight:bold; color:#333; display:block; margin-bottom:8px;">
+                        <i class="fa fa-align-left"></i> Drives Description
+                    </label>
+
+                    <textarea name="dri_description" rows="5" placeholder="Enter Description"
+                        style="width:100%; padding:12px; border:1px solid #ced4da; border-radius:8px; resize:none; font-size:15px; margin-bottom:25px; outline:none;"></textarea>
+
+                    <!-- Buttons -->
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+
+                        <a href=""><button type="reset"
+                            style="background:#1338df; color:#fff; border:none; padding:12px 28px; border-radius:8px; font-size:15px; cursor:pointer; transition:0.3s;">
+                            <i class="fa fa-refresh"></i> Reset
+                        </button></a>
+
+                       <a><button type="submit"
+                            style="background:#09ff00; color:#fff; border:none; padding:12px 28px; border-radius:8px; font-size:15px; cursor:pointer; transition:0.3s;">
+                            <i class="fa fa-save"></i> Save Drives
+                        </button></a>
+
+                    </div>
+
+    </form> 
+
+
+         <div class="table-wrapper">
+
+           <h4 style="text-align:center; color:#1d0606; margin-bottom:10px;">
+                        <i style="color:red;" class="fa fa-heart"></i> Added Drive's
+            </h4>
+
+          <table class="table" id="doctors-table">
+            <thead>
+              <tr>
+                <th>Sr.no</th>
+                <th>Mission Icon</th>
+                <th>Mission Name</th>
+                <th>Mission Discription</th>
+                
+                <th>Action</th>
+              </tr>
+            </thead>
+          <% for(var a=0;a<about_drives.length;a++){ %>
+            <tbody>
+            <td><%=a+1%></td>
+            <td><%=about_drives[a].drive_icon%></td>
+            <td><%=about_drives[a].drive_name%></td>
+            <td><%=about_drives[a].drive_description%></td>
+            <td>
+                <a href="/admin/delete_drives/<%=about_drives[a].did%>" onclick="return confirm('Are you sure you want to delete this department?')">
+                  <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                </a>
+            </td>
+            </tbody>
+           <% } %>
+          </table>
+        </div>
+<!-- ===================================ABOUT JOURNEY================================================================================================ -->
+              <form action="/admin/save_journey" method="post" enctype="multipart/form-data"
+                    style="max-width:700px; margin:30px auto; padding:30px; background:#fff; border-radius:12px; box-shadow:0 8px 25px rgba(0,0,0,0.15); border-top:5px solid #0d6efd;">
+
+                    <!-- Heading -->
+                    <h3 style="text-align:center; color:#3fca23; margin-bottom:10px;">
+                        <i class="fa fa-globe"></i> Add Journey 
+                    </h3>
+
+                    <p style="text-align:center; color:#666; margin-bottom:30px;">
+                        Fill in the details below to add a new journey.
+                    </p>
+
+                    <!-- Mission Name -->
+                    <label style="font-weight:bold; color:#333; display:block; margin-bottom:8px;">
+                        <i class="fa fa-flag"></i> Journey Year
+                    </label>
+
+                    <input type="number" name="journey_year" placeholder="Journey Year"
+                        style="width:100%; padding:12px; border:1px solid #ced4da; border-radius:8px; font-size:15px; margin-bottom:20px; outline:none;">
+
+                    <!-- Mission Description -->
+                    <label style="font-weight:bold; color:#333; display:block; margin-bottom:8px;">
+                        <i class="fa fa-align-left"></i> Journey name
+                    </label>
+
+                    <input type="text" name="journey_name" placeholder="Journey Name"
+                        style="width:100%; padding:12px; border:1px solid #ced4da; border-radius:8px; font-size:15px; margin-bottom:20px; outline:none;">
+
+
+                    <label style="font-weight:bold; color:#333; display:block; margin-bottom:8px;">
+                        <i class="fa fa-align-left"></i> Journey discription
+                    </label>
+
+                      <input type="text" name="journey_discription" placeholder="Journey discription"
+                        style="width:100%; padding:12px; border:1px solid #ced4da; border-radius:8px; font-size:15px; margin-bottom:20px; outline:none;">
+
+                    <!-- Buttons -->
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+
+                        <a href=""><button type="reset"
+                            style="background:#1338df; color:#fff; border:none; padding:12px 28px; border-radius:8px; font-size:15px; cursor:pointer; transition:0.3s;">
+                            <i class="fa fa-refresh"></i> Reset
+                        </button></a>
+
+                       <a><button type="submit"
+                            style="background:#09ff00; color:#fff; border:none; padding:12px 28px; border-radius:8px; font-size:15px; cursor:pointer; transition:0.3s;">
+                            <i class="fa fa-save"></i> Save Journey
+                        </button></a>
+
+                    </div>
+
+    </form> 
+
+       <div class="table-wrapper">
+
+           <h4 style="text-align:center; color:#1d0606; margin-bottom:10px;">
+                        <i style="color:red;" class="fa fa-heart"></i> Add New Journey
+            </h4>
+
+          <table class="table" id="doctors-table">
+            <thead>
+              <tr>
+                <th>Sr.no</th>
+                <th>Journey Year</th>
+                <th>Journey Name</th>
+                <th>Journey Description</th>
+                
+                <th>Action</th>
+              </tr>
+            </thead>
+          <% for(var d=0;d<about_journey.length;d++){ %>
+            <tbody>
+            <td><%=d+1%></td>
+            <td><%=about_journey[d].journey_year%></td>
+            <td><%=about_journey[d].journey_name%></td>
+            <td><%=about_journey[d].journey_description%></td>
+            <td>
+                <a href="/admin/delete_journey/<%=about_journey[d].jid%>" onclick="return confirm('Are you sure you want to delete this department?')">
+                  <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                </a>
+            </td>
+            </tbody>
+           <% } %>
+          </table>
+        </div>
+        
+
+</div>
+
+
+
+
+
+
+       
+
+
+<%-include('footer.ejs')%>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MediCare Plus Doctor Panel — dashboard overview of appointments, patients, and earnings." />
+  <title>Doctor Dashboard | MediCare Plus</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body class="dashboard-body" data-role="doctor" data-page="dashboard">
+
+  <div class="dashboard-layout role-doctor" data-role="doctor">
+
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside class="sidebar" id="sidebar">
+      <a href="/doctor" class="sidebar-brand">
+        <span class="logo-icon"><i class="fa-solid fa-hospital"></i></span>
+        <span class="sidebar-brand-text">Medi<span>Care</span> Plus</span>
+      </a>
+
+      <div class="sidebar-user">
+        <img src="/images/<%=headerData.photo%>" alt="<%=headerData.name%>" />
+        <div class="sidebar-user-info">
+          <h5><%=headerData.name%></h5>
+          <span>Cardiology</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Doctor navigation">
+        <span class="nav-section-label">Overview</span>
+        <a href="/doctor/" class="nav-item active"><i class="fa-solid fa-gauge-high"></i><span class="nav-label">Dashboard</span></a>
+        <a href="/doctor/profile" class="nav-item"><i class="fa-solid fa-user-doctor"></i><span class="nav-label">Profile</span></a>
+
+        <span class="nav-section-label">Patient Care</span>
+        <a href="/doctor/appointments" class="nav-item">
+          <i class="fa-solid fa-calendar-check"></i><span class="nav-label">Appointments</span>
+          <span class="nav-badge">5</span>
+        </a>
+        <a href="/doctor/web_appointments" class="nav-item">
+          <i class="fa-solid fa-calendar-check"></i><span class="nav-label">Web Appointments</span>
+          <span class="nav-badge">5</span>
+        </a>
+        <a href="/doctor/patients" class="nav-item"><i class="fa-solid fa-hospital-user"></i><span class="nav-label">Patients</span></a>
+        <a href="/doctor/treatment" class="nav-item"><i class="fa-solid fa-notes-medical"></i><span class="nav-label">Treatment Notes</span></a>
+        <a href="/doctor/prescription" class="nav-item"><i class="fa-solid fa-file-prescription"></i><span class="nav-label">Prescriptions</span></a>
+        <a href="/doctor/reports" class="nav-item"><i class="fa-solid fa-file-medical"></i><span class="nav-label">Reports</span></a>
+
+        <span class="nav-section-label">Planning</span>
+        <a href="/doctor/schedule" class="nav-item"><i class="fa-solid fa-calendar-days"></i><span class="nav-label">Schedule</span></a>
+        <a href="/doctor#notifications" class="nav-item"><i class="fa-solid fa-bell"></i><span class="nav-label">Notifications</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="../index.html" class="nav-item"><i class="fa-solid fa-globe"></i><span class="nav-label">Website</span></a>
+        <a href="/login" class="nav-item"><i class="fa-solid fa-right-from-bracket"></i><span class="nav-label">Logout</span></a>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay"></div>
+
+    <!-- ===================== MAIN ===================== -->
+    <div class="dashboard-main">
+
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1>Dashboard</h1>
+            <p>Welcome back,<%=headerData.name%> </p>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <button type="button" class="topbar-btn theme-toggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+          <div class="topbar-btn-wrap dropdown">
+            <button type="button" class="topbar-btn" data-dropdown aria-label="Notifications">
+              <i class="fa-solid fa-bell"></i>
+              <span class="notif-badge">3</span>
+            </button>
+            <div class="notif-dropdown">
+              <div class="notif-dropdown-header">
+                <h4>Notifications</h4>
+                <a href="/doctor#notifications">Mark all read</a>
+              </div>
+              <div class="notification-list">
+                <div class="notification-item unread">
+                  <div class="notification-icon success"><i class="fa-solid fa-user-plus"></i></div>
+                  <div class="notification-body">
+                    <h5>New Patient Assigned</h5>
+                    <p>Michael Carter has been assigned to your care.</p>
+                    <span class="notif-time">1 hour ago</span>
+                  </div>
+                </div>
+                <div class="notification-item unread">
+                  <div class="notification-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                  <div class="notification-body">
+                    <h5>Appointment Request</h5>
+                    <p>Priya Anand requested an appointment for Jul 29.</p>
+                    <span class="notif-time">3 hours ago</span>
+                  </div>
+                </div>
+                <div class="notification-item">
+                  <div class="notification-icon warning"><i class="fa-solid fa-flask"></i></div>
+                  <div class="notification-body">
+                    <h5>Lab Result Alert</h5>
+                    <p>Abnormal result flagged for patient Daniel Osei.</p>
+                    <span class="notif-time">Yesterday</span>
+                  </div>
+                </div>
+              </div>
+              <div class="notif-dropdown-footer">
+                <a href="/doctor#notifications">View All Notifications</a>
+              </div>
+            </div>
+          </div>
+          <div class="profile-dropdown dropdown">
+            <button type="button" class="profile-trigger" data-dropdown>
+              <img src="/images/<%=headerData.photo%>" alt="<%=headerData.name%>" />
+              <span class="profile-name"><%=headerData.name%></span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong><%=headerData.name%></strong>
+                <span>Cardiology</span>
+              </div>
+              <a href="/doctor/profile"><i class="fa-solid fa-user"></i> My Profile</a>
+              <a href="schedule.html"><i class="fa-solid fa-calendar-days"></i> My Schedule</a>
+              <div class="divider"></div>
+              <a href="/doctor/logout" class="danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>

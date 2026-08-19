@@ -1,0 +1,145 @@
+<%-include('header.ejs');%>
+    <section class="page-banner">
+      <div class="container">
+        <h1>About MediCare Plus</h1>
+        <div class="breadcrumb">
+          <a href="index.html">Home</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>About Us</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="section">
+      <div class="container">
+        <div class="about-intro">
+          <div class="about-image" data-aos="fade-right">
+            <img src="https://images.unsplash.com/photo-1587351021759-3e566b6af7ce?auto=format&fit=crop&w=900&q=80" alt="MediCare Plus hospital courtyard and main building" />
+            <div class="experience-badge">
+              <strong>28+</strong>
+              <span>Years of Care</span>
+            </div>
+          </div>
+          <div data-aos="fade-left">
+            <span class="eyebrow">Who We Are</span>
+            <h2>Compassionate, Advanced Care Since 1998</h2>
+            <p class="lead">MediCare Plus opened its doors as a 60-bed community clinic and has grown into a 320-bed multi-specialty hospital trusted by more than 45,000 patients and families across Health City and beyond.</p>
+            <p>We combine board-certified specialists, modern diagnostic technology, and a genuinely human approach to medicine. From routine checkups to complex surgeries and round-the-clock emergency care, every department is built around one idea: patients deserve both excellent outcomes and a comfortable experience getting there.</p>
+            <div class="btn-group mt-3">
+              <a href="doctors.html" class="btn btn-primary"><i class="fa-solid fa-user-doctor"></i> Meet Our Doctors</a>
+              <a href="departments.html" class="btn btn-outline">Explore Departments</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission / Vision -->
+    <section class="section bg-alt">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="eyebrow">Our Purpose</span>
+          <h2>Mission &amp; Vision</h2>
+          <p>The principles that guide every decision, from the operating room to the front desk.</p>
+        </div>
+        <div class="mission-vision">
+          <% for(var b=0;b<mishion.length;b++){ %>
+          <div class="mv-card mission" data-aos="fade-up">
+            <div class="mv-icon"><i class="<%=mishion[b].micon%>"></i></div>
+            <h3><%=mishion[b].mname%></h3>
+            <p><%=mishion[b].mdescription%></p>
+          </div>
+          <% } %>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="eyebrow">What Drives Us</span>
+          <h2>Our Core Values</h2>
+          <p>Six commitments that shape how our teams treat every patient, every day.</p>
+        </div>
+        <div class="values-grid">
+          <% for(var a=0;a<drives.length;a++){ %>
+          <div class="value-card" data-aos="fade-up">
+            <div class="value-icon"><i class="<%=drives[a].drive_icon %>"></i></div>
+            <h4><%=drives[a].drive_name %></h4>
+            <p><%=drives[a].drive_description %></p>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item" data-aos="zoom-in">
+            <div class="stat-icon blue"><i class="fa-solid fa-user-doctor"></i></div>
+            <div class="stat-number" data-counter="250">0</div>
+            <div class="stat-label">Expert Doctors</div>
+          </div>
+          <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+            <div class="stat-icon green"><i class="fa-solid fa-hospital-user"></i></div>
+            <div class="stat-number" data-counter="45000">0</div>
+            <div class="stat-label">Happy Patients</div>
+          </div>
+          <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+            <div class="stat-icon orange"><i class="fa-solid fa-bed"></i></div>
+            <div class="stat-number" data-counter="320">0</div>
+            <div class="stat-label">Hospital Beds</div>
+          </div>
+          <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+            <div class="stat-icon red"><i class="fa-solid fa-award"></i></div>
+            <div class="stat-number" data-counter="28">0</div>
+            <div class="stat-label">Years of Excellence</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="section bg-alt">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="eyebrow">Our Journey</span>
+          <h2>Milestones Along the Way</h2>
+          <p>From a single clinic to a full-scale multi-specialty hospital network.</p>
+        </div>
+        <div class="timeline">
+          <% for(var c=0;c<journey.length;c++) { %>
+          <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-content">
+              <span class="year"><%=journey[c].journey_year%></span>
+              <h4><%=journey[c].journey_name%></h4>
+              <p><%=journey[c].journey_description%></p>
+            </div>
+          </div>
+            <% } %>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-banner" data-aos="fade-up">
+          <div class="container">
+            <h2>Meet the Team Behind Your Care</h2>
+            <p>250+ board-certified specialists across 8 departments — ready to welcome you and your family.</p>
+            <div class="btn-group">
+              <a href="doctors.html" class="btn btn-white btn-lg"><i class="fa-solid fa-user-doctor"></i> Meet Our Doctors</a>
+              <a href="appointment.html" class="btn btn-outline-white btn-lg">Book an Appointment</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+<%-include('footer.ejs');%>

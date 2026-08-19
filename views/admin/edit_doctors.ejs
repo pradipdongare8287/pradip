@@ -1,0 +1,132 @@
+<%-include('header.ejs')%>
+
+    <div class="dashboard-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-toggle" aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="topbar-title">
+            <h1>Doctors</h1>
+            <p>Manage your specialist roster</p>
+          </div>
+        </div>
+        <div class="topbar-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" id="doctors-search" placeholder="Search doctors by name, specialty…" />
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-btn-wrap">
+            <button type="button" class="topbar-btn" data-notifications aria-label="Notifications"><i class="fa-solid fa-bell"></i></button>
+          </div>
+          <div class="profile-dropdown">
+            <button type="button" class="profile-trigger">
+              <img data-current-user-avatar src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="" />
+              <span class="profile-name" data-current-user-name>System Admin</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="profile-menu">
+              <div class="profile-menu-header">
+                <strong data-current-user-name>System Admin</strong>
+                <span data-current-user-email>admin@medicare.com</span>
+              </div>
+              <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+              <div class="divider"></div>
+              <a href="login.html" class="danger logout-btn" data-logout="login.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <div class="page-toolbar">
+          <h2>All Doctors <span class="badge badge-primary" id="doctors-count">0 of 0</span></h2>
+          <div class="page-toolbar-actions">
+            <select id="doctors-status-filter" class="form-control" style="max-width:180px;">
+              <option value="all">All Status</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+          </div>
+        </div>
+        <div class="">
+    <form action="/admin/doctor_update/<%= doctor.doc_id %>/<%= doctor.doctor_image %>" method="post" enctype="multipart/form-data">
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="doc-name">Full Name <span class="required">*</span></label>
+            <input type="text" id="doc-name" name="doc_name" class="form-control" placeholder="Dr. Jane Doe" required value="<%= doctor.doc_name %>"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="doc-specialty">Specialty <span class="required">*</span></label>
+            <input type="text" id="doc-specialty" name="doc_specialty" class="form-control" placeholder="Cardiologist" required value="<%= doctor.doc_specialty %>" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="doc-department">Department <span class="required">*</span></label>
+            <select id="doc-department" name="doc_departmentId" class="form-control" required>
+              <option>Choose Department</option>
+              <% for(var i=0;i<department.length;i++){ %>
+                  <option><%=department[i].dname%></option>
+                <% } %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="doc-experience">Experience (years)</label>
+            <input type="number" id="doc-experience" name="doc_experience" class="form-control" min="0" placeholder="10" value="<%= doctor.doc_experience %>"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="doc-fees">Consultation Fee ($) <span class="required">*</span></label>
+            <input type="number" id="doc-fees" name="doc_fees" class="form-control" min="0" step="1" placeholder="150" required value="<%= doctor.doc_fees %>" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="doc-rating">Rating</label>
+            <input type="number" id="doc-rating" name="doc_rating" class="form-control" min="0" max="5" step="0.1" placeholder="4.8" value="<%= doctor.doc_rating %>" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="doc-email">Email</label>
+            <input type="email" id="doc-email" name="doc_email" class="form-control" placeholder="doctor@medicareplus.com" value="<%= doctor.doc_email %>" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="doc-phone">Phone</label>
+            <input type="tel" id="doc-phone" name="doc_phone" class="form-control" placeholder="+1 555-0100" value="<%= doctor.doc_phone %>" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="doc-gender">Gender</label>
+            <select id="doc-gender" name="doc_gender" class="form-control">
+              <option value="Select" <%= doctor.doc_gender==='Select'? 'selected' : '' %>>Select</option>
+              <option value="female" <%= doctor.doc_gender==='female'? 'selected' : '' %>>Female</option>
+              <option value="male" <%= doctor.doc_gender==='male'? 'selected' : '' %>>Male</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="doc-image">Photo</label>
+            <input type="file" id="doc-image" name="doc_image" class="form-control" placeholder="https://…" />
+            <img src="/images/<%= doctor.doctor_image %>" height="120px" width="100px"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="doc-email">Password</label>
+            <input type="password" id="doc-email" name="doc_password" class="form-control" placeholder="12345" value="<%=doctor.doc_password%>" />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-outline" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Doctor</button>
+      </div>
+    </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add / Edit Doctor Modal -->
+
+
+<%-include('footer.ejs')%>
+  

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MediCare Plus — Premium multi-specialty hospital offering expert doctors, advanced treatments, and 24/7 emergency care." />
+  <meta name="keywords" content="hospital, clinic, doctors, appointment, healthcare, medicare plus" />
+  <meta name="author" content="MediCare Plus" />
+  <title>MediCare Plus | Premium Hospital & Clinic Care</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body data-page="home">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <div class="page-loader" id="page-loader">
+    <div class="loader-pulse"></div>
+    <span class="loader-text">MediCare Plus</span>
+  </div>
+ 
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <a href="tel:+18005550147"><i class="fa-solid fa-phone"></i> +1 (800) 555-0147</a>
+        <a href="mailto:info@medicareplus.com"><i class="fa-solid fa-envelope"></i> info@medicareplus.com</a>
+        <span><i class="fa-regular fa-clock"></i> Mon–Sat 8AM–8PM</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="tel:108" class="emergency"><i class="fa-solid fa-truck-medical"></i> Emergency: 108</a>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <header class="site-header" id="main-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo" aria-label="MediCare Plus home">
+      <span class="logo-icon"><i class="fa-solid fa-hospital"></i></span>
+      <span>
+        <span class="logo-text">Medi<span>Care</span> Plus</span>
+        <span class="logo-tagline">Compassion. Excellence. Care.</span>
+      </span>
+    </a>
+
+    <nav class="nav-main" aria-label="Primary">
+      <a class="nav-link active" href="/">Home</a>
+      <a class="nav-link" href="/about">About</a>
+      <div class="nav-item has-mega">
+        <a class="nav-link" href="/departments">
+          Departments
+        </a>
+        <!-- <div class="mega-menu">
+          <div class="mega-col">
+            <h5>Specialties</h5>
+            <a class="mega-link" href="/departments#cardiology"><i class="fa-solid fa-heart-pulse"></i><span>Cardiology</span></a>
+            <a class="mega-link" href="/departments#neurology"><i class="fa-solid fa-brain"></i><span>Neurology</span></a>
+            <a class="mega-link" href="/departments#orthopedics"><i class="fa-solid fa-bone"></i><span>Orthopedics</span></a>
+          </div>
+          <div class="mega-col">
+            <h5>More Care</h5>
+            <a class="mega-link" href="/departments#pediatrics"><i class="fa-solid fa-baby"></i><span>Pediatrics</span></a>
+            <a class="mega-link" href="/departments#dental"><i class="fa-solid fa-tooth"></i><span>Dental</span></a>
+            <a class="mega-link" href="/departments#ophthalmology"><i class="fa-solid fa-eye"></i><span>Ophthalmology</span></a>
+          </div>
+          <div class="mega-col">
+            <h5>Quick Links</h5>
+            <a class="mega-link" href="/doctors"><i class="fa-solid fa-user-doctor"></i><span>Find a Doctor</span></a>
+            <a class="mega-link" href="/services"><i class="fa-solid fa-stethoscope"></i><span>Treatments</span></a>
+            <a class="mega-link" href="/appointment"><i class="fa-solid fa-calendar-plus"></i><span>Book Visit</span></a>
+          </div>
+        </div> -->
+      </div>
+      <a class="nav-link" href="/doctors">Doctors</a>
+      <a class="nav-link" href="/services">Services</a>
+      <a class="nav-link" href="/blog">Blog</a>
+      <a class="nav-link" href="/contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+      <a href="/login" class="btn btn-outline btn-sm">Login</a>
+      <a href="/appointment" class="btn btn-primary btn-sm">
+        <i class="fa-solid fa-calendar-check"></i> Book
+      </a>
+      <button type="button" class="mobile-toggle" id="mobile-nav-open" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main-content">
+
+    <!-- --------------------------------------------------- -->
+
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+<aside class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+  <div class="mobile-nav-header">
+    <span class="logo-text">Medi<span>Care</span> Plus</span>
+    <button type="button" id="mobile-nav-close" aria-label="Close menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <a class="nav-link" href="index">Home</a>
+  <a class="nav-link" href="about">About</a>
+  <a class="nav-link" href="departments">Departments</a>
+  <a class="nav-link" href="doctors">Doctors</a>
+  <a class="nav-link" href="services">Services</a>
+  <a class="nav-link" href="blog">Blog</a>
+  <a class="nav-link" href="gallery">Gallery</a>
+  <a class="nav-link" href="contact">Contact</a>
+  <a class="nav-link" href="appointment">Book Appointment</a>
+  <a class="nav-link" href="login">Login / Register</a>
+</aside>

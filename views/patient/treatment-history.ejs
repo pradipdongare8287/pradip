@@ -1,0 +1,53 @@
+<%-include('header.ejs');%>
+
+      <div class="dashboard-content">
+
+        <div class="page-toolbar">
+          <h2>Treatment History</h2>
+          <div class="page-toolbar-actions">
+            <span class="badge badge-primary">4 records</span>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" class="form-control" placeholder="Search by disease, doctor, or treatment…" />
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Disease</th>
+                <th>Diagnosis</th>
+                <th>Treatment</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Medicine</th>
+                <th>Next Visit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0;i<all_treatment.length;i++){ %>
+              <tr>
+                <td><strong><%=all_treatment[i].treat_diagnosis%></strong></td>
+                <td><%=all_treatment[i].treat_condition%></td>
+                <td><%=all_treatment[i].treat_notes%></td>
+                <td><%=all_treatment[i].doc_name%></td>
+                <td><%=all_treatment[i].treat_nextVisit%></td>
+                <td><%=all_treatment[i].treat_medicines%></td>
+                <td><%=all_treatment[i].treat_nextVisit%></td>
+              </tr>
+              <% } %>
+              
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+<%-include('footer.ejs');%>
