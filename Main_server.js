@@ -25,4 +25,8 @@ Main.use('/patient',petient)
 Main.set('view engine', 'ejs');
 Main.use(express.static('public'))
 
-Main.listen(3000)
+const PORT = process.env.PORT || 3000;
+
+Main.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
